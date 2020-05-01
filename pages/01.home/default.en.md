@@ -3,7 +3,7 @@ title: Home
 body_classes: 'title-center title-h1h2'
 ---
 
-# DevOps Moldova Comunity
+# DevOps Moldova Community
 ## Join the DevOps side!
 
 ### Stay in touch
