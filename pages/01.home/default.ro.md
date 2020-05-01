@@ -4,7 +4,7 @@ body_classes: 'title-center title-h1h2'
 ---
 
 # Comunitatea DevOps din Moldova
-## Alatură-te!
+## Alătură-te!
 
 ### Fii pe fază
 Nu uita să ni te alături și pe alte platforme, cum ar fi:
