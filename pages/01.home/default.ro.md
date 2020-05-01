@@ -6,7 +6,7 @@ body_classes: 'title-center title-h1h2'
 # Comunitatea DevOps din Moldova
 ## Alătură-te!
 
-
+[adsense id="" client="" slot="" width="" height="" type="inarticle/normal" class=""][/adsense]
 ### Fii pe fază
 
 Nu uita să ni te alături și pe alte platforme, cum ar fi:
