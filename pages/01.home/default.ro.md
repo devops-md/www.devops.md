@@ -7,6 +7,7 @@ body_classes: 'title-center title-h1h2'
 ## Alătură-te!
 
 ### Fii pe fază
+
 Nu uita să ni te alături și pe alte platforme, cum ar fi:
 * [Facebook Group](https://www.facebook.com/groups/devops.md/)
 * [Facebook Page](https://www.facebook.com/devops.md/)
