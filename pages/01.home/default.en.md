@@ -4,7 +4,7 @@ body_classes: 'title-center title-h1h2'
 ---
 
 # DevOps Moldova Comunity
-## Join the devOps side!
+## Join the DevOps side!
 
 ### Stay in touch
 First of all, don't forget to check out our
