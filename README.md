@@ -1,5 +1,5 @@
 # DevOps Moldova Comunity
-## Join the devOps side!
+## Join the DevOps side!
 
 Congratulations! You have installed the **Base Grav Package** that provides a **simple page** and the default **Quark** theme to get you started.
 
