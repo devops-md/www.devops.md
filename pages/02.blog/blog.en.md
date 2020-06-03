@@ -1,4 +1,6 @@
 ---
+media_order: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg'
+hero_image: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg'
 blog_url: /blog
 show_sidebar: true
 show_breadcrumbs: true
@@ -12,5 +14,7 @@ content:
         dir: desc
     pagination: true
     url_taxonomy_filters: true
+feed:
+    limit: 10
 ---
 
