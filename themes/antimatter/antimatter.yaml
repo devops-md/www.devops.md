@@ -1,0 +1,5 @@
+enabled: true
+dropdown:
+  enabled: false
+custom_logo:
+  - name: devops-md.svg
