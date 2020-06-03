@@ -1,14 +1,18 @@
 ---
 title: 'Install Docker on Amazon Linux 2'
+hero_classes: ''
+hero_image: ''
 content:
-    items:
-        - '@self.children'
-    limit: 5
+    items: '- ''@self.children'''
+    limit: '5'
     order:
         by: date
         dir: desc
-    pagination: true
-    url_taxonomy_filters: true
+    pagination: '1'
+    url_taxonomy_filters: '1'
+feed:
+    limit: '10'
+    description: ''
 ---
 
 Amazon changed the install in Linux 2. One no-longer using 'yum' See: https://aws.amazon.com/amazon-linux-2/release-notes/
