@@ -1,0 +1,48 @@
+<h1>
+    {{ config.plugins['data-manager'].types[type].list.title ?: type|capitalize|e ~ " " ~ "PLUGIN_DATA_MANAGER.ITEMS_LIST"|e|tu|raw }}
+</h1>
+<div class="">
+    {% if config.plugins['data-manager'].types[type].list.columns %}
+        <table>
+            <thead>
+                <tr>
+                    {% for column in config.plugins['data-manager'].types[type].list.columns %}
+                        <th>{{ column.label|e }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grav.twig.items %}
+                    <tr>
+                        {% for column in config.plugins['data-manager'].types[type].list.columns %}
+                            <td>
+                                <a href="{{ type }}/{{ item.route }}">
+                                    {% if column.field is iterable %}
+                                        {% set value = item.content %}
+                                        {% for field in column.field %}
+                                            {% set value = value[field] %}
+                                        {% endfor %}
+                                        {{ value|e }}
+                                    {% else %}
+                                        {{ item.content[column.field]|e }}
+                                    {% endif %}
+                                </a>
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <ul class="">
+           {% for item in grav.twig.items %}
+               <li class="">
+                   <a href="{{ type }}/{{ item.route }}" class="page-edit">{{ item.name|e }}</a>
+               </li>
+           {% endfor %}
+        </ul>
+        <div class="button-bar danger">
+        <a href="{{ type }}.csv" class="button">Download as CSV</a>
+        </div>
+    {% endif %}
+</div>

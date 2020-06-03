@@ -1,0 +1,22 @@
+enabled: true
+built_in_css: true
+default_tags: []
+default_orderby: 'asis'
+default_combinator: 'or'
+default_asc: true
+links:
+  - name: Link 1
+    description: "First link"
+    link: "http://example.com/1"
+    tags: [tag1]
+    sortkey: ccc
+  - name: Link 2
+    description: "Second Link"
+    link: "http://example.com/2"
+    tags: [tag1,tag2]
+    sortkey: bbb
+  - name: Link 3
+    description: "Third link"
+    link: "http://example.com/3"
+    tags: [tag1,tag2]
+    sortkey: aaa    

@@ -1,0 +1,94 @@
+enabled: true
+built_in_css: true
+providers:
+  gitlab:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    domain:
+    options:
+      scope: ['read_user', 'openid']
+  discord:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['identify', 'email']
+  slack:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['users:read', 'users:read.email']
+  jira:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['read:jira-user']
+  twitch:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['user_read']
+  azure:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['User.Read']
+  patreon:
+    enabled: false
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['users']
+
+admin:
+  enabled: true
+  built_in_css: true
+  providers:
+    gitlab:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      domain:
+      options:
+        scope: ['read_user', 'openid']
+    discord:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['identify', 'email']
+    slack:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['users:read', 'users:read.email']
+    jira:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['read:jira-user']
+    twitch:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['user_read']
+    azure:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['User.Read']
+    patreon:
+      enabled: false
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['users']

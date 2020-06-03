@@ -1,0 +1,20 @@
+{
+    "name": "grav-plugin-github",
+    "type": "plugin",
+    "description": "Grav GitHub plugin is a github wrapper plugin for Grav",
+    "keywords": ["cms"],
+    "homepage": "http://rt.djamil.it/grav-site/downloads/plugins#extras",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Djamil Legato",
+            "email": "djamil@getgrav.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "knplabs/github-api": "^2.10",
+        "php-http/guzzle6-adapter": "^1.1",
+        "cache/doctrine-adapter": "^1.0"
+    }
+}
