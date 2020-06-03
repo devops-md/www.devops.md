@@ -1,5 +1,6 @@
 ---
 media_order: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg'
+hero_classes: hero-large
 hero_image: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg'
 blog_url: /blog
 show_sidebar: true
