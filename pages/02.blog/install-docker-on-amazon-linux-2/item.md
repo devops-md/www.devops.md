@@ -1,14 +1,19 @@
 ---
 title: 'Install Docker on Amazon Linux 2'
-content:
-    items:
-        - '@self.children'
-    limit: 5
-    order:
-        by: date
-        dir: desc
-    pagination: true
-    url_taxonomy_filters: true
+date: '18:20 13-02-2020'
+taxonomy:
+    category:
+        - howtoo
+    tag:
+        - aws
+        - docker
+        - linux
+hide_git_sync_repo_link: false
+blog_url: /blog
+show_sidebar: true
+show_breadcrumbs: true
+show_pagination: true
+hide_from_post_list: false
 feed:
     limit: 10
 ---
