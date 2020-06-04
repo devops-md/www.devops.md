@@ -1,0 +1,71 @@
+title: Custom Content List
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        advanced:
+          fields:
+            overrides:
+              fields:
+                header.child_type:
+                  default: embedlycard
+                  toggleable: false
+
+        customcontentlist:
+          type: tab
+          title: Custom Content List
+
+          fields:
+            header.content.order.by:
+              type: select
+              label: Order By
+              default: date
+              options:
+                folder: Folder
+                title: Title
+                date: Date
+                default: Default
+
+            header.content.order.dir:
+              type: select
+              label: Order
+              default: desc
+              options:
+                asc: Ascending
+                desc: Descending
+
+            customcontentlist1:
+                type: section
+                title: "Appearance"
+                underline: true
+
+            header.display_child_page_titles:
+                type: toggle
+                label: Display Child Page Titles
+                help: Determines if child page titles are displayed
+                default: 0
+                highlight: 0
+                options:
+                    1:  Yes
+                    0:  No
+                validate:
+                    type: bool
+
+            header.display_content_titles:
+                type: toggle
+                label: Display Content Titles
+                help: Determines if content titles are displayed
+                default: 1
+                highlight: 1
+                options:
+                    1:  Yes
+                    0:  No
+                validate:
+                    type: bool

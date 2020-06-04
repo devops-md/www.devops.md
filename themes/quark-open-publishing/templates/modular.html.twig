@@ -1,0 +1,74 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% import _self as macro %}
+
+{% block javascripts %}
+    {% if show_onpage_menu %}
+        {% do assets.add('theme://js/singlepagenav.min.js') %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom %}
+    {{ parent() }}
+    {% if show_onpage_menu %}
+        <script>
+            // singlePageNav initialization & configuration
+            $('ul.navigation').singlePageNav({
+                offset: $('#header').outerHeight(),
+                filter: ':not(.external)',
+                updateHash: true,
+                currentClass: 'active'
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block header_navigation %}
+    {% if show_onpage_menu %}
+        <ul class="navigation">
+            {% for module in page.collection() %}
+                {% set current_module = (module.active or module.activeChild) ? 'active' : '' %}
+                <li>
+                    <a class="{{ current_module }}" href="#{{ macro.pageLinkName(module.menu) }}">{{ module.menu }}</a>
+                </li>
+            {% endfor %}
+            {% for mitem in site.menu %}
+                <li>
+                    <a {% if mitem.class %}class="{{ mitem.class }}"{% endif %} href="{{ mitem.url }}">
+                        {% if mitem.icon %}
+                            <i class="fa fa-{{ mitem.icon }}"></i>
+                        {% endif %}
+                        {{ mitem.text }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block hero %}
+    {% for module in page.collection() if module.template == 'modular/hero' %}
+        <div id="{{ macro.pageLinkName(module.menu) }}"></div>
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    {% for module in page.collection() if module.template != 'modular/hero' %}
+        <div id="{{ macro.pageLinkName(module.menu) }}"></div>
+        {{ module.content|raw }}
+    {% endfor %}
+    {# check to display CC License - hibbittsdesign.org #} {# check to display git sync link in page - hibbittsdesign.org #}
+    {% if theme_var('display_of_git_sync_repo_link') == 'page' and not (grav.uri.param('summaryonly') or grav.uri.param('onlysummary')) %}
+        {% include 'partials/git_sync_repo_link_note.html.twig' %}
+    {% endif %}
+    {% if not (grav.uri.param('chromeless') or grav.uri.param('embedded')) and not(theme_var('chromeless.enabled')) and (theme_var('cc_license.enabled') and not(page.header.hide_cc_license)) %}
+        {% include 'partials/creative_commons_license.html.twig' %}
+    {% endif %}
+{% endblock %}

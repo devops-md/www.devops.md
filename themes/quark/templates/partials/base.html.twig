@@ -15,8 +15,6 @@
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
     <link rel="canonical" href="{{ page.url(true, true) }}" />
-
-    {% include 'partials/langswitcher.hreflang.html.twig' %}
 {% endblock head %}
 
 {% block stylesheets %}
@@ -59,6 +57,7 @@
                         {% if config.plugins.login.enabled and grav.user.username %}
                             <span class="login-status-wrapper"><i class="fa fa-user"></i> {% include 'partials/login-status.html.twig' %}</span>
                         {% endif %}
+
                     </section>
                 </nav>
             </section>

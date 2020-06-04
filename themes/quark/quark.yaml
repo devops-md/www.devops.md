@@ -10,5 +10,3 @@ blog-page: '/blog'
 spectre:
   exp: false
   icons: false
-custom_logo:
-  - name: devops-md-2.svg
