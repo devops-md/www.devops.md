@@ -1,8 +1,14 @@
 ---
 title: Books
 date: '2020-06-18 23:03'
+taxonomy:
+    category:
+        - 'External Resources'
+    tag:
+        - books
 hide_git_sync_repo_link: false
 hide_page_title: false
+visible: true
 hero_classes: ''
 hero_image: ''
 header_image_alt_text: ''

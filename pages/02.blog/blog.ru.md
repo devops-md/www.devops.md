@@ -1,5 +1,5 @@
 ---
-title: 'Blog'
+title: 'Блог'
 media_order: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg,writing-blogs-748x335[1].jpeg'
 hide_git_sync_repo_link: false
 hero_classes: hero-large

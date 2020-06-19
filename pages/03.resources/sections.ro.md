@@ -1,4 +1,5 @@
 ---
+title: 'Resurse'
 taxonomy:
     category:
         - 'External Resources'
