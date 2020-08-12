@@ -112,7 +112,11 @@ class Content implements ContentInterface
                     ['page' => $page]
                 );
             }
-            $paths[$route]['content'] = $page->content();
+            if (isset($this->config['process']) && $this->config['process'] == "markdown") {
+                $paths[$route]['content'] = $page->rawMarkdown();
+            } else {
+                $paths[$route]['content'] = $page->content();
+            }
             if (!empty($paths[$route])) {
                 $children = $this->buildTree($route, $mode, $depth);
                 if (!empty($children)) {
@@ -157,7 +161,9 @@ class Content implements ContentInterface
             if (preg_match(self::REGEX_FRAGMENT_SHORTCODE, $content)) {
                 $content = $this->processFragments($content);
             }
-            $content = $this->parsedown->text($content);
+            if (isset($this->config['process']) && $this->config['process'] == "markdown") {
+                $content = $this->parsedown->text($content);
+            }
             $breaks = explode('<hr />', $content);
             if (count($breaks) > 0) {
                 $this->breakContent($page, $config, $breaks);
@@ -275,11 +281,13 @@ class Content implements ContentInterface
      */
     public function buildSlide(array $page, array $config, string $break)
     {
-        if (isset($page['header']->styles)
-            && is_array($page['header']->styles)
-            && !empty($page['header']->styles)
-        ) {
-            foreach ($page['header']->styles as $property => $value) {
+        $styles = $page['header']->style ??
+            $page['header']->styles ??
+            $page['header']->presentation['style'] ??
+            $page['header']->presentation['styles'] ??
+            [];
+        if (!empty($styles) && is_array($styles) && Utils::arrayIsAssociative($styles)) {
+            foreach ($styles as $property => $value) {
                 $this->parser->styleProcessor($config['id'], $property, $value, $page);
             }
         }

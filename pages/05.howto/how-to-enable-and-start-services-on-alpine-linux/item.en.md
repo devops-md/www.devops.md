@@ -1,8 +1,15 @@
 ---
 title: 'How to enable and start services on Alpine Linux'
 date: '2020-07-09 04:36'
+taxonomy:
+    category:
+        - 'How To'
+    tag:
+        - linux
+        - 'linux services'
+        - 'alpine linux'
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
