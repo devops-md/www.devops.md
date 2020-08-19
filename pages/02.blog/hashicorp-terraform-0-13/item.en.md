@@ -1,6 +1,14 @@
 ---
-title: 'Hashicorp Terraform 0.13'
+title: 'HashiCorp Terraform 0.13'
+media_order: '1588888056-terraformprimarylogofullcolorrgb[1].svg'
 date: '2020-08-19 20:48'
+taxonomy:
+    category:
+        - News
+    tag:
+        - Hashicorp
+        - 'Hashicorp Terraform'
+        - 'Hashicorp Terraform 0.13'
 hide_git_sync_repo_link: false
 blog_url: /blog
 show_sidebar: true
