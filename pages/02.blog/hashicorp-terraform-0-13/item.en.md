@@ -11,9 +11,9 @@ feed:
     limit: 10
 ---
 
-HashiCorp Announced General Availability of Terraform 0.13
+HashiCorp has [Announced](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13/) General Availability of Terraform 0.13
 
-As they are saying on their blog, after much anticipation, Terraform 0.13 is now in general availability. It is immediately available for download as well as for use in Terraform Cloud.
+As they are saying on their [blog](https://www.hashicorp.com/blog/announcing-hashicorp-terraform-0-13/), after much anticipation, Terraform 0.13 is now in general availability. It is immediately available for download as well as for use in Terraform Cloud.
 
 The 0.13 release of Terraform builds on the powerful language improvements made with 0.12, with a focus on improved usability for module-specific workflows and enhancements to our vibrant and growing provider ecosystem. Terraform 0.13 is also the first major release featuring terraform login, which makes it simple to collaborate using Terraform Cloud.
 
