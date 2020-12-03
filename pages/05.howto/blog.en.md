@@ -20,4 +20,3 @@ feed:
     limit: 10
 ---
 
-Your page content goes here.

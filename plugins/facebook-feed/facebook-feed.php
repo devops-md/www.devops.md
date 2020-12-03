@@ -23,6 +23,13 @@ class FacebookFeedPlugin extends Plugin {
     public function onTwigInitialized() {
         $this->grav['twig']->twig->addFunction(new \Twig_SimpleFunction('facebook_feed',
             [$this, 'getFacebookFeed']));
+
+        //Load CSS
+        if ($this->config->get('plugins.facebook-feed.fb_settings.enableCSS') == true || $this->config->get('plugins.facebook-feed.fb_settings.enableCSS') == null && $this->config->get('plugins.facebook-feed.fb_settings.enableCSS') != false ) {
+            $this->grav['assets']->add('plugins://facebook-feed/css/feed.css');
+        } else {
+            return false;
+        }
     }
 
     //Add current directory to twig lookup paths.
@@ -32,13 +39,15 @@ class FacebookFeedPlugin extends Plugin {
 
 
     public function getFacebookFeed() {
+
+
         // Get Configs from blueprint
         $pageId = $this->config->get('plugins.facebook-feed.fb_settings.page_id');
         $accessToken = $this->config->get('plugins.facebook-feed.fb_settings.token');
         $limit = $this->config->get('plugins.facebook-feed.fb_settings.limit');
 
         // Generate API with Page Id and Token
-        $url = 'https://graph.facebook.com/v4.0/' . $pageId . '/posts?fields=attachments,created_time,message&access_token=' . $accessToken . '&limit=' . $limit;
+        $url = 'https://graph.facebook.com/v8.0/' . $pageId . '/posts?fields=attachments,created_time,message&access_token=' . $accessToken . '&limit=' . $limit;
 
         // Check 200 Ok
         function get_http_response_code($url) {
@@ -71,6 +80,10 @@ class FacebookFeedPlugin extends Plugin {
                         $albumImages = $key->media->image->src;
                         array_push($album, $albumImages);
                     }
+                }
+                if(property_exists($val->attachments->data[0], 'description')) {
+                    $description = $val->attachments->data[0]->description;
+                    $message = $description;
                 }
             }
 

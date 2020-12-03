@@ -1,5 +1,5 @@
 name: Facebook Feed
-version: 0.1.0
+version: 0.1.1
 description: "Insert your Facebook-Feed into your Site"
 icon: facebook
 author:
@@ -12,7 +12,7 @@ docs: https://github.com/bit-it/facebook-feed/README.md
 license: MIT
 
 form:
-  validation: strict
+  validation: loose
   fields:
     basics:
       type: section
@@ -24,6 +24,17 @@ form:
       label: Plugin status
       highlight: 1
       default: 0
+      options:
+        1: Enabled
+        0: Disabled
+      validate:
+        type: bool
+
+    fb_settings.enableCSS:
+      type: toggle
+      label: Enable default CSS
+      highlight: 1
+      default: 1
       options:
         1: Enabled
         0: Disabled
