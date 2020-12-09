@@ -2,6 +2,14 @@
 title: 'Online Tools'
 date: '2020-12-03 22:21'
 hide_git_sync_repo_link: false
+hide_page_title: false
+visible: true
+content:
+    items: '@self.children'
+    order:
+        by: date
+        dir: asc
+hide_next_prev_page_buttons: '0'
 hero_classes: ''
 hero_image: ''
 header_image_alt_text: ''

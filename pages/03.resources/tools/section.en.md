@@ -6,4 +6,4 @@ hide_page_title: false
 visible: true
 ---
 
-Your page content goes here.
+A colection of links on various subjects
