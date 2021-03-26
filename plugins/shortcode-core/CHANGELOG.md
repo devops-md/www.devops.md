@@ -1,3 +1,30 @@
+# v5.0.5
+## 03/12/2021
+
+1. [](#bugfix)
+    * `SafeEmailShortcode` fixed to be compatible with PHP 7.4
+    * Addresses shortcodes getting repeated in modular subpages [#101](https://github.com/getgrav/grav-plugin-shortcode-core/pull/101)
+
+# v5.0.4
+## 01/26/2021
+
+1. [](#bugfix)
+   * NextGen Editor: Fixed regexp regression preventing multiple shortcodes to be parsed in certain circumstances
+
+# v5.0.3
+## 01/15/2021
+
+1. [](#improved)
+   * NextGen Editor: Update to support latest version
+
+# v5.0.2
+## 12/18/2020
+
+1. [](#improved)
+    * NexGen Editor: Added optional `shorthand` to force attributes to full declaration
+1. [](#bugfix)
+    * NextGen Editor: Fixed regexp preventing attributes with `/` in the value from being captured
+
 # v5.0.1
 ## 12/02/2020
 

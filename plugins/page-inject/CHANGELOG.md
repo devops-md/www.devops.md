@@ -1,3 +1,28 @@
+# v1.4.4
+## 01/29/2021
+
+1. [](#bugfix)
+   * NextGen Editor: Fixed Page Inject UI links missing the base_root [getgrav/grav-premium-issues#30](https://github.com/getgrav/grav-premium-issues/issues/30)
+   * NextGen Editor: Moved list of available templates to input text to support partials and any twig template [getgrav/grav-premium-issues#24](https://github.com/getgrav/grav-premium-issues/issues/24)
+   
+# v1.4.3
+## 01/15/2021
+
+1. [](#improved)
+   * NextGen Editor: Updated upcast/downcast syntax to support latest version
+
+# v1.4.2
+## 12/20/2020
+
+1. [](#bugfix)
+    * Fixed `undefined` value when inserting a new Page-Inject shortcode, preventing Page picker to load
+
+# v1.4.1
+## 12/18/2020
+
+1. [](#improved)
+    * NextGen Editor: Properly restore the initial stored path when loading the Page Picker
+
 # v1.4.0
 ## 12/02/2020
 

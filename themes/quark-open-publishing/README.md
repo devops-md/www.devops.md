@@ -24,7 +24,7 @@ This inherited theme is built with the [Spectre.css](https://picturepan2.github.
 * Lightweight and minimal for optimal performance
 * Spectre CSS Framework
 * Fully responsive with full-page mobile navigation
-* SCSS based CSS source files for easy customization
+* SCSS based CSS source files for easy customization (not supported in this inherited theme)
 * Built-in support for on-page navigation
 * Multiple page template types
 * Fontawesome icon support
@@ -146,4 +146,18 @@ The text box provides a single option to control if any image found in the page 
 
 ```yaml
 image_align: right
+```
+
+## Further Customization
+
+As discovered by @awrog, it is possible to have a grid layout with 3 columns for Blog post listings. 
+
+Edit the file:` \user\themes\quark\css\bricklayer.css` and uncomment the following:
+
+```
+/*@media screen and (min-width: 1200px) {*/
+    /*.bricklayer-column-sizer {*/
+        /*width: 33.33333%;*/
+    /*}*/
+/*}*/
 ```

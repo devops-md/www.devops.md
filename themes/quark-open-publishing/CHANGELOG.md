@@ -1,3 +1,75 @@
+# v2.2.7
+## 03/21/2021
+
+1. [](#improved)
+    * Updated demo pages in theme '_demo' folder
+
+# v2.2.6
+## 02/28/2021
+
+1. [](#improved)
+    * Reduced plugin dependencies, thanks to the new Grav Skeleton build process
+
+# v2.2.5
+## 02/17/2021
+
+1. [](#bugfix)
+    * Fixed incorrect variable name in iFrame template
+
+# v2.2.4
+## 02/16/2021
+
+1. [](#improved)
+    * Updated Default Editor PDF and H5P shortcode syntax to be compatible with NextGen shortcode previews
+
+# v2.2.3
+## 02/15/2021
+
+1. [](#bugfix)
+    * Revised fix for compatibility issue with Shortcode Gallery++ Plugin (thanks @sal0max)
+
+# v2.2.2
+## 02/15/2021
+
+1. [](#bugfix)
+    * Removed compatibility issue with Shortcode Gallery++ Plugin due to unexpected issues on Blog listing page
+
+# v2.2.1
+## 02/15/2021
+
+1. [](#bugfix)
+    * Fixed compatibility issue with Shortcode Gallery++ Plugin (thanks @sal0max)
+1. [](#improved)
+    * Shortcode formatting updated to use <span> tags and removed unneeded <p> tags
+
+# v2.2.0
+## 01/29/2021
+
+1. [](#bugfix)
+    * Removed unneeded <br> tags in Partial templates
+1. [](#new)
+    * Added H5P Partial templates for feature parity with Bootstrap4 Open Matter Theme
+
+# v2.1.9
+## 01/26/2021
+
+1. [](#improved)
+    * Updated theme blueprints for Grav 1.7
+
+# v2.1.8
+## 01/15/2021
+
+1. [](#new)
+    * GoogleSlides shortcode updated to handle double `_` characters in URL (thanks @GeorgesPapas)
+
+# v2.1.7
+## 01/05/2021
+
+1. [](#new)
+    * Initial NextGen Editor support for GoogleSlides, H5P and PDF shortcodes
+1. [](#improved)
+    * Updated ReadMe with note about no support for SCSS in this inherited theme (thanks to @zaszlo for the heads-up)
+
 # v2.1.6
 ## 07/22/2020
 

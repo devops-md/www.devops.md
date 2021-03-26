@@ -19,13 +19,13 @@ window.nextgenEditor.addHook('hookInit', () => {
 
   window.nextgenEditor.addButton('page-inject-page', {
     group: 'page-inject',
-    command: { name: 'page-inject', params: { type: 'page' } },
+    command: { name: 'page-inject', params: { type: 'page', value: '' } },
     label: 'Page Injection',
   });
 
   window.nextgenEditor.addButton('page-inject-content', {
     group: 'page-inject',
-    command: { name: 'page-inject', params: { type: 'content' } },
+    command: { name: 'page-inject', params: { type: 'content', value: '' } },
     label: 'Content Injection',
   });
 });
@@ -42,7 +42,7 @@ function uncollapse(input) {
   innerHTML += '<span class="pi-wrapper">';
   innerHTML +=   `<span class="pi-type">${itemTypes[attributes.type] || ''}</span>`;
   innerHTML +=   `<span class="pi-title">${attributes.title || ''}</span>`;
-  innerHTML +=   `<a_reserved target="_blank" class="pi-route" href="${attributes.route || ''}">${attributes.route || ''}</a_reserved>`;
+  innerHTML +=   `<a_reserved target="_blank" class="pi-route" href="${GravAdmin?.config?.base_url_simple || ''}${attributes.route || ''}">${attributes.route || ''}</a_reserved>`;
   innerHTML +=   '<svg class="pi-route-settings" viewBox="0 0 24 24" fill="currentColor" stroke="none" onclick="pageInjectRouteSettings.call(this)">';
   innerHTML +=     '<path d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>';
   innerHTML +=   '</svg>';
@@ -150,7 +150,7 @@ window.nextgenEditor.addHook('hookHTMLtoMarkdown', {
 
 class GravPageInjectCommand extends Command {
   execute(params) {
-    showPagePicker((page) => {
+    showPagePicker(params.value, (page) => {
       const dataPageInject = uncollapse(`<page-inject type="${params.type}" title="${page.name}" route="${page.value}" template=""></page-inject>`);
       const viewPageInject = this.editor.data.processor.toView(dataPageInject).getChild(0);
       const modelPageInject = this.editor.data.toModel(viewPageInject).getChild(0);
@@ -193,23 +193,23 @@ window.nextgenEditor.addPlugin('GravPageInject', {
 
     this.editor.conversion.for('upcast').elementToElement({
       view: 'page-inject',
-      model(viewElement, modelWriter) {
-        return modelWriter.createElement('page-inject', viewElement.getAttributes());
+      model(viewElement, { writer }) {
+        return writer.createElement('page-inject', viewElement.getAttributes());
       },
     });
 
     this.editor.conversion.for('dataDowncast').elementToElement({
       model: 'page-inject',
-      view(modelElement, viewWriter) {
-        return viewWriter.createContainerElement('page-inject', modelElement.getAttributes());
+      view(modelElement, { writer }) {
+        return writer.createContainerElement('page-inject', modelElement.getAttributes());
       },
     });
 
     this.editor.conversion.for('editingDowncast').elementToElement({
       model: 'page-inject',
-      view(modelElement, viewWriter) {
-        const container = viewWriter.createContainerElement('page-inject', modelElement.getAttributes());
-        return toWidget(container, viewWriter);
+      view(modelElement, { writer }) {
+        const container = writer.createContainerElement('page-inject', modelElement.getAttributes());
+        return toWidget(container, writer);
       },
     });
   },
@@ -221,9 +221,10 @@ window.pageInjectRouteSettings = function pageInjectRouteSettings() {
   const domPageInject = this.closest('page-inject');
   const viewPageInject = editor.editing.view.domConverter.mapDomToView(domPageInject);
   const modelPageInject = editor.editing.mapper.toModelElement(viewPageInject);
+  const route = modelPageInject.getAttribute('route');
 
-  showPagePicker((page) => {
-    if (page.value === modelPageInject.getAttribute('route')) {
+  showPagePicker(route, (page) => {
+    if (page.value === route) {
       return;
     }
 
@@ -264,11 +265,12 @@ window.pageInjectSettings = function pageInjectSettings() {
     template: {
       title: 'Template',
       widget: {
-        type: 'select',
-        values: [
-          { value: '', label: '' },
-          ...Object.keys(availableTemplates).map((value) => ({ value, label: availableTemplates[value] })),
-        ],
+        type: 'input-text',
+        // type: 'select',
+        // values: [
+        //   { value: '', label: '' },
+        //   ...Object.keys(availableTemplates).map((value) => ({ value, label: availableTemplates[value] })),
+        // ],
         visible: ({ attributes }) => attributes.type === 'page',
       },
     },
