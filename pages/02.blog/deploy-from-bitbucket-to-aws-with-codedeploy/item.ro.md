@@ -20,6 +20,12 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
+taxonomy:
+    tag:
+        - linux
+        - aws
+        - bitbucket
+        - pipelines
 ---
 
 Recent am avut ceva durere de cap cu cele enumerate în titlu. Folosesc Bitbucket Pipelines la un proiect, iar pentru a face deploy pe AWS, am decis să merg cu CodeDeploy.
