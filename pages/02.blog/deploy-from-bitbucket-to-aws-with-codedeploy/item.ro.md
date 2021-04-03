@@ -38,7 +38,7 @@ La început, totul era bine, apoi mi-am dat seama că-mi lipses dotfiles (`.env`
 
 Peste vreo 2 săptămâni, am revenit la subiect și am dat de versiune (mult) mai nouă pentru pipe. Cea din documentație e `atlassian/aws-code-deploy:0.2.10` dar după ce am răscolit puțin, am dat și de repositoriu pe [Bitbucket](https://bitbucket.org/atlassian/aws-code-deploy/src/master/), de unde am aflat că deja putem folosi, pe lângă `zip`, care e implicit, dar și `tar`, `tgz`, `YAML` sau `JSON` (BUNDLE_TYPE). Repozitoriul [Docker Hub](https://hub.docker.com/r/bitbucketpipelines/aws-code-deploy/)
 
-De bucurie, am schimbat pipe-ul, făcut upgrade la ultima versiune, la momentul dat e `atlassian/aws-code-deploy:0.6.0`, dar am aflat cu stupoare că nu-mi rezolvă problema cu dotfiles.
+De bucurie, am modificat pipe-ul, am făcut upgrade la ultima versiune (la momentul dat e `atlassian/aws-code-deploy:0.6.0`), dar am aflat cu stupoare că nu-mi rezolvă problema cu dotfiles.
 
 Hai iar să revăd ce am mai făcut pe acolo, iar soluția a fost una simplă, și anume adăugarea opțiunii `dotglob` în `bash`
 
