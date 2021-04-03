@@ -22,15 +22,17 @@ feed:
     limit: 10
 taxonomy:
     tag:
-        - linux
         - aws
+        - linux
         - bitbucket
         - pipelines
+hide_from_post_list: false
 ---
 
 Recent am avut ceva durere de cap cu cele enumerate în titlu. Folosesc Bitbucket Pipelines la un proiect, iar pentru a face deploy pe AWS, am decis să merg cu CodeDeploy.
 
-Aici este articolul de bază, de unde m-am inspirat: https://support.atlassian.com/bitbucket-cloud/docs/deploy-to-aws-with-codedeploy/
+Aici este articolul de bază, de unde m-am inspirat: 
+[https://support.atlassian.com/bitbucket-cloud/docs/deploy-to-aws-with-codedeploy/](https://support.atlassian.com/bitbucket-cloud/docs/deploy-to-aws-with-codedeploy/)
 
 La început, totul era bine, apoi mi-am dat seama că-mi lipses dotfiles (`.env`, `.htaccess`). Am crezut că e problema în `zip` și am zis că încerc să-i dau cu `tar`-ul. Dar, din articolul de mai sus era clar că nu pot folosi altceva decât zip. O soluție temporară a fost redenumirea fișierelor și anume schimbarea `.` cu un `_` iar la deploy - schimbarea înapoi. Recunosc, nu e elegantă soluția, dar mergea.
 
