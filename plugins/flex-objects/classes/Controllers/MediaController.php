@@ -56,7 +56,8 @@ class MediaController extends AbstractController
             $field = null;
         }
 
-        $files = $this->getRequest()->getUploadedFiles();
+        $request = $this->getRequest();
+        $files = $request->getUploadedFiles();
         if ($field && isset($files['data'])) {
             $files = $files['data'];
             $parts = explode('.', $field);
@@ -89,11 +90,16 @@ class MediaController extends AbstractController
         $object->checkUploadedMediaFile($file, $filename, $field);
 
         try {
+            // TODO: This only merges main level data, but is good for ordering (for now).
+            $data = $flash->getData() ?? [];
+            $data = array_replace($data, (array)$this->getPost('data'));
+
             $crop = $this->getPost('crop');
             if (is_string($crop)) {
                 $crop = json_decode($crop, true, 512, JSON_THROW_ON_ERROR);
             }
 
+            $flash->setData($data);
             $flash->addUploadedFile($file, $field, $crop);
             $flash->save();
         } catch (Exception $e) {
@@ -395,6 +401,16 @@ class MediaController extends AbstractController
             });
         }
 
+        if (isset($settings['deny'])) {
+            $available_files = array_filter($available_files, function ($file) use ($settings) {
+                return $this->filterDeniedFiles($file, $settings);
+            });
+
+            $pending_files = array_filter($pending_files, function ($file) use ($settings) {
+                return $this->filterDeniedFiles($file, $settings);
+            });
+        }
+
         // Generate thumbs if needed
         if (isset($settings['preview_images']) && $settings['preview_images'] === true) {
             foreach ($available_files as $filename) {
@@ -427,6 +443,23 @@ class MediaController extends AbstractController
         foreach ((array)$settings['accept'] as $type) {
             $find = str_replace('*', '.*', $type);
             $valid |= preg_match('#' . $find . '$#i', $file);
+        }
+
+        return $valid;
+    }
+
+    /**
+     * @param string $file
+     * @param array $settings
+     * @return false|int
+     */
+    protected function filterDeniedFiles(string $file, array $settings)
+    {
+        $valid = true;
+
+        foreach ((array)$settings['deny'] as $type) {
+            $find = str_replace('*', '.*', $type);
+            $valid = !preg_match('#' . $find . '$#i', $file);
         }
 
         return $valid;

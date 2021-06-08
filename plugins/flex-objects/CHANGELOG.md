@@ -1,3 +1,70 @@
+# v1.0.14
+## 06/07/2021
+
+1. [](#improved)
+   * Added enhanced copy modal from Pages list [getgrav/grav-plugin-admin#2139](https://github.com/getgrav/grav-plugin-admin/issues/2139)
+
+# v1.0.13
+## 06/03/2021
+
+1. [](#bugfix)
+   * Fixed expert mode for Flex Pages
+
+# v1.0.12
+## 06/02/2021
+
+1. [](#bugfix)
+   * Fixed logic to get form blueprints and object, prevents events from being fired twice
+   * Fixed breadcrumb item in Pages list not translating HTML entities [#127](https://github.com/trilbymedia/grav-plugin-flex-objects/issues/127)
+
+# v1.0.11
+## 05/24/2021
+
+1. [](#improved)
+   * Allow file uploads to send data such as `data[media_order]`
+
+# v1.0.10
+## 05/19/2021
+
+1. [](#bugfix)
+   * Fixed `Add Folder` not updating the page list until cache is cleared
+   * Fixed broken error message translations
+
+# v1.0.9
+## 04/29/2021
+
+1. [](#bugfix)
+   * Fixed fatal error when copying a page in admin if no modal is being shown [getgrav/grav#3335](https://github.com/getgrav/grav/issues/3335)
+
+# v1.0.8
+## 04/23/2021
+
+1. [](#new)
+   * Require **Admin 1.10.13**
+   * Require **Form Plugin 5.0.2**
+1. [](#improved)
+   * Added a few missing translations
+   * Utilize new Admin detector to prevent Save actions that triggers unsaved notice on unload [getgrav/grav-plugin-admin#2125](https://github.com/getgrav/grav-plugin-admin/issues/2125)
+   * Improved copying page by adding a modal for new page title and folder name
+
+# v1.0.7
+## 04/06/2021
+
+1. [](#new)
+   * Require **Grav 1.7.10**
+   * Added deny option support to `filepicker` field [#119](https://github.com/trilbymedia/grav-plugin-flex-objects/pull/119)
+1. [](#bugfix)
+   * Prevent expert editing mode from anyone else than super users [grav-plugin-admin#2094](https://github.com/getgrav/grav-plugin-admin/issues/2094)
+   * Fixed not being able to add new folder [grav#3293](https://github.com/getgrav/grav/issues/3293)
+   * Fixed Flex directories defined only in theme not showing up [grav#3292](https://github.com/getgrav/grav/issues/3292)
+
+# v1.0.6
+## 03/30/2021
+
+1. [](#bugfix)
+   * Fixed automatic git-sync in admin save and delete [#120](https://github.com/trilbymedia/grav-plugin-flex-objects/issues/120)
+   * Prevent Add Page / Add Module modals from closing if clicking on the outside overlay [grav-plugin-admin#2089](https://github.com/getgrav/grav-plugin-admin/issues/2089)
+
 # v1.0.5
 ## 03/19/2021
 

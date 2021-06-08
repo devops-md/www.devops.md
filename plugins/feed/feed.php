@@ -63,7 +63,6 @@ class FeedPlugin extends Plugin
     public function onPluginsInitialized()
     {
         if ($this->isAdmin()) {
-            $this->active = false;
             return;
         }
 
@@ -78,13 +77,10 @@ class FeedPlugin extends Plugin
         $this->type = $uri->extension();
 
         if ($this->type && in_array($this->type, $this->valid_types)) {
-            $this->active = true;
 
             $this->enable([
                 'onPageInitialized' => ['onPageInitialized', 0],
-                'onCollectionProcessed' => ['onCollectionProcessed', 0],
                 'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0],
-                'onTwigSiteVariables' => ['onTwigSiteVariables', 0]
             ]);
         }
     }
@@ -94,16 +90,32 @@ class FeedPlugin extends Plugin
      */
     public function onPageInitialized()
     {
-        /** @var PageInterface $page */
+        /** @var Uri $uri */
+        $uri = $this->grav['uri'];
         $page = $this->grav['page'];
-        if (isset($page->header()->feed)) {
-            $this->feed_config = array_merge($this->feed_config, $page->header()->feed);
+        $base_url = $uri->baseIncludingLanguage();
+        $uri_info = pathinfo($uri->uri());
+        $uri = rtrim(rtrim($uri_info['dirname'], '/') . '/' . $uri_info['filename'], '/');
+        $raw_url = $base_url . $page->rawRoute();
+        $url = rtrim($page->url(), '/');
+        $enable_url_check = $this->feed_config['enable_url_check'] ?? true;
+        $valid_url = !$enable_url_check || ($uri === $url || $uri === $raw_url);
+        // Overwrite regular content with feed config, so you can influence the collection processing with feed config
+        if ($valid_url && property_exists($page->header(), 'content')) {
+            if (isset($page->header()->feed)) {
+                $this->feed_config = array_merge($this->feed_config, $page->header()->feed);
+            }
+
+            $page->header()->content = array_merge($page->header()->content, $this->feed_config);
+
+            $this->grav['twig']->template = 'feed.' . $this->type . '.twig';
+
+            $this->enable([
+                'onCollectionProcessed' => ['onCollectionProcessed', 0],
+
+            ]);
         }
 
-        // Overwrite regular content with feed config, so you can influence the collection processing with feed config
-        if (property_exists($page->header(), 'content')) {
-            $page->header()->content = array_merge($page->header()->content, $this->feed_config);
-        }
     }
 
     /**
@@ -114,7 +126,7 @@ class FeedPlugin extends Plugin
     public function onCollectionProcessed(Event $event)
     {
         /** @var Collection $collection */
-        $collection = $event['collection'];
+        $collection = $event['collection']->nonModular();
 
         foreach ($collection as $slug => $page) {
             $header = $page->header();
@@ -122,14 +134,6 @@ class FeedPlugin extends Plugin
                 $collection->remove($page);
             }
         }
-    }
-
-    /**
-     * Set feed template as current twig template
-     */
-    public function onTwigSiteVariables()
-    {
-        $this->grav['twig']->template = 'feed.' . $this->type . '.twig';
     }
 
     /**

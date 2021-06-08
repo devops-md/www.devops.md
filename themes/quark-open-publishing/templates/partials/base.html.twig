@@ -64,7 +64,9 @@
                         {% if config.plugins.login.enabled and grav.user.username %}
                             <span class="login-status-wrapper"><i class="fa fa-user"></i> {% include 'partials/login-status.html.twig' %}</span>
                         {% endif %}
-
+                    </section>
+                    <section class="navbar-section">
+{% include 'partials/language-selector.html.twig' %}
                     </section>
                 </nav>
             </section>
