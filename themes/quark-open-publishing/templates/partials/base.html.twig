@@ -56,6 +56,8 @@
                     <section class="navbar-section desktop-menu">
 
                         <nav class="dropmenu animated">
+<!-- to do format languages -->
+{% include 'partials/language-selector.html.twig' %}
                         {% block header_navigation %}
                             {% include 'partials/navigation.html.twig' %}
                         {% endblock %}
@@ -64,9 +66,6 @@
                         {% if config.plugins.login.enabled and grav.user.username %}
                             <span class="login-status-wrapper"><i class="fa fa-user"></i> {% include 'partials/login-status.html.twig' %}</span>
                         {% endif %}
-                    </section>
-                    <section class="navbar-section">
-{% include 'partials/language-selector.html.twig' %}
                     </section>
                 </nav>
             </section>
@@ -107,6 +106,8 @@
         {% endblock %}
         </section>
 
+<!-- to do format languages -->
+{% include 'partials/langswitcher.html.twig' %}
     </div>
 
     {# check content display flag - hibbittsdesign.org #}
@@ -123,6 +124,7 @@
                     {% if content %}
                         {{ content|raw }}
                     {% endif %}
+
                 </section>
             </section>
         {% endblock %}
@@ -135,6 +137,8 @@
             </div>
             <nav class="overlay-menu">
                 {% include 'partials/navigation.html.twig' with {tree: true} %}
+<!-- to do format languages -->
+                {% include 'partials/langswitcher.hreflang.html.twig' %}
             </nav>
         </div>
     </div>
