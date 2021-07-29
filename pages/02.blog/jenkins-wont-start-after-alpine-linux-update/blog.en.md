@@ -1,5 +1,5 @@
 ---
-title: 'Jenkins doesn''t start after Alpine Linux update'
+title: 'Jenkins won''t start after Alpine Linux update'
 date: '2021-07-30 01:06'
 hide_git_sync_repo_link: false
 blog_url: /blog
