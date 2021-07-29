@@ -6,8 +6,8 @@ taxonomy:
     category:
         - 'How To'
     tag:
-        - windows
         - linux
+        - windows
         - docker
         - wsl
         - wsl2
