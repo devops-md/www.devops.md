@@ -20,6 +20,13 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
+taxonomy:
+    tag:
+        - linux
+        - 'alpine linux'
+        - jenkins
+        - upgrade
+hide_from_post_list: false
 ---
 
 I recently upgraded my Jenkins server, running Alpine Linux 13.x, in a VM
