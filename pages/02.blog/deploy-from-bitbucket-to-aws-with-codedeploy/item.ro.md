@@ -48,7 +48,7 @@ shopt -s extglob dotglob
 ...
 ```
 
-`extglob` era deja acolo, căci mi-a rezolvat altă problemă ce am avut-o de la bun început. Așa cumtot codul "trăiește" în "rădăcina" repositoriului, pentru a împacheta totul, am creat directoriul `codedeploy` cu acest conținut
+`extglob` era deja acolo, căci mi-a rezolvat altă problemă ce am avut-o de la bun început. Așa cum tot codul "trăiește" în "rădăcina" repositoriului, pentru a împacheta totul, am creat directoriul `codedeploy` cu acest conținut
 
 ```
 $ tree codedeploy/
