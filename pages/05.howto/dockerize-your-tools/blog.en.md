@@ -23,6 +23,8 @@ feed:
 ---
 
 First of all, install Docker on your system. Please refer to official docs 
+https://docs.docker.com/engine/install/
+https://docs.docker.com/engine/install/linux-postinstall/
 
 For Linux, add to your `~/.bash_aliases` the flowing lines
 
