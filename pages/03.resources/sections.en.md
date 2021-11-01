@@ -18,3 +18,7 @@ content:
 hide_next_prev_page_buttons: false
 ---
 
+# Uncategorized
+## GIT
+### A collection of .gitignore templates 
+[https://github.com/github/gitignore](https://github.com/github/gitignore)

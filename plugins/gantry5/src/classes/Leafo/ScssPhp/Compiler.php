@@ -2417,9 +2417,10 @@ class Compiler
                 $content = $this->get(static::$namespaces['special'] . 'content', false, $env);
 
                 if (! $content) {
+                    $block = $this->storeEnv->parent->block;
                     $content = new \stdClass();
                     $content->scope = new \stdClass();
-                    $content->children = $this->storeEnv->parent->block->children;
+                    $content->children = $block ? $block->children : [];
                     break;
                 }
 

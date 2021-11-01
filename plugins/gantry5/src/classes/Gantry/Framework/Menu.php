@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   Dual License: MIT or GNU/GPLv2 and later
  *
  * http://opensource.org/licenses/MIT
@@ -13,30 +14,38 @@
 
 namespace Gantry\Framework;
 
+use Gantry\Component\Config\Config;
 use Gantry\Component\Config\ConfigFileFinder;
 use Gantry\Component\Gantry\GantryTrait;
 use Gantry\Component\Menu\AbstractMenu;
 use Gantry\Component\Menu\Item;
+use Grav\Common\Config\Config as GravConfig;
+use Grav\Common\Flex\Types\Pages\PageIndex;
 use Grav\Common\Grav;
-use Grav\Common\Page\Page as GravPage;
-use Grav\Common\Page\Pages;
+use Grav\Common\Page\Interfaces\PageInterface;
+use Grav\Framework\Flex\Flex;
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
+/**
+ * Class Menu
+ * @package Gantry\Framework
+ */
 class Menu extends AbstractMenu
 {
     use GantryTrait;
-
-    protected $pages = [];
 
     public function __construct()
     {
         $grav = Grav::instance();
 
-        /** @var GravPage $page */
+        /** @var PageInterface $page */
         $page = $grav['page'];
         $route = trim($page->rawRoute(), '/');
 
-        $this->default = trim($grav['config']->get('system.home.alias', '/home'), '/');
+        /** @var GravConfig $config */
+        $config = $grav['config'];
+
+        $this->default = trim($config->get('system.home.alias', '/home'), '/');
         $this->active = $route ?: $this->default;
     }
 
@@ -70,30 +79,45 @@ class Menu extends AbstractMenu
     }
 
     /**
+     * Return list of menus.
+     *
+     * @return array
+     * @throws \RuntimeException
+     */
+    public function getMenuOptions()
+    {
+        $list = [];
+        foreach ($this->getMenus() as $val) {
+            $list[$val] = ucwords($val);
+        }
+        sort($list);
+
+        return $list;
+    }
+
+    /**
      * @return array
      */
     public function getGroupedItems()
     {
-        $groups = array();
-
         $grav = Grav::instance();
 
-        /** @var Pages $pages */
-        $pages = $grav['pages'];
-
-        // Initialize pages; in Grav 1.7 admin, pages are not initialized by default.
-        if (method_exists($pages, 'enablePages')) {
-            $pages->enablePages();
+        /** @var Flex $flex */
+        $flex = $grav['flex'];
+        $directory = $flex->getDirectory('pages');
+        if (!$directory) {
+            throw new \RuntimeException('Flex Pages are required for Gantry to work!');
         }
-
-        // Get the menu items.
-        $pages = $pages->all()->nonModular();
+        /** @var PageIndex $pages */
+        $pages = $directory->getCollection();
+        $pages = $pages->visible()->nonModular();
 
         // Initialize the group.
-        $groups['mainmenu'] = array();
+        $groups = ['mainmenu' => []];
 
         // Build the options array.
-        /** @var GravPage $page */
+
+        /** @var PageInterface $page */
         foreach ($pages as $page) {
             if (!$page->order()) {
                 continue;
@@ -166,7 +190,7 @@ class Menu extends AbstractMenu
     }
 
     /**
-     * Get menu items from the platform.
+     * Get menu items from Grav.
      *
      * @param int $levels
      * @return array    List of routes to the pages.
@@ -175,61 +199,145 @@ class Menu extends AbstractMenu
     {
         $grav = Grav::instance();
 
-        /** @var Pages $pages */
-        $pages = $grav['pages'];
-
-        // Initialize pages; in Grav 1.7 admin, pages are not initialized by default.
-        if (method_exists($pages, 'enablePages')) {
-            $pages->enablePages();
+        /** @var Flex $flex */
+        $flex = $grav['flex'];
+        $directory = $flex->getDirectory('pages');
+        if (!$directory) {
+            throw new \RuntimeException('Flex Pages are required for Gantry to work!');
         }
+        /** @var PageIndex $pages */
+        $pages = $directory->getIndex();
+        $root = $pages->getRoot();
 
-        // Initialize pages.
-        $pages = $pages->all()->nonModular();
-
-        // Return flat list of routes.
         $list = [];
-        $this->pages = [];
-        /** @var GravPage $item */
-        foreach ($pages as $item) {
-            if (!$item->visible()) {
-                continue;
-            }
-
-            $level = substr_count($item->rawRoute(), '/');
-
-            if ($levels >= 0 && $level > $levels) {
-                continue;
-            }
-
-            $name = trim($item->rawRoute(), '/') ?: $this->default;
-            $id = preg_replace('|[^a-z0-9]|i', '-', $name);
-            $parent_id = \dirname($name) !== '.' ? \dirname($name) : 'root';
-
-            $list[$name] = [
-                'id' => $id,
-                'type' => $item->isPage() && $item->routable() ? 'link' : 'separator',
-                'title' => $item->menu(),
-                'link' => $item->url(),
-                'parent_id' => $parent_id,
-                'layout' => 'list',
-                'target' => '_self',
-                // TODO: Grav is missing rel support
-                'rel' => '',
-                'dropdown' => '',
-                'icon' => '',
-                'image' => '',
-                'subtitle' => '',
-                'icon_only' => false,
-                'visible' => $item->visible(),
-                'group' => 0,
-                'columns' => [],
-                'level' => $level,
-            ];
-
-            $this->pages[$name] = 1;
+        foreach ($root->children() as $next) {
+            $list += $this->getItemsFromPlatformRecurse($next, $levels);
         }
 
         return $list;
+    }
+
+    /**
+     * @param PageInterface $page
+     * @param int $levels
+     * @return array
+     */
+    public function getItemsFromPlatformRecurse(PageInterface $page, $levels)
+    {
+        if (!$page->visible() || $page->modular()) {
+            return [];
+        }
+
+        $name = trim($page->rawRoute(), '/');
+        $list = [$name => $page];
+
+        if ($levels) {
+            foreach ($page->children() as $next) {
+                $list += $this->getItemsFromPlatformRecurse($next, $levels - 1);
+            }
+        }
+
+        return $list;
+    }
+
+    /**
+     * @param PageInterface[] $pages
+     * @param array[] $items
+     * @return Item[]
+     */
+    public function createMenuItems($pages, $items)
+    {
+        $this->pathMap = new Config([]);
+
+        $list = [];
+        // Create menu items for the pages.
+        foreach ($pages as $name => $page) {
+            if (isset($items[$name])) {
+                $data = $items[$name];
+                unset($items[$name]);
+            } else {
+                $data = [];
+            }
+
+            $item = $this->createMenuItem($data, $page);
+            $id = $item->id;
+
+            $this->pathMap->set(preg_replace('|/|u', '/children/', $name) . '/id', $id, '/');
+
+            $list[$id] = $item;
+        }
+
+        // Create particles which are only inside the menu YAML.
+        foreach ($items as $name => $data) {
+            // Ignore everything which is not a module or particle type.
+            if (!isset($data['type']) || !\in_array($data['type'], ['module', 'particle'], true)) {
+                continue;
+            }
+
+            $data['id'] = $name;
+
+            $item = $this->createMenuItem($data);
+            $id = $item->id;
+
+            $this->pathMap->set(preg_replace('|/|u', '/children/', $name) . '/id', $id, '/');
+
+            $list[$id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @param array $data
+     * @param PageInterface $page
+     * @return Item
+     */
+    protected function createMenuItem($data, $page = null)
+    {
+        $route = $page ? $page->rawRoute() : $data['id'];
+        $level = substr_count($route, '/');
+        $name = trim($route, '/');
+        $dirname = \dirname($name);
+
+        // TODO: Grav is missing rel support
+        $properties = [
+            'id' => $name,
+            'parent_id' => $dirname !== '.' ? $dirname : '',
+            'alias' => basename($name),
+            'type' => $page && $page->isPage() && $page->routable() ? 'link' : 'separator',
+            'link' => $page ? $page->url() : null,
+            'visible' => $page ? $page->visible() : true,
+            'level' => $level,
+            'title' => $page ? $page->menu() : '',
+        ];
+
+        // Add menu item properties from menu configuration.
+        if ($data) {
+            $properties = array_replace($properties, $data);
+        }
+
+        // Add menu item properties from the page header.
+        $header = $page ? $page->header() : null;
+        if (isset($header->gantry['menu']) && is_array($header->gantry['menu'])) {
+            $properties = array_replace($properties, $header->gantry['menu']);
+            if (isset($properties['particle'])) {
+                $properties['type'] = 'particle';
+                $properties['enabled'] = !isset($properties['particle']['enabled']) || !empty($properties['particle']['enabled']);
+            }
+        }
+
+        // Deal with special types which do not have link.
+        if (in_array($properties['type'], ['module', 'particle', 'separator', 'heading'], true)) {
+            $properties['link'] = null;
+        } elseif ($properties['link'] === "/{$this->default}") {
+            // Deal with home page.
+            $properties['link'] = $properties['path'] = '/';
+        }
+
+        $item = new Item($this, $properties);
+        $item->url($item->link);
+
+        return $item;
     }
 
     /**
@@ -240,14 +348,20 @@ class Menu extends AbstractMenu
      * If there is no home page, return null.
      *
      * @param   string  $path
-     *
+     * @param   array   $menuItems
      * @return  string
      */
-    protected function calcBase($path)
+    protected function calcBase($path, array $menuItems = [])
     {
-        if (!$path || !isset($this->pages[$path])) {
+        if ($path === '/') {
+            return '';
+        }
+
+        $path = trim($path, '/');
+
+        if (!$path || !isset($menuItems[$path])) {
             // Use active menu item or fall back to default menu item.
-            $path = $this->active ?: $this->default;
+            return $this->active ?: $this->default;
         }
 
         // Return base menu item.
@@ -269,58 +383,28 @@ class Menu extends AbstractMenu
         $max     = $params['maxLevels'];
         $end     = $max ? $start + $max - 1 : 0;
 
-        $gravItems = $this->getItemsFromPlatform($start <= $end ? $end : -1);
-        $menuItems = array_replace_recursive($gravItems, $items);
+        $pages = $this->getItemsFromPlatform($start <= $end ? $end : -1);
+        $menuItems = $this->createMenuItems($pages, $items);
 
         // Get base menu item for this menu (defaults to active menu item).
-        $this->base = $this->calcBase($params['base']);
-        foreach ($menuItems as $name => $data) {
-            $parent =  isset($data['parent_id']) ? $data['parent_id'] : 'root';
-            $level = isset($data['level']) ? $data['level'] : 1;
+        $this->base = $this->calcBase($params['base'], $menuItems);
+
+        foreach ($menuItems as $name => $item) {
+            $parent = $item->parent_id;
+            $level = $item->level;
 
             if (($start && $start > $level)
                 || ($end && $level > $end)
-                || ($start > 1 && strpos($parent, $this->base) !== 0)
+                || ($start > 1 && (!$this->base || strpos($parent, $this->base) !== 0))
             ) {
                 continue;
             }
 
-            $item = new Item($this, $name, $data);
-
-            if (!isset($gravItems[$name]) && !\in_array($item->type, ['module', 'particle'], true)) {
-                // Ignore removed menu items.
-                continue;
-            }
-
-            // Placeholder page.
-            if ($item->type === 'link' && !isset($this->pages[$item->path])) {
-                $item->type = 'separator';
-            }
-
-            switch ($item->type) {
-                case 'module':
-                case 'particle':
-                case 'separator':
-                case 'heading':
-                    // Separator and heading have no link.
-                    $item->url(null);
-                    break;
-
-                case 'url':
-                    $item->url($item->link);
-                    break;
-
-                case 'alias':
-                default:
-                    if ($item->link === '/' . $this->default) {
-                        // Deal with home page.
-                        $item->url('/');
-                    } else {
-                        $item->url($item->link);
-                    }
-            }
-
             $this->add($item);
+        }
+
+        if ($items) {
+            $this->addCustom($params, $items);
         }
     }
 }

@@ -3,7 +3,7 @@
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2020 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   MIT
  *
  * http://opensource.org/licenses/MIT
@@ -34,6 +34,9 @@ class ChildThemeCommand extends ConsoleCommand
     /** @var array */
     protected $options = [];
 
+    /**
+     * @return void
+     */
     protected function configure()
     {
         $this
@@ -68,6 +71,9 @@ class ChildThemeCommand extends ConsoleCommand
         ;
     }
 
+    /**
+     * @return int
+     */
     protected function serve()
     {
         $this->options = [
@@ -119,31 +125,20 @@ class ChildThemeCommand extends ConsoleCommand
         }
 
         // Initialize Grav.
-        $isNew = method_exists($this, 'initializeGrav');
-        if ($isNew) {
-            $this->initializeGrav();
-        }
+        $this->initializeGrav();
         $grav = Grav::instance();
 
         // Initialize parent theme.
         /** @var Config $config */
         $config = $grav['config'];
         $config->set('system.pages.theme', $parent);
-        if ($isNew) {
-            $this->initializeThemes();
-        }
+        $this->initializeThemes();
 
         /** @var UniformResourceLocator $locator */
         $locator = $grav['locator'];
 
         /** @var Inflector $inflector */
         $inflector = $grav['inflector'];
-
-        if (!$isNew) {
-            /** @var Themes $themes */
-            $themes = $grav['themes'];
-            $themes->init();
-        }
 
         $folder = $locator->findResource('themes://' . $child, true, true);
         $parentClass = get_class($this->loadTheme($parent));
@@ -224,6 +219,8 @@ PHP
 
         $this->output->writeln('');
         $this->output->writeln('<green>Success!</green> Child theme <cyan>' . $child . '</cyan> created.');
+
+        return 0;
     }
 
     protected function validateOptions()

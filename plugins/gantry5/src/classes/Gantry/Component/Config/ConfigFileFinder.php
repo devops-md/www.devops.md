@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   Dual License: MIT or GNU/GPLv2 and later
  *
  * http://opensource.org/licenses/MIT
@@ -20,6 +21,7 @@ use Gantry\Component\Filesystem\Folder;
  */
 class ConfigFileFinder
 {
+    /** @var string */
     protected $base = '';
 
     /**
@@ -81,11 +83,12 @@ class ConfigFileFinder
      */
     public function listFiles(array $paths, $pattern = '|\.yaml$|', $levels = -1)
     {
-        $list = [];
+        $list = [[]];
         foreach ($paths as $folder) {
-            $list = array_merge_recursive($list, $this->detectAll($folder, $pattern, $levels));
+            $list[] = $this->detectAll($folder, $pattern, $levels);
         }
-        return $list;
+
+        return array_merge_recursive(...$list);
     }
 
     /**
@@ -103,6 +106,7 @@ class ConfigFileFinder
         foreach ($folders as $folder) {
             $list += $this->detectInFolder($folder, $filename);
         }
+
         return $list;
     }
 
@@ -120,6 +124,7 @@ class ConfigFileFinder
             $path = trim(Folder::getRelativePath($folder), '/');
             $list[$path] = $this->detectInFolder($folder, $filename);
         }
+
         return $list;
     }
 
@@ -133,7 +138,7 @@ class ConfigFileFinder
      */
     public function locateFile(array $paths, $name, $ext = '.yaml')
     {
-        $filename = preg_replace('|[.\/]+|', '/', $name) . $ext;
+        $filename = preg_replace('|[./]+|', '/', $name) . $ext;
 
         $list = [];
         foreach ($paths as $folder) {
@@ -202,7 +207,11 @@ class ConfigFileFinder
     {
         $folder = rtrim($folder, '/');
         $path = trim(Folder::getRelativePath($folder), '/');
-        $base = $path === $folder ? '' : ($path ? substr($folder, 0, -strlen($path)) : $folder . '/');
+        if ($path === $folder) {
+            $base = '';
+        } else {
+            $base = $path ? substr($folder, 0, -strlen($path)) : $folder . '/';
+        }
 
         $list = [];
 
@@ -251,7 +260,7 @@ class ConfigFileFinder
                 'filters' => [
                     'pre-key' => $this->base,
                     'key' => $pattern,
-                    'value' => function (\RecursiveDirectoryIterator $file) use ($path) {
+                    'value' => static function (\RecursiveDirectoryIterator $file) use ($path) {
                         return ["{$path}/{$file->getSubPathname()}" => $file->getMTime()];
                     }
                 ],

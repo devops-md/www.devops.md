@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   MIT
  *
  * http://opensource.org/licenses/MIT
@@ -10,18 +11,30 @@
 
 namespace Gantry\Admin;
 
+use Gantry\Component\Config\Config;
 use Gantry\Component\Filesystem\Folder;
+use Gantry\Component\Menu\Item;
 use Gantry\Framework\Gantry;
+use Grav\Common\Config as GravConfig;
+use Grav\Common\Flex\Types\Pages\PageIndex;
+use Grav\Common\Flex\Types\Pages\PageObject;
 use Grav\Common\Grav;
-use Grav\Common\Page\Page;
-use Grav\Common\Page\Pages;
+use Grav\Common\Uri;
+use Grav\Framework\Flex\Flex;
 use RocketTheme\Toolbox\Event\Event;
 use RocketTheme\Toolbox\Event\EventSubscriberInterface;
 use RocketTheme\Toolbox\File\YamlFile;
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
+/**
+ * Class EventListener
+ * @package Gantry\Admin
+ */
 class EventListener implements EventSubscriberInterface
 {
+    /**
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -34,9 +47,13 @@ class EventListener implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * @param Event $event
+     */
     public function onGlobalSave(Event $event)
     {
         $gantry = Gantry::instance();
+
         /** @var UniformResourceLocator $locator */
         $locator = $gantry['locator'];
 
@@ -50,17 +67,29 @@ class EventListener implements EventSubscriberInterface
         $file->free();
     }
 
+    /**
+     * @param Event $event
+     */
     public function onStylesSave(Event $event)
     {
         $cookie = md5($event->theme->name);
         $this->updateCookie($cookie, false, time() - 42000);
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param int $expire
+     */
     protected function updateCookie($name, $value, $expire = 0)
     {
         // TODO: move to better place, copied from Gantry main plugin file.
         $grav = Grav::instance();
+
+        /** @var Uri $uri */
         $uri = $grav['uri'];
+
+        /** @var GravConfig $config */
         $config = $grav['config'];
 
         $path   = $config->get('system.session.path', '/' . ltrim($uri->rootUrl(false), '/'));
@@ -69,58 +98,56 @@ class EventListener implements EventSubscriberInterface
         setcookie($name, $value, $expire, $path, $domain);
     }
 
+    /**
+     * @param Event $event
+     */
     public function onSettingsSave(Event $event)
     {
     }
 
+    /**
+     * @param Event $event
+     */
     public function onLayoutSave(Event $event)
     {
     }
 
+    /**
+     * @param Event $event
+     */
     public function onAssignmentsSave(Event $event)
     {
     }
 
+    /**
+     * @param Event $event
+     */
     public function onMenusSave(Event $event)
     {
-        $defaults = [
-            'id' => 0,
-            'layout' => 'list',
-            'target' => '_self',
-            'dropdown' => '',
-            'icon' => '',
-            'image' => '',
-            'subtitle' => '',
-            'icon_only' => false,
-            'visible' => true,
-            'group' => 0,
-            'columns' => [],
-            'link_title' => '',
-            'hash' => '',
-            'class' => ''
-        ];
-
         $menu = $event->menu;
 
         // Each menu level has ordering from 1..n counting all menu items in the same level.
         $ordering = $this->flattenOrdering($menu['ordering']);
+        $this->embedMeta($menu['ordering'], $menu);
 
         $grav = Grav::instance();
 
-        /** @var Pages $pages */
-        $pages = $grav['pages'];
-
-        // Initialize pages; in Grav 1.7 admin, pages are not initialized by default.
-        if (method_exists($pages, 'enablePages')) {
-            $pages->enablePages();
+        /** @var Flex $flex */
+        $flex = $grav['flex'];
+        $directory = $flex->getDirectory('pages');
+        if (!$directory) {
+            throw new \RuntimeException('Flex Pages are required for Gantry to work!');
         }
+        /** @var PageIndex $pages */
+        $pages = $directory->getCollection();
+        $visible = $pages->visible()->nonModular();
+        // TODO: multilang support?
+        // TODO: menu particle as a real page?
 
-        // Initialize pages.
-        $visible = $pages->all()->nonModular();
         $all = [];
         $list = [];
 
-        /** @var Page $page */
+        /** @var PageObject $page */
         foreach ($visible as $page) {
             if (!$page->order()) {
                 continue;
@@ -135,10 +162,10 @@ class EventListener implements EventSubscriberInterface
             $all[$route] = $page->path();
 
             $updated = false;
-            $route = trim($page->route(), '/');
+            $route = $page->getKey();
             $order = isset($ordering[$route]) ? (int) $ordering[$route] : null;
             $parent = $page->parent();
-            if ($order !== null && $order !== (int) $page->order()) {
+            if ($parent && $order !== null && $order !== (int) $page->order()) {
                 $page = $page->move($parent);
                 $page->order($order);
                 $updated = true;
@@ -158,26 +185,16 @@ class EventListener implements EventSubscriberInterface
             }
         }
 
-        foreach ($list as $page) {
-            $page->save(true);
+        try {
+            foreach ($list as $page) {
+                $page->save(false);
+            }
+        } catch (\RuntimeException $e) {
+            throw new \RuntimeException(sprintf('Updating menu item %s failed: %s', $page->rawRoute(), $e->getMessage()), 500, $e);
         }
 
         foreach ($menu['items'] as $key => $item) {
-            // Do not save default values.
-            foreach ($defaults as $var => $value) {
-                if (isset($item[$var]) && $item[$var] == $value) {
-                    unset($item[$var]);
-                }
-            }
-
-            // Do not save derived values.
-            unset($item['path'], $item['alias'], $item['parent_id'], $item['level'], $item['group'], $item['current']);
-
-            // Particles have no link.
-            if (isset($item['type']) && $item['type'] === 'particle') {
-                unset($item['link']);
-            }
-
+            $item = $this->normalizeMenuItem($item);
             if ($item) {
                 $event->menu["items.{$key}"] = $item;
             } else {
@@ -186,6 +203,27 @@ class EventListener implements EventSubscriberInterface
         }
     }
 
+    /**
+     * @param array $item
+     * @param array $ignore
+     * @return array
+     */
+    protected function normalizeMenuItem(array $item, array $ignore = [])
+    {
+        static $ignoreList = [
+            // Never save derived values.
+            'id', 'path', 'route', 'alias', 'parent_id', 'level', 'group', 'current', 'yaml_path', 'yaml_alias'
+        ];
+
+        return Item::normalize($item, array_merge($ignore, $ignoreList));
+    }
+
+    /**
+     * @param array $ordering
+     * @param array $parents
+     * @param int $i
+     * @return array
+     */
     protected function flattenOrdering(array $ordering, $parents = [], &$i = 0)
     {
         $list = [];
@@ -207,5 +245,37 @@ class EventListener implements EventSubscriberInterface
         }
 
         return $list;
+    }
+
+    /**
+     * @param array $ordering
+     * @param Config $menu
+     * @param array $parents
+     * @param int $pos
+     */
+    protected function embedMeta(array $ordering, Config $menu, $parents = [], $pos = 0)
+    {
+        $isGroup = isset($ordering[0]);
+        $name = implode('/', $parents);
+
+        $counts = [];
+        foreach ($ordering as $id => $children) {
+            $tree = $parents;
+
+            if ($isGroup) {
+                $counts[] = \count($children);
+            } else {
+                $tree[] = $id;
+            }
+            if (\is_array($children)) {
+                $this->embedMeta($children, $menu, $tree, $isGroup ? $pos : 0);
+
+                $pos += \count($children);
+            }
+        }
+
+        if ($isGroup) {
+            $menu["items.{$name}.columns_count"] = $counts;
+        }
     }
 }

@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => '5.5.3',
+        'version' => '5.5.3.0',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => '0c57975d9da1b0aba7a242bf05b7e99d51743bbd',
+        'name' => 'gantry/grav-compat',
+        'dev' => false,
+    ),
+    'versions' => array(
+        'gantry/grav-compat' => array(
+            'pretty_version' => '5.5.3',
+            'version' => '5.5.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => '0c57975d9da1b0aba7a242bf05b7e99d51743bbd',
+            'dev_requirement' => false,
+        ),
+        'leafo/scssphp' => array(
+            'pretty_version' => 'v0.8.4',
+            'version' => '0.8.4.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../leafo/scssphp',
+            'aliases' => array(),
+            'reference' => 'b9cdea3e42c3bcb1a9faafd04ccce4e8ec860ad9',
+            'dev_requirement' => false,
+        ),
+        'scssphp/scssphp' => array(
+            'pretty_version' => 'v1.6.0',
+            'version' => '1.6.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../scssphp/scssphp',
+            'aliases' => array(),
+            'reference' => 'b83594e2323c5d6e80785df3f91b9d1d32aad530',
+            'dev_requirement' => false,
+        ),
+    ),
+);

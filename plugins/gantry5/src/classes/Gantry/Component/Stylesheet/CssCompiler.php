@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   Dual License: MIT or GNU/GPLv2 and later
  *
  * http://opensource.org/licenses/MIT
@@ -16,60 +17,41 @@ namespace Gantry\Component\Stylesheet;
 use Gantry\Component\Config\Config;
 use Gantry\Component\Gantry\GantryTrait;
 use Gantry\Framework\Gantry;
-use Leafo\ScssPhp\Colors;
+use ScssPhp\ScssPhp\Colors;
 use RocketTheme\Toolbox\File\PhpFile;
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
+/**
+ * Class CssCompiler
+ * @package Gantry\Component\Stylesheet
+ */
 abstract class CssCompiler implements CssCompilerInterface
 {
     use GantryTrait;
 
+    /** @var string */
     protected $type;
-
+    /** @var string */
     protected $name;
-
+    /** @var bool */
     protected $debug = false;
-
+    /** @var array */
     protected $warnings = [];
-
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $fonts;
-
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $variables;
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $target = 'gantry-theme://css-compiled';
-
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $configuration = 'default';
-
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $paths;
-
-    /**
-     * @var array
-     */
+    /** @var array */
+    protected $realPaths;
+    /** @var array */
     protected $files;
-
-    /**
-     * @var mixed
-     */
-    protected $compiler;
-
-    /**
-     * @var bool
-     */
+    /** @var bool */
     protected $production;
 
     public function __construct()
@@ -83,6 +65,9 @@ abstract class CssCompiler implements CssCompilerInterface
         $this->production = (bool) $global->get('production');
     }
 
+    /**
+     * @return array
+     */
     public function getWarnings()
     {
         return $this->warnings;
@@ -142,7 +127,8 @@ abstract class CssCompiler implements CssCompilerInterface
                     $list[$family] = [400 => (string) $data];
                 }
             }
-            $this->compiler->setFonts($list);
+
+            $this->doSetFonts($list);
         }
 
         return $this;
@@ -156,6 +142,14 @@ abstract class CssCompiler implements CssCompilerInterface
     {
         if ($paths !== null) {
             $this->paths = $paths;
+
+            /** @var UniformResourceLocator $locator */
+            $locator = Gantry::instance()['locator'];
+
+            $this->realPaths = [];
+            foreach ($paths as $path) {
+                $this->realPaths = array_merge($this->realPaths, $locator->findResources($path));
+            }
         }
 
         return $this;
@@ -198,8 +192,15 @@ abstract class CssCompiler implements CssCompilerInterface
         return $this;
     }
 
-    public function needsCompile($in, $variables)
+    /**
+     * @param string $in
+     * @param callable $variablesCallable
+     * @return bool
+     */
+    public function needsCompile($in, $variablesCallable)
     {
+        /** @var array $variables */
+        $variables = $variablesCallable();
         $gantry = static::gantry();
 
         /** @var UniformResourceLocator $locator */
@@ -210,7 +211,7 @@ abstract class CssCompiler implements CssCompilerInterface
 
         // Check if CSS file exists at all.
         if (!$path) {
-            $this->setVariables($variables());
+            $this->setVariables($variables);
 
             return true;
         }
@@ -222,13 +223,13 @@ abstract class CssCompiler implements CssCompilerInterface
             fclose($handle);
 
             if ($contents === '/* GANTRY5 DEVELOPMENT MODE ENABLED.') {
-                $this->setVariables($variables());
+                $this->setVariables($variables);
                 return true;
             }
 
             // Compare checksum comment in the file.
             if ($contents !== $this->checksum()) {
-                $this->setVariables($variables());
+                $this->setVariables($variables);
                 return true;
             }
 
@@ -241,7 +242,7 @@ abstract class CssCompiler implements CssCompilerInterface
 
         // Check if meta file exists.
         if (!$metaFile->exists()) {
-            $this->setVariables($variables());
+            $this->setVariables($variables);
             return true;
         }
 
@@ -250,20 +251,22 @@ abstract class CssCompiler implements CssCompilerInterface
 
         // Check if filename in meta file matches.
         if (empty($content['file']) || $content['file'] !== $out) {
-            $this->setVariables($variables());
+            $this->setVariables($variables);
             return true;
         }
 
         // Check if meta timestamp matches to CSS file.
         if (filemtime($path) !== $content['timestamp']) {
-            $this->setVariables($variables());
+            $this->setVariables($variables);
             return true;
         }
 
-        $this->setVariables($variables());
+        $this->setVariables($variables);
 
         // Check if variables have been changed.
         $oldVariables = isset($content['variables']) ? $content['variables'] : [];
+
+        // Note: Do not use strict check!
         if ($oldVariables != $this->getVariables()) {
             return true;
         }
@@ -290,11 +293,19 @@ abstract class CssCompiler implements CssCompilerInterface
         return false;
     }
 
+    /**
+     * @param array $variables
+     * @return $this
+     */
     public function setVariables(array $variables)
     {
         $this->variables = array_filter($variables);
 
         foreach($this->variables as &$value) {
+            if (is_numeric($value)) {
+                continue;
+            }
+
             // Check variable against colors and units.
             /* Test regex against these:
              * Should only match the ones marked as +
@@ -313,8 +324,8 @@ abstract class CssCompiler implements CssCompilerInterface
                 continue;
             }
 
-            // Check variable against predefined color names (we use Leafo SCSS Color class to do that).
-            if (isset(Colors::$cssColors[strtolower($value)])) {
+            // Check variable against predefined color names (we use ScssPhp SCSS Color class to do that).
+            if (Colors::colorNameToRGBa(strtolower($value))) {
                 continue;
             }
 
@@ -325,17 +336,18 @@ abstract class CssCompiler implements CssCompilerInterface
         return $this;
     }
 
+    /**
+     * @return array
+     */
     public function getVariables()
     {
         return $this->variables;
     }
 
-    public function reset()
-    {
-        $this->compiler->reset();
-
-        return $this;
-    }
+    /**
+     * @return $this|CssCompilerInterface
+     */
+    abstract public function reset();
 
     /**
      * @param string $url
@@ -343,6 +355,10 @@ abstract class CssCompiler implements CssCompilerInterface
      */
     abstract public function findImport($url);
 
+    /**
+     * @param int $len
+     * @return string
+     */
     protected function checksum($len = 36)
     {
         static $checksum;
@@ -354,6 +370,10 @@ abstract class CssCompiler implements CssCompilerInterface
         return '/*' . substr($checksum, 0, $len - 4) . '*/';
     }
 
+    /**
+     * @param string $out
+     * @param string $md5
+     */
     protected function createMeta($out, $md5)
     {
         $gantry = Gantry::instance();
@@ -372,7 +392,7 @@ abstract class CssCompiler implements CssCompilerInterface
             'timestamp' => filemtime($locator->findResource($out)),
             'md5' => $md5,
             'variables' => $this->getVariables(),
-            'imports' => $this->compiler->getParsedFiles()
+            'imports' => $this->getIncludedFiles()
         ];
 
         // Attempt to lock the file for writing.
@@ -388,4 +408,14 @@ abstract class CssCompiler implements CssCompilerInterface
         }
         $metaFile->free();
     }
+
+    /**
+     * @param array $list
+     */
+    abstract protected function doSetFonts(array $list);
+
+    /**
+     * @return array
+     */
+    abstract protected function getIncludedFiles();
 }

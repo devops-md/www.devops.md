@@ -1,8 +1,7 @@
 ---
-title: 'Blog'
-media_order: 'DXLtUtXCiSCYWccmL5LWKe-650-80[1].jpg,writing-blogs-748x335[1].jpeg'
+title: Blog
 hide_git_sync_repo_link: false
-hero_classes: hero-large
+hero_classes: text-light
 hero_image: 'writing-blogs-748x335[1].jpeg'
 blog_url: /blog
 show_sidebar: true
@@ -23,5 +22,8 @@ display_post_summary:
 post_icon: newspaper-o
 feed:
     limit: 10
+twig_first: true
+never_cache_twig: true
+child_type: item
 ---
 

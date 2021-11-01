@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   Dual License: MIT or GNU/GPLv2 and later
  *
  * http://opensource.org/licenses/MIT
@@ -20,20 +21,27 @@ use Gantry\Component\Url\Url;
 use Gantry\Framework\Gantry;
 use RocketTheme\Toolbox\ResourceLocator\UniformResourceLocator;
 
+/**
+ * Class HtmlDocument
+ * @package Gantry\Component\Content\Document
+ */
 class HtmlDocument
 {
     use GantryTrait;
 
+    /** @var int */
     public static $timestamp_age = 604800;
+    /** @var array */
     public static $urlFilterParams;
-
-    /**
-     * @var array|HtmlBlock[]
-     */
+    /** @var HtmlBlock[] */
     protected static $stack;
+    /** @var array */
     protected static $frameworks = [];
+    /** @var array */
     protected static $scripts = [];
+    /** @var array */
     protected static $styles = [];
+    /** @var array */
     protected static $availableFrameworks = [
         'jquery' => 'registerJquery',
         'jquery.framework' => 'registerJquery',
@@ -41,6 +49,8 @@ class HtmlDocument
         'jquery.ui.sortable' => 'registerJqueryUiSortable',
         'bootstrap.2' => 'registerBootstrap2',
         'bootstrap.3' => 'registerBootstrap3',
+        'bootstrap.4' => 'registerBootstrap4',
+        'bootstrap.5' => 'registerBootstrap5',
         'mootools' => 'registerMootools',
         'mootools.framework' => 'registerMootools',
         'mootools.core' => 'registerMootools',
@@ -109,6 +119,7 @@ class HtmlDocument
     public static function addStyle($element, $priority = 0, $location = 'head')
     {
         static::getObject();
+
         return static::$stack[0]->addStyle($element, $priority, $location);
     }
 
@@ -121,6 +132,7 @@ class HtmlDocument
     public static function addInlineStyle($element, $priority = 0, $location = 'head')
     {
         static::getObject();
+
         return static::$stack[0]->addInlineStyle($element, $priority, $location);
     }
 
@@ -133,6 +145,7 @@ class HtmlDocument
     public static function addScript($element, $priority = 0, $location = 'head')
     {
         static::getObject();
+
         return static::$stack[0]->addScript($element, $priority, $location);
     }
 
@@ -145,6 +158,7 @@ class HtmlDocument
     public static function addInlineScript($element, $priority = 0, $location = 'head')
     {
         static::getObject();
+
         return static::$stack[0]->addInlineScript($element, $priority, $location);
     }
 
@@ -157,6 +171,7 @@ class HtmlDocument
     public static function addHtml($html, $priority = 0, $location = 'bottom')
     {
         static::getObject();
+
         return static::$stack[0]->addHtml($html, $priority, $location);
     }
 
@@ -196,6 +211,10 @@ class HtmlDocument
         return $success;
     }
 
+    /**
+     * @param string $location
+     * @return array
+     */
     public static function getStyles($location = 'head')
     {
         static::getObject();
@@ -234,6 +253,10 @@ class HtmlDocument
         return $output;
     }
 
+    /**
+     * @param string $location
+     * @return array
+     */
     public static function getScripts($location = 'head')
     {
         static::getObject();
@@ -271,6 +294,10 @@ class HtmlDocument
         return $output;
     }
 
+    /**
+     * @param string $location
+     * @return array
+     */
     public static function getHtml($location = 'bottom')
     {
         static::getObject();
@@ -297,7 +324,7 @@ class HtmlDocument
             if (is_object($string) && method_exists($string, '__toString')) {
                 $string = (string) $string;
             } elseif (in_array($strategy, ['html', 'js', 'css', 'html_attr', 'url'])) {
-                return $string;
+                return '';
             }
         }
 
@@ -306,41 +333,35 @@ class HtmlDocument
                 return htmlspecialchars($string, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 
             case 'js':
-                if (0 === strlen($string) ? false : (1 === preg_match('/^./su', $string) ? false : true)) {
+                if (!($string === '' || 1 === preg_match('/^./su', $string))) {
                     throw new \RuntimeException('The string to escape is not a valid UTF-8 string.');
                 }
 
-                $string = preg_replace_callback(
-                    '#[^a-zA-Z0-9,\._]#Su',
-                    'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_js_callback',
-                    $string
-                );
+                /** @var callable $callback */
+                $callback = 'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_js_callback';
+                $string = preg_replace_callback('#[^a-zA-Z0-9,._]#Su', $callback, $string);
 
                 return $string;
 
             case 'css':
-                if (0 === strlen($string) ? false : (1 === preg_match('/^./su', $string) ? false : true)) {
+                if (!($string === '' || 1 === preg_match('/^./su', $string))) {
                     throw new \RuntimeException('The string to escape is not a valid UTF-8 string.');
                 }
 
-                $string = preg_replace_callback(
-                    '#[^a-zA-Z0-9]#Su',
-                    'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_css_callback',
-                    $string
-                );
+                /** @var callable $callback */
+                $callback = 'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_css_callback';
+                $string = preg_replace_callback('#[^a-zA-Z0-9]#Su', $callback, $string);
 
                 return $string;
 
             case 'html_attr':
-                if (0 === strlen($string) ? false : (1 === preg_match('/^./su', $string) ? false : true)) {
+                if (!($string === '' || 1 === preg_match('/^./su', $string))) {
                     throw new \RuntimeException('The string to escape is not a valid UTF-8 string.');
                 }
 
-                $string = preg_replace_callback(
-                    '#[^a-zA-Z0-9,\.\-_]#Su',
-                    'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_html_attr_callback',
-                    $string
-                );
+                /** @var callable $callback */
+                $callback = 'Gantry\\Component\\Content\\Document\\HtmlDocument::_escape_html_attr_callback';
+                $string = preg_replace_callback('#[^a-zA-Z0-9,._-]#Su', $callback, $string);
 
                 return $string;
 
@@ -353,7 +374,7 @@ class HtmlDocument
     }
 
     /**
-     * @param $framework
+     * @param string $framework
      * @return bool
      * @deprecated 5.3
      */
@@ -370,6 +391,9 @@ class HtmlDocument
         static::registerFrameworks();
     }
 
+    /**
+     * @return string
+     */
     public static function siteUrl()
     {
         return static::rootUri();
@@ -522,9 +546,9 @@ class HtmlDocument
         // Tokenize all PRE, CODE and SCRIPT tags to avoid modifying any src|href|url in them
         $tokens = [];
 
-        $html = preg_replace_callback('#<(pre|code|script)(\s[^>]+)?>.*?</\\1>#ius', function($matches) use (&$tokens) {
+        $html = preg_replace_callback('#<(pre|code|script)(\s[^>]+)?>.*?</\\1>#ius', static function($matches) use (&$tokens) {
             // Unfortunately uniqid() doesn't quite work in Windows, so we need to work it around by adding some randomness.
-            $token = '@@'. uniqid(mt_rand(), true) . '@@';
+            $token = '@@'. uniqid((string)mt_rand(), true) . '@@';
             $match = $matches[0];
 
             $tokens[$token] = $match;
@@ -633,7 +657,7 @@ class HtmlDocument
     /**
      * This function is adapted from code coming from Twig.
      *
-     * @param $matches
+     * @param array $matches
      * @return string
      * @internal
      */
@@ -703,14 +727,14 @@ class HtmlDocument
      * Replace tokens with strings.
      *
      * @param array $tokens
-     * @param $html
-     * @return string|NUll
+     * @param string $html
+     * @return string
      */
     protected static function replaceTokens(array $tokens, $html)
     {
         foreach ($tokens as $token => $replacement) {
             // We need to use callbacks to turn off backreferences ($1, \\1) in the replacement string.
-            $callback = function() use ($replacement) { return $replacement; };
+            $callback = static function() use ($replacement) { return $replacement; };
 
             $html = preg_replace_callback('#' . preg_quote($token, '#') . '#u', $callback, $html);
         }
@@ -725,7 +749,7 @@ class HtmlDocument
     {
         foreach (static::$stack[0]->getFrameworks() as $framework) {
             if (isset(static::$availableFrameworks[$framework])) {
-                call_user_func([get_called_class(), static::$availableFrameworks[$framework]]);
+                call_user_func([static::class, static::$availableFrameworks[$framework]]);
             }
         }
     }
@@ -734,9 +758,9 @@ class HtmlDocument
     {
         static::addScript(
             [
-                'src' => 'https://code.jquery.com/jquery-2.2.2.min.js',
-                'integrity' => 'sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=',
-                'crossorigin' => 'anonymous'
+                'src' => 'https://code.jquery.com/jquery-3.6.0.min.js',
+			    'integrity' => 'sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=',
+			    'crossorigin' => 'anonymous'
             ],
             11
         );
@@ -765,9 +789,36 @@ class HtmlDocument
 
     protected static function registerBootstrap3()
     {
-        static::registerJquery();
+        static::addScript(
+            [
+                'src' => 'https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js',
+                'integrity' => 'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd',
+                'crossorigin' => 'anonymous'
+            ],
+            11);
+    }
 
-        static::addScript(['src' => 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'], 11);
+    protected static function registerBootstrap4()
+    {
+        static::addScript(
+            [
+                'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js',
+                'integrity' => 'sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns',
+                'crossorigin' => 'anonymous'
+            ],
+            11);
+    }
+
+
+    protected static function registerBootstrap5()
+    {
+        static::addScript(
+            [
+                'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js',
+                'integrity' => 'sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM',
+                'crossorigin' => 'anonymous'
+            ],
+            11);
     }
 
     protected static function registerMootools()
@@ -797,12 +848,16 @@ class HtmlDocument
         static::addInlineScript(['content' => "jQuery(document).ready(function($) { jQuery('[data-rel^=lightcase]').lightcase({maxWidth: '100%', maxHeight: '100%', video: {width: '1280', height: '720'}}); });"], 0, 'footer');
     }
 
+    /**
+     * @return HtmlDocument
+     */
     protected static function getObject()
     {
         static $object;
 
         if (!$object) {
             // We need to initialize document for backwards compatibility (RokSprocket/RokGallery in WP).
+            /** @var HtmlDocument $object */
             $object = Gantry::instance()['document'];
         }
 
@@ -813,7 +868,7 @@ class HtmlDocument
      * @param string $string
      * @param string $to
      * @param string $from
-     * @return false|string|string[]|null
+     * @return false|string
      * @internal
      */
     private static function convert_encoding($string, $to, $from)
@@ -839,15 +894,16 @@ class HtmlDocument
             return mb_ord($string, 'UTF-8');
         }
 
-        $code = ($string = unpack('C*', substr($string, 0, 4))) ? $string[1] : 0;
+        $unpacked = unpack('C*', substr($string, 0, 4));
+        $code = isset($unpacked[0]) ? $unpacked[1] : 0;
         if (0xF0 <= $code) {
-            return (($code - 0xF0) << 18) + (($string[2] - 0x80) << 12) + (($string[3] - 0x80) << 6) + $string[4] - 0x80;
+            return (($code - 0xF0) << 18) + (($unpacked[2] - 0x80) << 12) + (($unpacked[3] - 0x80) << 6) + $unpacked[4] - 0x80;
         }
         if (0xE0 <= $code) {
-            return (($code - 0xE0) << 12) + (($string[2] - 0x80) << 6) + $string[3] - 0x80;
+            return (($code - 0xE0) << 12) + (($unpacked[2] - 0x80) << 6) + $unpacked[3] - 0x80;
         }
         if (0xC0 <= $code) {
-            return (($code - 0xC0) << 6) + $string[2] - 0x80;
+            return (($code - 0xC0) << 6) + $unpacked[2] - 0x80;
         }
 
         return $code;

@@ -27,11 +27,20 @@ feed:
     description: ''
 ---
 
-Your page summary goes here.
+A collection of online tools
 
 ===
-
+## Docker
+### Play with Docker
 [Play with Docker](https://labs.play-with-docker.com/)
 Play with Docker (PWD) is a project hacked by Marcos Liljedhal and Jonathan Leibiusky and sponsored by Docker Inc.
 
 PWD is a Docker playground which allows users to run Docker commands in a matter of seconds. It gives the experience of having a free Alpine Linux Virtual Machine in browser, where you can build and run Docker containers and even create clusters in Docker Swarm Mode. Under the hood Docker-in-Docker (DinD) is used to give the effect of multiple VMs/PCs. In addition to the playground, PWD also includes a training site composed of a large set of Docker labs and quizzes from beginner to advanced level available at training.play-with-docker.com.
+
+## Regular expression testers
+### regex101: build, test, and debug regex
+[https://regex101.com/](https://regex101.com/)
+### RegExr: Learn, Build, & Test RegEx
+[https://regexr.com/](https://regexr.com/)
+### Regex Tester - Javascript, PCRE, PHP
+[https://www.regexpal.com/](https://www.regexpal.com/)

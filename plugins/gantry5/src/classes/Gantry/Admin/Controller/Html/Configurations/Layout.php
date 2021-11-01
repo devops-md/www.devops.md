@@ -1,8 +1,9 @@
 <?php
+
 /**
  * @package   Gantry5
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2017 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2021 RocketTheme, LLC
  * @license   Dual License: MIT or GNU/GPLv2 and later
  *
  * http://opensource.org/licenses/MIT
@@ -13,6 +14,7 @@
 
 namespace Gantry\Admin\Controller\Html\Configurations;
 
+use Gantry\Admin\Events\LayoutEvent;
 use Gantry\Component\Admin\HtmlController;
 use Gantry\Component\Config\BlueprintSchema;
 use Gantry\Component\Config\BlueprintForm;
@@ -21,8 +23,11 @@ use Gantry\Component\File\CompiledYamlFile;
 use Gantry\Component\Layout\Layout as LayoutObject;
 use Gantry\Component\Response\JsonResponse;
 use Gantry\Framework\Outlines;
-use RocketTheme\Toolbox\Event\Event;
 
+/**
+ * Class Layout
+ * @package Gantry\Admin\Controller\Html\Configurations
+ */
 class Layout extends HtmlController
 {
     protected $httpVerbs = [
@@ -59,6 +64,10 @@ class Layout extends HtmlController
         ]
     ];
 
+    /**
+     * @param string|null $id
+     * @return string
+     */
     public function create($id = null)
     {
         if (!$id) {
@@ -67,22 +76,20 @@ class Layout extends HtmlController
         }
 
         $layout = $this->getLayout("presets/{$id}");
-        if (!$layout) {
-            throw new \RuntimeException('Preset not found', 404);
-        }
+
         $this->params['page_id'] = $id;
         $this->params['layout'] = $layout->prepareWidths()->toArray();
 
         return $this->render('@gantry-admin/pages/configurations/layouts/create.html.twig', $this->params);
     }
 
+    /**
+     * @return string
+     */
     public function index()
     {
         $outline = $this->params['outline'];
         $layout = $this->getLayout($outline);
-        if (!$layout) {
-            throw new \RuntimeException('Layout not found', 404);
-        }
 
         $groups = [
             'Positions' => ['position' => [], 'spacer' => [], 'system' => []],
@@ -90,8 +97,8 @@ class Layout extends HtmlController
         ];
 
         $particles = [
-            'position'    => [],
-            'spacer'      => [],
+            'position' => [],
+            'spacer' => [],
             'system' => [],
             'particle' => []
         ];
@@ -122,7 +129,7 @@ class Layout extends HtmlController
     public function save()
     {
         $layout = $this->request->post->get('layout');
-        $layout = json_decode($layout);
+        $layout = json_decode($layout, false);
 
         if (!isset($layout)) {
             throw new \RuntimeException('Error while saving layout: Structure missing', 400);
@@ -148,7 +155,7 @@ class Layout extends HtmlController
         $layout->save()->saveIndex();
 
         // Fire save event.
-        $event = new Event;
+        $event = new LayoutEvent();
         $event->gantry = $this->container;
         $event->theme = $this->container['theme'];
         $event->controller = $this;
@@ -156,17 +163,21 @@ class Layout extends HtmlController
         $this->container->fireEvent('admin.layout.save', $event);
     }
 
+    /**
+     * @param string $type
+     * @param string $id
+     * @return string
+     */
     public function particle($type, $id)
     {
-        if ($type === 'atom') { return ''; }
+        if ($type === 'atom') {
+            return '';
+        }
 
         $outline = $this->params['outline'];
         $layout = $this->getLayout($outline);
-        if (!$layout) {
-            throw new \RuntimeException('Layout not found', 404);
-        }
-
         $item = $layout->find($id);
+
         $item->type    = $this->request->post['type'] ?: $type;
         $item->subtype = $this->request->post['subtype'] ?: $type;
         $item->title   = $this->request->post['title'] ?: ucfirst($type);
@@ -293,6 +304,9 @@ class Layout extends HtmlController
         return $result;
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function listSwitches()
     {
         $this->params['presets'] = LayoutObject::presets();
@@ -301,6 +315,10 @@ class Layout extends HtmlController
         return new JsonResponse(['html' => $result]);
     }
 
+    /**
+     * @param string $id
+     * @return JsonResponse
+     */
     public function switchLayout($id)
     {
         // Validate only exists for JSON.
@@ -336,6 +354,10 @@ class Layout extends HtmlController
         ]);
     }
 
+    /**
+     * @param string $id
+     * @return JsonResponse
+     */
     public function preset($id)
     {
         // Validate only exists for JSON.
@@ -365,6 +387,10 @@ class Layout extends HtmlController
         ]);
     }
 
+    /**
+     * @param string|null $particle
+     * @return JsonResponse
+     */
     public function validate($particle)
     {
         // Validate only exists for JSON.
@@ -471,6 +497,10 @@ class Layout extends HtmlController
         return LayoutObject::instance($name);
     }
 
+    /**
+     * @param bool $onlyEnabled
+     * @return array
+     */
     protected function getParticles($onlyEnabled = false)
     {
         /** @var Config $config */
