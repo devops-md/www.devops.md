@@ -2,7 +2,7 @@
 title: 'Dockerize your tools'
 date: '2021-09-20 19:54'
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true

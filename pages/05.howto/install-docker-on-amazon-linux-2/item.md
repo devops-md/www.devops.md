@@ -1,28 +1,21 @@
 ---
 title: 'Install Docker on Amazon Linux 2'
+date: '18:20 13-02-2020'
 taxonomy:
     category:
-        - 'How To'
+        - howtoo
     tag:
-        - linux
-        - docker
         - aws
+        - docker
+        - linux
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
 hide_from_post_list: false
 feed:
     limit: 10
-content:
-    items: '- ''@self.children'''
-    limit: '5'
-    order:
-        by: date
-        dir: desc
-    pagination: '1'
-    url_taxonomy_filters: '1'
 ---
 
 Amazon changed the install in Linux 2. One no-longer using 'yum' See: https://aws.amazon.com/amazon-linux-2/release-notes/

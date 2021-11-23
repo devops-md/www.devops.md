@@ -2,7 +2,7 @@
 title: 'Deploy From Bitbucket to AWS with CodeDeploy'
 date: '2021-04-03 18:19'
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true

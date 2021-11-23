@@ -2,7 +2,7 @@
 title: 'Run a Local Shell Script on a Remote Server via SSH'
 date: '2021-09-22 12:32'
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true

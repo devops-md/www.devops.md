@@ -1,8 +1,8 @@
 ---
-title: 'Jenkins nu pornește după update la Alpine Linux'
+title: 'Jenkins won''t start after Alpine Linux update'
 date: '2021-07-30 01:06'
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /howto
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
@@ -29,42 +29,42 @@ taxonomy:
 hide_from_post_list: false
 ---
 
-Recent, am instalat ultimile înnoiri pentru Jenkins, care rulează pe o mașină virtuală pe Alpine Linux 13.x
+I recently upgraded my Jenkins server, running Alpine Linux 13.x, in a VM
 
-E un proces extrem de simplu:
+It's a straightforward process:
 ```
 jenkins:~# apk update
 jenkins:~# apk upgrade
 jenkins:~# reboot
 ```
 
-Imediat ce mașina virtuală s-a reîncărcat, am observat că Jenkins nu mai este disponibil
+After the VM came back online, the surprise was having Jenkins refusing to start. 
 
-Am verificat serviciul, care zicea că e pornit
+I checked the service and it said it's started
 ```
 jenkins:~# /etc/init.d/jenkins start
  * WARNING: jenkins has already been started
 ```
-pe când, starea serviciului spunea altceva
+while the status was saying something different
 ```
 jenkins:~# /etc/init.d/jenkins status
  * status: crashed
 ```
-Respectiv, am încercat un stop/start
+I tried to stop/start
 ```
 jenkins:~# service jenkins stop
  * Stopping jenkins ...   
 jenkins:~# service jenkins start
  * Starting jenkins ...
 ```
-însă, fără rezultat
+but, the result was the same
 ```
 jenkins:~# /etc/init.d/jenkins status
  * status: crashed
 ```
-Nu era nimic în logurile Jenkins, iar logurile de system nu-mi ziceau nimic util
+I've found nothing in Jenkins log file or in system logs. 
 
-Așa că, am încercat să-l pornesc manual, și aici am avut ceva mai multă informație utilă
+So, I've tried to start Jenkins manually, and I've found much more helpful information
 ```
 jenkins:~# java -DJENKINS_HOME=/var/lib/jenkins -jar /usr/share/webapps/jenkins/jenkins.war
 Jul 29, 2021 9:41:00 PM Main verifyJavaVersion
@@ -79,7 +79,7 @@ java.lang.UnsupportedClassVersionError: 60.0
         at Main.main(Main.java:142)
 ```
 
-Totul se rezumă la versiunea Java nesuportată de Jenkins
+It was all about the Java version
 ```
 jenkins:~# java --version
 openjdk 16.0.1 2021-04-20
@@ -87,7 +87,7 @@ OpenJDK Runtime Environment (build 16.0.1+9-alpine-r0)
 OpenJDK 64-Bit Server VM (build 16.0.1+9-alpine-r0, mixed mode, sharing)
 ```
 
-Idee nu am cum a lucrat mai devreme, sau cum a ajuns OpenJDK 16 instalată în sistem, dar e cert că e timpul să instalez OpenJDK 11 :)
+I'm quite unsure how it was working before, or how it ended by having OpenJDK 16, buy it looks like it's the right time to install OpenJDK 11 :)
 ```
 jenkins:~# apk add openjdk11
 (1/15) Purging openjdk16-jre-headless (16.0.1_p9-r0)
@@ -110,7 +110,7 @@ Executing java-common-0.4-r0.trigger
 OK: 1564 MiB in 247 packages
 ```
 
-Și, e timpul să mai încerc o dată
+Now, it's time to try again
 ```
 jenkins:~# service jenkins restart
  * Caching service dependencies ...                                [ ok ]
@@ -121,4 +121,4 @@ jenkins:~# service jenkins status
  * status: started
  ```
  
- Astfel am petrecut alte 30 min din viața mea :)
+ And, this is how I spent 30 min of my life :)
