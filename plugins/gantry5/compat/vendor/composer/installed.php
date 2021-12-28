@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '5.5.5',
-        'version' => '5.5.5.0',
+        'pretty_version' => '5.5.7',
+        'version' => '5.5.7.0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2b69fd0145cd953428564d76254a84cd88b7472f',
+        'reference' => 'ee5ba898ee5455d7d3cb0c9edee95f8ff538c992',
         'name' => 'gantry/grav-compat',
         'dev' => false,
     ),
     'versions' => array(
         'gantry/grav-compat' => array(
-            'pretty_version' => '5.5.5',
-            'version' => '5.5.5.0',
+            'pretty_version' => '5.5.7',
+            'version' => '5.5.7.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2b69fd0145cd953428564d76254a84cd88b7472f',
+            'reference' => 'ee5ba898ee5455d7d3cb0c9edee95f8ff538c992',
             'dev_requirement' => false,
         ),
         'leafo/scssphp' => array(

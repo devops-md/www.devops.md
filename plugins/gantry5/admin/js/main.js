@@ -618,9 +618,9 @@ ready(function() {
                 request('post', parseAjaxURI(href + getAjaxSuffix()), { title: title }, function(error, response) {
                     if (!response.body.success) {
                         modal.open({
-                            content: response.body.html || response.body,
+                            content: response.body.html || response.body.message || response.body,
                             afterOpen: function(container) {
-                                if (!response.body.html) { container.style({ width: '90%' }); }
+                                if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                             }
                         });
 
@@ -729,9 +729,9 @@ ready(function() {
 
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -824,9 +824,9 @@ ready(function() {
         request(method, parseAjaxURI((hrefConfirm || href) + getAjaxSuffix()), {}, function(error, response) {
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
             } else {
@@ -875,9 +875,9 @@ ready(function() {
             request(method, parseAjaxURI(href + getAjaxSuffix()), { title: trim(title) }, function(error, response) {
                 if (!response.body.success) {
                     modal.open({
-                        content: response.body.html || response.body,
+                        content: response.body.html || response.body.message || response.body,
                         afterOpen: function(container) {
-                            if (!response.body.html) { container.style({ width: '90%' }); }
+                            if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                         }
                     });
 
@@ -3272,9 +3272,9 @@ ready(function() {
 
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
                 return;
@@ -3462,9 +3462,9 @@ ready(function() {
                     request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&') || {}, function(error, response) {
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -3643,9 +3643,9 @@ ready(function() {
 
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
 
@@ -4755,9 +4755,9 @@ ready(function() {
         request('post', saveURL, data, function(error, response) {
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
             } else {
@@ -4868,9 +4868,9 @@ ready(function() {
         request(method, parseAjaxURI(href + getAjaxSuffix()), function(error, response) {
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
 
@@ -5307,9 +5307,9 @@ var StepTwo = function(data, content, button) {
     request('post', parseAjaxURI(uri + getAjaxSuffix()), data, function(error, response) {
         if (!response.body.success) {
             modal.open({
-                content: response.body.html || response.body,
+                content: response.body.html || response.body.message || response.body,
                 afterOpen: function(container) {
-                    if (!response.body.html) { container.style({ width: '90%' }); }
+                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                 }
             });
 
@@ -5346,9 +5346,9 @@ var StepTwo = function(data, content, button) {
             request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&') || {}, function(error, response) {
                 if (!response.body.success) {
                     modal.open({
-                        content: response.body.html || response.body,
+                        content: response.body.html || response.body.message || response.body,
                         afterOpen: function(container) {
-                            if (!response.body.html) { container.style({ width: '90%' }); }
+                            if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                         }
                     });
                 } else {
@@ -5708,7 +5708,7 @@ ready(function() {
                     modal.enableCloseByOverlay();
                     return;
                 }
-                
+
                 var form       = content.elements.content.find('form'),
                     fakeDOM    = zen('div').html(response.body.html).find('form'),
                     submit     = content.elements.content.search('input[type="submit"], button[type="submit"], [data-apply-and-save]'),
@@ -5787,9 +5787,9 @@ ready(function() {
                     request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&'), function(error, response) {
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -6562,9 +6562,9 @@ var AttachSettings = function() {
                     request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&') || {}, function(error, response) {
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -6630,6 +6630,7 @@ ready(function() {
 });
 
 module.exports = Atoms;
+
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 
 },{"../fields/submit":9,"../ui":54,"../ui/eraser":53,"../utils/get-ajax-suffix":70,"../utils/get-ajax-url":71,"../utils/get-outline":72,"../utils/translate":78,"agent":80,"elements":113,"elements/domready":111,"elements/zen":137,"mout/array/indexOf":175,"mout/object/size":242,"mout/string/trim":272,"sortablejs":316}],38:[function(require,module,exports){
@@ -6722,7 +6723,7 @@ ready(function() {
 
         if (last) { clone.after(last); }
         else { clone.top(list); }
-        
+
         if (items.length && editall) { editall.style('display', 'inline-block'); }
 
         title = clone.find('a');
@@ -6842,7 +6843,7 @@ ready(function() {
                     modal.enableCloseByOverlay();
                     return;
                 }
-                
+
                 var form = content.elements.content.find('form'),
                     fakeDOM = zen('div').html(response.body.html).find('form'),
                     submit = content.elements.content.search('input[type="submit"], button[type="submit"], [data-apply-and-save]'),
@@ -6883,9 +6884,9 @@ ready(function() {
                     request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&') || {}, function(error, response) {
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -7932,9 +7933,9 @@ var FilePicker = new prime({
 
                 if (!response.body.success) {
                     modal.open({
-                        content: response.body.html || response.body,
+                        content: response.body.html || response.body.message || response.body,
                         afterOpen: function(container) {
-                            if (!response.body.html) { container.style({ width: '90%' }); }
+                            if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                         }
                     });
                 } else {
@@ -7986,9 +7987,9 @@ var FilePicker = new prime({
             request('delete', deleteURI, function(error, response) {
                 if (!response.body.success) {
                     modal.open({
-                        content: response.body.html || response.body,
+                        content: response.body.html || response.body.message || response.body,
                         afterOpen: function(container) {
-                            if (!response.body.html) { container.style({ width: '90%' }); }
+                            if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                         }
                     });
                 } else {
@@ -9217,9 +9218,9 @@ ready(function() {
                         request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&') || {}, function(error, response) {
                             if (!response.body.success) {
                                 modal.open({
-                                    content: response.body.html || response.body,
+                                    content: response.body.html || response.body.message || response.body,
                                     afterOpen: function(container) {
-                                        if (!response.body.html) { container.style({ width: '90%' }); }
+                                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                     }
                                 });
                             } else {
@@ -9741,9 +9742,9 @@ ready(function() {
         request(method, parseAjaxURI(href + getAjaxSuffix()), {}, function(error, response) {
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
             } else {
@@ -9906,9 +9907,9 @@ ready(function() {
                     request(fakeDOM.attribute('method'), parseAjaxURI(fakeDOM.attribute('action') + getAjaxSuffix()), post.valid.join('&'), function(error, response) {
                         if (!response.body.success) {
                             modal.open({
-                                content: response.body.html || response.body,
+                                content: response.body.html || response.body.message || response.body,
                                 afterOpen: function(container) {
-                                    if (!response.body.html) { container.style({ width: '90%' }); }
+                                    if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                                 }
                             });
                         } else {
@@ -9962,9 +9963,9 @@ ready(function() {
             request(method, parseAjaxURI(href + getAjaxSuffix()), data, function(error, response) {
                 if (!response.body.success) {
                     modal.open({
-                        content: response.body.html || response.body,
+                        content: response.body.html || response.body.message || response.body,
                         afterOpen: function(container) {
-                            if (!response.body.html) { container.style({ width: '90%' }); }
+                            if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                         }
                     });
 
@@ -10942,7 +10943,7 @@ var Modal = new prime({
                 elements.content.html(response.body.html || response.body);
 
                 if (!response.body.success) {
-                    if (!response.body.html) { elements.content.style({ width: '90%' }); }
+                    if (!response.body.html && !response.body.message) { elements.content.style({ width: '90%' }); }
                 }
 
                 this.hideLoading();
@@ -14705,9 +14706,9 @@ ready(function() {
         request('post', URI, { mode: value }, function(error, response) {
             if (!response.body.success) {
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
 
@@ -14853,9 +14854,9 @@ History.Adapter.bind(window, 'statechange', function() {
             if (!ERROR) {
                 ERROR = true;
                 modal.open({
-                    content: response.body.html || response.body,
+                    content: response.body.html || response.body.message || response.body,
                     afterOpen: function(container) {
-                        if (!response.body.html) { container.style({ width: '90%' }); }
+                        if (!response.body.html && !response.body.message) { container.style({ width: '90%' }); }
                     }
                 });
 

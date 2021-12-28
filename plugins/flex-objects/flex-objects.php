@@ -277,15 +277,19 @@ class FlexObjectsPlugin extends Plugin
      */
     public function onPagesInitialized(Event $event): void
     {
+        /** @var Route|null $route */
+        $route = $event['route'] ?? null;
+        if (null === $route) {
+            // Stop if in CLI.
+            return;
+        }
+
         /** @var PageInterface|null $page */
         $page = $this->grav['page'] ?? null;
 
-        /** @var Route $route */
-        $route = $event['route'];
-
         $base = '';
         $path = [];
-        if (!$page->routable() && $page->template() !== 'notfound') {
+        if (!$page->routable() || $page->template() === 'notfound') {
             /** @var Pages $pages */
             $pages = $this->grav['pages'];
 
