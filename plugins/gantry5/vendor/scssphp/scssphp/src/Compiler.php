@@ -137,7 +137,6 @@ class Compiler
     public static $emptyString  = [Type::T_STRING, '"', []];
     public static $with         = [Type::T_KEYWORD, 'with'];
     public static $without      = [Type::T_KEYWORD, 'without'];
-    private static $emptyArgumentList = [Type::T_LIST, '', [], []];
 
     /**
      * @var array<int, string|callable>
@@ -195,11 +194,6 @@ class Compiler
     protected $sourceMapOptions = [];
 
     /**
-     * @var bool
-     */
-    private $charset = true;
-
-    /**
      * @var string|\ScssPhp\ScssPhp\Formatter
      */
     protected $formatter = Expanded::class;
@@ -227,8 +221,6 @@ class Compiler
     protected $storeEnv;
     /**
      * @var bool|null
-     *
-     * @deprecated
      */
     protected $charsetSeen;
     /**
@@ -471,6 +463,7 @@ class Compiler
         $this->env            = null;
         $this->scope          = null;
         $this->storeEnv       = null;
+        $this->charsetSeen    = null;
         $this->shouldEvaluate = null;
         $this->ignoreCallStackMessage = false;
         $this->parsedFiles = [];
@@ -523,9 +516,11 @@ class Compiler
 
             $prefix = '';
 
-            if ($this->charset && strlen($out) !== Util::mbStrlen($out)) {
-                $prefix = '@charset "UTF-8";' . "\n";
-                $out = $prefix . $out;
+            if (!$this->charsetSeen) {
+                if (strlen($out) !== Util::mbStrlen($out)) {
+                    $prefix = '@charset "UTF-8";' . "\n";
+                    $out = $prefix . $out;
+                }
             }
 
             $sourceMap = null;
@@ -1588,8 +1583,6 @@ class Compiler
      * @param array $withCondition
      *
      * @return array
-     *
-     * @phpstan-return array{array<string, bool>, array<string, bool>}
      */
     protected function compileWith($withCondition)
     {
@@ -1609,10 +1602,9 @@ class Compiler
                 }
             }
 
-            $withConfig = $this->mapGet($withCondition, static::$with);
-            if ($withConfig !== null) {
+            if ($this->mapHasKey($withCondition, static::$with)) {
                 $without = []; // cancel the default
-                $list = $this->coerceList($withConfig);
+                $list = $this->coerceList($this->libMapGet([$withCondition, static::$with]));
 
                 foreach ($list[2] as $item) {
                     $keyword = $this->compileStringContent($this->coerceString($item));
@@ -1621,10 +1613,9 @@ class Compiler
                 }
             }
 
-            $withoutConfig = $this->mapGet($withCondition, static::$without);
-            if ($withoutConfig !== null) {
+            if ($this->mapHasKey($withCondition, static::$without)) {
                 $without = []; // cancel the default
-                $list = $this->coerceList($withoutConfig);
+                $list = $this->coerceList($this->libMapGet([$withCondition, static::$without]));
 
                 foreach ($list[2] as $item) {
                     $keyword = $this->compileStringContent($this->coerceString($item));
@@ -2886,6 +2877,10 @@ class Compiler
                 break;
 
             case Type::T_CHARSET:
+                if (! $this->charsetSeen) {
+                    $this->charsetSeen = true;
+                    $this->appendRootDirective('@charset ' . $this->compileValue($child[1]) . ';', $out);
+                }
                 break;
 
             case Type::T_CUSTOM_PROPERTY:
@@ -3832,6 +3827,7 @@ EOL;
 
         // try to find a native lib function
         $normalizedName = $this->normalizeName($name);
+        $libName = null;
 
         if (isset($this->userFunctions[$normalizedName])) {
             // see if we can find a user function
@@ -3840,44 +3836,9 @@ EOL;
             return [Type::T_FUNCTION_REFERENCE, 'user', $name, $f, $prototype];
         }
 
-        $lowercasedName = strtolower($normalizedName);
-
-        // Special functions overriding a CSS function are case-insensitive. We normalize them as lowercase
-        // to avoid the deprecation warning about the wrong case being used.
-        if ($lowercasedName === 'min' || $lowercasedName === 'max') {
-            $normalizedName = $lowercasedName;
-        }
-
         if (($f = $this->getBuiltinFunction($normalizedName)) && \is_callable($f)) {
             $libName   = $f[1];
             $prototype = isset(static::$$libName) ? static::$$libName : null;
-
-            // All core functions have a prototype defined. Not finding the
-            // prototype can mean 2 things:
-            // - the function comes from a child class (deprecated just after)
-            // - the function was found with a different case, which relates to calling the
-            //   wrong Sass function due to our camelCase usage (`fade-in()` vs `fadein()`),
-            //   because PHP method names are case-insensitive while property names are
-            //   case-sensitive.
-            if ($prototype === null || strtolower($normalizedName) !== $normalizedName) {
-                $r = new \ReflectionMethod($this, $libName);
-                $actualLibName = $r->name;
-
-                if ($actualLibName !== $libName || strtolower($normalizedName) !== $normalizedName) {
-                    $kebabCaseName = preg_replace('~(?<=\\w)([A-Z])~', '-$1', substr($actualLibName, 3));
-                    assert($kebabCaseName !== null);
-                    $originalName = strtolower($kebabCaseName);
-                    $warning = "Calling built-in functions with a non-standard name is deprecated since Scssphp 1.8.0 and will not work anymore in 2.0 (they will be treated as CSS function calls instead).\nUse \"$originalName\" instead of \"$name\".";
-                    @trigger_error($warning, E_USER_DEPRECATED);
-                    $fname = $this->getPrettyPath($this->sourceNames[$this->sourceIndex]);
-                    $line  = $this->sourceLine;
-                    Warn::deprecation("$warning\n         on line $line of $fname");
-
-                    // Use the actual function definition
-                    $prototype = isset(static::$$actualLibName) ? static::$$actualLibName : null;
-                    $f[1] = $libName = $actualLibName;
-                }
-            }
 
             if (\get_class($this) !== __CLASS__ && !isset($this->warnedChildFunctions[$libName])) {
                 $r = new \ReflectionMethod($this, $libName);
@@ -5538,25 +5499,6 @@ EOL;
     }
 
     /**
-     * Configures the handling of non-ASCII outputs.
-     *
-     * If $charset is `true`, this will include a `@charset` declaration or a
-     * UTF-8 [byte-order mark][] if the stylesheet contains any non-ASCII
-     * characters. Otherwise, it will never include a `@charset` declaration or a
-     * byte-order mark.
-     *
-     * [byte-order mark]: https://en.wikipedia.org/wiki/Byte_order_mark#UTF-8
-     *
-     * @param bool $charset
-     *
-     * @return void
-     */
-    public function setCharset($charset)
-    {
-        $this->charset = $charset;
-    }
-
-    /**
      * Enable/disable source maps
      *
      * @api
@@ -5930,7 +5872,7 @@ EOL;
         }
 
         if (0 === strpos($normalizedPath, $normalizedRootDirectory)) {
-            return substr($path, \strlen($normalizedRootDirectory));
+            return substr($normalizedPath, \strlen($normalizedRootDirectory));
         }
 
         return $path;
@@ -6934,18 +6876,14 @@ EOL;
     }
 
     /**
-     * Tries to convert an item to a Sass map
+     * Coerce something to map
      *
-     * @param Number|array $item
+     * @param array|Number $item
      *
-     * @return array|null
+     * @return array|Number
      */
-    private function tryMap($item)
+    protected function coerceMap($item)
     {
-        if ($item instanceof Number) {
-            return null;
-        }
-
         if ($item[0] === Type::T_MAP) {
             return $item;
         }
@@ -6955,24 +6893,6 @@ EOL;
             $item[2] === []
         ) {
             return static::$emptyMap;
-        }
-
-        return null;
-    }
-
-    /**
-     * Coerce something to map
-     *
-     * @param array|Number $item
-     *
-     * @return array|Number
-     */
-    protected function coerceMap($item)
-    {
-        $map = $this->tryMap($item);
-
-        if ($map !== null) {
-            return $map;
         }
 
         return $item;
@@ -7010,6 +6930,18 @@ EOL;
             for ($i = 0, $s = \count($keys); $i < $s; $i++) {
                 $key = $keys[$i];
                 $value = $values[$i];
+
+                switch ($key[0]) {
+                    case Type::T_LIST:
+                    case Type::T_MAP:
+                    case Type::T_STRING:
+                    case Type::T_NULL:
+                        break;
+
+                    default:
+                        $key = [Type::T_KEYWORD, $this->compileStringContent($this->coerceString($key))];
+                        break;
+                }
 
                 $list[] = [
                     Type::T_LIST,
@@ -7277,13 +7209,9 @@ EOL;
      * @param array|Number $value
      *
      * @return integer|float
-     *
-     * @deprecated
      */
     protected function coercePercent($value)
     {
-        @trigger_error(sprintf('"%s" is deprecated since 1.7.0.', __METHOD__), E_USER_DEPRECATED);
-
         if ($value instanceof Number) {
             if ($value->hasUnit('%')) {
                 return $value->getDimension() / 100;
@@ -7309,15 +7237,15 @@ EOL;
      */
     public function assertMap($value, $varName = null)
     {
-        $map = $this->tryMap($value);
+        $value = $this->coerceMap($value);
 
-        if ($map === null) {
+        if ($value[0] !== Type::T_MAP) {
             $value = $this->compileValue($value);
 
             throw SassScriptException::forArgument("$value is not a map.", $varName);
         }
 
-        return $map;
+        return $value;
     }
 
     /**
@@ -7510,7 +7438,7 @@ EOL;
             }
         }
 
-        return [Type::T_HSL, fmod($h + 360, 360), $s * 100, $l / 5.1];
+        return [Type::T_HSL, fmod($h, 360), $s * 100, $l / 5.1];
     }
 
     /**
@@ -7791,7 +7719,7 @@ EOL;
                             [$funcName . '(', $color[1], ', ', $color[2], ', ', $color[3], ', ', $alpha, ')']];
                     }
                 } else {
-                    $color = [Type::T_STRING, '', [$funcName . '(', $args[0], ', ', $args[1], ')']];
+                    $color = [Type::T_STRING, '', [$funcName . '(', $args[0], ')']];
                 }
                 break;
 
@@ -8092,8 +8020,8 @@ EOL;
 
     // mix two colors
     protected static $libMix = [
-        ['color1', 'color2', 'weight:50%'],
-        ['color-1', 'color-2', 'weight:50%']
+        ['color1', 'color2', 'weight:0.5'],
+        ['color-1', 'color-2', 'weight:0.5']
         ];
     protected function libMix($args)
     {
@@ -8101,26 +8029,25 @@ EOL;
 
         $first = $this->assertColor($first, 'color1');
         $second = $this->assertColor($second, 'color2');
-        $weightScale = $this->assertNumber($weight, 'weight')->valueInRange(0, 100, 'weight') / 100;
+        $weight = $this->coercePercent($this->assertNumber($weight, 'weight'));
 
         $firstAlpha = isset($first[4]) ? $first[4] : 1;
         $secondAlpha = isset($second[4]) ? $second[4] : 1;
 
-        $normalizedWeight = $weightScale * 2 - 1;
-        $alphaDistance = $firstAlpha - $secondAlpha;
+        $w = $weight * 2 - 1;
+        $a = $firstAlpha - $secondAlpha;
 
-        $combinedWeight = $normalizedWeight * $alphaDistance == -1 ? $normalizedWeight : ($normalizedWeight + $alphaDistance) / (1 + $normalizedWeight * $alphaDistance);
-        $weight1 = ($combinedWeight + 1) / 2.0;
-        $weight2 = 1.0 - $weight1;
+        $w1 = (($w * $a === -1 ? $w : ($w + $a) / (1 + $w * $a)) + 1) / 2.0;
+        $w2 = 1.0 - $w1;
 
         $new = [Type::T_COLOR,
-            $weight1 * $first[1] + $weight2 * $second[1],
-            $weight1 * $first[2] + $weight2 * $second[2],
-            $weight1 * $first[3] + $weight2 * $second[3],
+            $w1 * $first[1] + $w2 * $second[1],
+            $w1 * $first[2] + $w2 * $second[2],
+            $w1 * $first[3] + $w2 * $second[3],
         ];
 
         if ($firstAlpha != 1.0 || $secondAlpha != 1.0) {
-            $new[] = $firstAlpha * $weightScale + $secondAlpha * (1 - $weightScale);
+            $new[] = $firstAlpha * $weight + $secondAlpha * (1 - $weight);
         }
 
         return $this->fixColor($new);
@@ -8197,7 +8124,7 @@ EOL;
             }
         }
 
-        $hueValue = fmod($hue->getDimension(), 360);
+        $hueValue = $hue->getDimension() % 360;
 
         while ($hueValue < 0) {
             $hueValue += 360;
@@ -8379,12 +8306,6 @@ EOL;
     {
         $hsl = $this->toHSL($color[1], $color[2], $color[3]);
         $hsl[$idx] += $amount;
-
-        if ($idx !== 1) {
-            // Clamp the saturation and lightness
-            $hsl[$idx] = min(max(0, $hsl[$idx]), 100);
-        }
-
         $out = $this->toRGB($hsl[1], $hsl[2], $hsl[3]);
 
         if (isset($color[4])) {
@@ -8432,19 +8353,19 @@ EOL;
             return null;
         }
 
-        $color = $this->assertColor($args[0], 'color');
-        $amount = $this->assertNumber($args[1], 'amount');
+        $color = $this->assertColor($value, 'color');
+        $amount = 100 * $this->coercePercent($this->assertNumber($args[1], 'amount'));
 
-        return $this->adjustHsl($color, 2, $amount->valueInRange(0, 100, 'amount'));
+        return $this->adjustHsl($color, 2, $amount);
     }
 
     protected static $libDesaturate = ['color', 'amount'];
     protected function libDesaturate($args)
     {
         $color = $this->assertColor($args[0], 'color');
-        $amount = $this->assertNumber($args[1], 'amount');
+        $amount = 100 * $this->coercePercent($this->assertNumber($args[1], 'amount'));
 
-        return $this->adjustHsl($color, 2, -$amount->valueInRange(0, 100, 'amount'));
+        return $this->adjustHsl($color, 2, -$amount);
     }
 
     protected static $libGrayscale = ['color'];
@@ -8465,20 +8386,16 @@ EOL;
         return $this->adjustHsl($this->assertColor($args[0], 'color'), 1, 180);
     }
 
-    protected static $libInvert = ['color', 'weight:100%'];
+    protected static $libInvert = ['color', 'weight:1'];
     protected function libInvert($args)
     {
         $value = $args[0];
 
-        $weight = $this->assertNumber($args[1], 'weight');
-
         if ($value instanceof Number) {
-            if ($weight->getDimension() != 100 || !$weight->hasUnit('%')) {
-                throw new SassScriptException('Only one argument may be passed to the plain-CSS invert() function.');
-            }
-
             return null;
         }
+
+        $weight = $this->coercePercent($this->assertNumber($args[1], 'weight'));
 
         $color = $this->assertColor($value, 'color');
         $inverted = $color;
@@ -8486,7 +8403,11 @@ EOL;
         $inverted[2] = 255 - $inverted[2];
         $inverted[3] = 255 - $inverted[3];
 
-        return $this->libMix([$inverted, $color, $weight]);
+        if ($weight < 1) {
+            return $this->libMix([$inverted, $color, new Number($weight, '')]);
+        }
+
+        return $inverted;
     }
 
     // increases opacity by amount
@@ -8494,9 +8415,9 @@ EOL;
     protected function libOpacify($args)
     {
         $color = $this->assertColor($args[0], 'color');
-        $amount = $this->assertNumber($args[1], 'amount');
+        $amount = $this->coercePercent($this->assertNumber($args[1], 'amount'));
 
-        $color[4] = (isset($color[4]) ? $color[4] : 1) + $amount->valueInRange(0, 1, 'amount');
+        $color[4] = (isset($color[4]) ? $color[4] : 1) + $amount;
         $color[4] = min(1, max(0, $color[4]));
 
         return $color;
@@ -8513,9 +8434,9 @@ EOL;
     protected function libTransparentize($args)
     {
         $color = $this->assertColor($args[0], 'color');
-        $amount = $this->assertNumber($args[1], 'amount');
+        $amount = $this->coercePercent($this->assertNumber($args[1], 'amount'));
 
-        $color[4] = (isset($color[4]) ? $color[4] : 1) - $amount->valueInRange(0, 1, 'amount');
+        $color[4] = (isset($color[4]) ? $color[4] : 1) - $amount;
         $color[4] = min(1, max(0, $color[4]));
 
         return $color;
@@ -8711,72 +8632,23 @@ will be an error in future versions of Sass.\n         on line $line of $fname";
         return $list;
     }
 
-    protected static $libMapGet = ['map', 'key', 'keys...'];
+    protected static $libMapGet = ['map', 'key'];
     protected function libMapGet($args)
     {
         $map = $this->assertMap($args[0], 'map');
-        if (!isset($args[2])) {
-            // BC layer for usages of the function from PHP code rather than from the Sass function
-            $args[2] = self::$emptyArgumentList;
-        }
-        $keys = array_merge([$args[1]], $args[2][2]);
-        $value = static::$null;
+        $key = $args[1];
 
-        foreach ($keys as $key) {
-            if (!\is_array($map) || $map[0] !== Type::T_MAP) {
-                return static::$null;
-            }
+        if (! \is_null($key)) {
+            $key = $this->compileStringContent($this->coerceString($key));
 
-            $map = $this->mapGet($map, $key);
-
-            if ($map === null) {
-                return static::$null;
-            }
-
-            $value = $map;
-        }
-
-        return $value;
-    }
-
-    /**
-     * Gets the value corresponding to that key in the map
-     *
-     * @param array        $map
-     * @param Number|array $key
-     *
-     * @return Number|array|null
-     */
-    private function mapGet(array $map, $key)
-    {
-        $index = $this->mapGetEntryIndex($map, $key);
-
-        if ($index !== null) {
-            return $map[2][$index];
-        }
-
-        return null;
-    }
-
-    /**
-     * Gets the index corresponding to that key in the map entries
-     *
-     * @param array        $map
-     * @param Number|array $key
-     *
-     * @return int|null
-     */
-    private function mapGetEntryIndex(array $map, $key)
-    {
-        $key = $this->compileStringContent($this->coerceString($key));
-
-        for ($i = \count($map[1]) - 1; $i >= 0; $i--) {
-            if ($key === $this->compileStringContent($this->coerceString($map[1][$i]))) {
-                return $i;
+            for ($i = \count($map[1]) - 1; $i >= 0; $i--) {
+                if ($key === $this->compileStringContent($this->coerceString($map[1][$i]))) {
+                    return $map[2][$i];
+                }
             }
         }
 
-        return null;
+        return static::$null;
     }
 
     protected static $libMapKeys = ['map'];
@@ -8826,28 +8698,12 @@ will be an error in future versions of Sass.\n         on line $line of $fname";
         return $map;
     }
 
-    protected static $libMapHasKey = ['map', 'key', 'keys...'];
+    protected static $libMapHasKey = ['map', 'key'];
     protected function libMapHasKey($args)
     {
         $map = $this->assertMap($args[0], 'map');
-        if (!isset($args[2])) {
-            // BC layer for usages of the function from PHP code rather than from the Sass function
-            $args[2] = self::$emptyArgumentList;
-        }
-        $keys = array_merge([$args[1]], $args[2][2]);
-        $lastKey = array_pop($keys);
 
-        foreach ($keys as $key) {
-            $value = $this->mapGet($map, $key);
-
-            if ($value === null || $value instanceof Number || $value[0] !== Type::T_MAP) {
-                return self::$false;
-            }
-
-            $map = $value;
-        }
-
-        return $this->toBool($this->mapHasKey($map, $lastKey));
+        return $this->toBool($this->mapHasKey($map, $args[1]));
     }
 
     /**
@@ -8870,127 +8726,24 @@ will be an error in future versions of Sass.\n         on line $line of $fname";
 
     protected static $libMapMerge = [
         ['map1', 'map2'],
-        ['map-1', 'map-2'],
-        ['map1', 'args...']
+        ['map-1', 'map-2']
     ];
     protected function libMapMerge($args)
     {
         $map1 = $this->assertMap($args[0], 'map1');
-        $map2 = $args[1];
-        $keys = [];
-        if ($map2[0] === Type::T_LIST && isset($map2[3]) && \is_array($map2[3])) {
-            // This is an argument list for the variadic signature
-            if (\count($map2[2]) === 0) {
-                throw new SassScriptException('Expected $args to contain a key.');
-            }
-            if (\count($map2[2]) === 1) {
-                throw new SassScriptException('Expected $args to contain a value.');
-            }
-            $keys = $map2[2];
-            $map2 = array_pop($keys);
-        }
-        $map2 = $this->assertMap($map2, 'map2');
+        $map2 = $this->assertMap($args[1], 'map2');
 
-        return $this->modifyMap($map1, $keys, function ($oldValue) use ($map2) {
-            $nestedMap = $this->tryMap($oldValue);
-
-            if ($nestedMap === null) {
-                return $map2;
-            }
-
-            return $this->mergeMaps($nestedMap, $map2);
-        });
-    }
-
-    /**
-     * @param array    $map
-     * @param array    $keys
-     * @param callable $modify
-     * @param bool     $addNesting
-     *
-     * @return Number|array
-     *
-     * @phpstan-param array<Number|array> $keys
-     * @phpstan-param callable(Number|array): (Number|array) $modify
-     */
-    private function modifyMap(array $map, array $keys, callable $modify, $addNesting = true)
-    {
-        if ($keys === []) {
-            return $modify($map);
-        }
-
-        return $this->modifyNestedMap($map, $keys, $modify, $addNesting);
-    }
-
-    /**
-     * @param array    $map
-     * @param array    $keys
-     * @param callable $modify
-     * @param bool     $addNesting
-     *
-     * @return array
-     *
-     * @phpstan-param non-empty-array<Number|array> $keys
-     * @phpstan-param callable(Number|array): (Number|array) $modify
-     */
-    private function modifyNestedMap(array $map, array $keys, callable $modify, $addNesting)
-    {
-        $key = array_shift($keys);
-
-        $nestedValueIndex = $this->mapGetEntryIndex($map, $key);
-
-        if ($keys === []) {
-            if ($nestedValueIndex !== null) {
-                $map[2][$nestedValueIndex] = $modify($map[2][$nestedValueIndex]);
-            } else {
-                $map[1][] = $key;
-                $map[2][] = $modify(self::$null);
-            }
-
-            return $map;
-        }
-
-        $nestedMap = $nestedValueIndex !== null ? $this->tryMap($map[2][$nestedValueIndex]) : null;
-
-        if ($nestedMap === null && !$addNesting) {
-            return $map;
-        }
-
-        if ($nestedMap === null) {
-            $nestedMap = self::$emptyMap;
-        }
-
-        $newNestedMap = $this->modifyNestedMap($nestedMap, $keys, $modify, $addNesting);
-
-        if ($nestedValueIndex !== null) {
-            $map[2][$nestedValueIndex] = $newNestedMap;
-        } else {
-            $map[1][] = $key;
-            $map[2][] = $newNestedMap;
-        }
-
-        return $map;
-    }
-
-    /**
-     * Merges 2 Sass maps together
-     *
-     * @param array $map1
-     * @param array $map2
-     *
-     * @return array
-     */
-    private function mergeMaps(array $map1, array $map2)
-    {
         foreach ($map2[1] as $i2 => $key2) {
-            $map1EntryIndex = $this->mapGetEntryIndex($map1, $key2);
+            $key = $this->compileStringContent($this->coerceString($key2));
 
-            if ($map1EntryIndex !== null) {
-                $map1[2][$map1EntryIndex] = $map2[2][$i2];
-                continue;
+            foreach ($map1[1] as $i1 => $key1) {
+                if ($key === $this->compileStringContent($this->coerceString($key1))) {
+                    $map1[2][$i1] = $map2[2][$i2];
+                    continue 2;
+                }
             }
 
-            $map1[1][] = $key2;
+            $map1[1][] = $map2[1][$i2];
             $map1[2][] = $map2[2][$i2];
         }
 

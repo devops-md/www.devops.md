@@ -72,7 +72,7 @@ class DataManagerPlugin extends Plugin
                 $file = null;
                 $csv = true;
             } else {
-                $file = isset($pathParts[3]) ? $pathParts[3] : null;
+                $file = isset($pathParts[3]) ? $uri->basename() : null;
                 $ext = $this->getExtension($type, $file);
                 if ($extension && $ext !== $extension) {
                     $filename = $file . $extension;
@@ -82,6 +82,21 @@ class DataManagerPlugin extends Plugin
             }
 
             if ($file && !$csv) {
+                // handle delete
+                if ($uri->query('delete') !== null) {
+                    $fileObj = new \Grav\Framework\File\File(
+                        sprintf('%s/%s/%s', $path, $type, $filename)
+                    );
+
+                    if ($fileObj) {
+                        $paths = $uri->paths();
+                        array_pop($paths);
+
+                        $fileObj->delete();
+                        $this->grav->redirect(implode('/', $paths), 301);
+                    }
+                }
+
                 // Individual data entry.
                 $twig->itemData = $this->getFileContent($type, $filename, $path);
             } elseif ($type) {
@@ -233,9 +248,7 @@ class DataManagerPlugin extends Plugin
         $tmp_file = uniqid() . '.csv';
         $tmp      = $tmp_dir . '/data-manager/' . basename($tmp_file);
 
-        Folder::create(dirname($tmp));
-
-        $csv_file = File::instance($tmp_file);
+        $csv_file = File::instance($tmp . '/', $tmp_file);
         $csv_file->save($csv_data);
         Utils::download($csv_file->filename(), true);
         exit;
