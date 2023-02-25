@@ -4,9 +4,9 @@ namespace Grav\Plugin\Login\OAuth2\Providers;
 class TwitchProvider extends ExtraProvider
 {
     protected $name = 'Twitch';
-    protected $classname = 'Depotwarehouse\\OAuth2\\Client\\Twitch\\Provider\\Twitch';
+    protected $classname = 'Vertisan\\OAuth2\\Client\\Provider\\TwitchHelix';
 
-    public function initProvider(array $options)
+    public function initProvider(array $options): void
     {
         $options += [
             'clientId'      => $this->config->get('providers.twitch.client_id'),
@@ -29,16 +29,17 @@ class TwitchProvider extends ExtraProvider
     {
         $data_user = [
             'id'         => $user->getId(),
-            'login'      => $user->getUsername(),
+            'login'      => $user->getLogin(),
             'fullname'   => $user->getDisplayName(),
             'email'      => $user->getEmail(),
             'twitch'      => [
-                'avatar_url' => $user->getLogo(),
-                'bio' => $user->getBio(),
+                'avatar_url' => $user->getProfileImageUrl(),
+                'bio' => $user->getDescription(),
                 'type' => $user->getType()
             ]
         ];
 
         return $data_user;
     }
+
 }

@@ -3,7 +3,7 @@ admin/images/preset1.png	d4c29fe0007c19fdc864b50adc18ad96
 admin/images/preset2.png	29ab7afaa9143f865ea711bffdf88116
 admin/images/preset3.png	f2e007b3aebdf7a7ac58bbdc36431653
 admin/images/preset4.png	1499bbb4cea1c28b3e073a8fd1978e55
-blueprints.yaml	bfc7fc7f98e4eae518cc138362747f58
+blueprints.yaml	18d5992db1d73c93476b7096c186726c
 blueprints/page.yaml	fddedfb6c6250126c0df836bcc0c6968
 blueprints/styles/accent.yaml	7b42c3df0d6b377c11a368b8e2451ae5
 blueprints/styles/base.yaml	101ae0b0d1bad34f86a5a9ab431af6eb
@@ -35,7 +35,7 @@ fonts/roboto_regular_macroman/Roboto-Regular-webfont.woff	3e5675c89f974f7811eeaf
 fonts/roboto_regular_macroman/Roboto-Regular-webfont.woff2	bde1ca6a5d7cefc8108c75fdaad29ed6
 g5_hydrogen.yaml	c992c6c2943becc7320a32e402e7e4f8
 gantry/presets.yaml	7f3dfc6dcb9acb88e4c8f66afed12c97
-gantry/theme.yaml	bb57e92fc6a502eab9215a8b775a30c7
+gantry/theme.yaml	40082b6acac0df11415b09ae06126b70
 images/ipad.png	d5a7118045cc491070f6aac905dffc1f
 images/iphone.png	3e0764062333d05540e4cae7045fe07d
 images/macbook.png	faf9871d2d37a66bfd77cf13eff8a683

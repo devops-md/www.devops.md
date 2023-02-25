@@ -47,6 +47,24 @@ providers:
     client_secret: ''
     options:
       scope: ['users']
+  keycloak:
+    enabled: false
+    authserver_url: ''
+    realm: ''
+    client_id: ''
+    client_secret: ''
+    options:
+      scope: ['users']
+    userdata_login: ''
+    userdata_fullname: ''
+    userdata_email: ''
+  okta:
+      enabled: false
+      client_id:
+      client_secret:
+      issuer:
+      options:
+        scope: ['openid', 'email', 'profile']
 
 admin:
   enabled: true
@@ -98,3 +116,21 @@ admin:
       client_secret: ''
       options:
         scope: ['users']
+    keycloak:
+      enabled: false
+      authserver_url: ''
+      realm: ''
+      client_id: ''
+      client_secret: ''
+      options:
+        scope: ['users']
+      userdata_login: ''
+      userdata_fullname: ''
+      userdata_email: ''
+    okta:
+      enabled: false
+      client_id:
+      client_secret:
+      issuer:
+      options:
+        scope: ['openid', 'email', 'profile']

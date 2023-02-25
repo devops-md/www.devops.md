@@ -28,6 +28,11 @@
                         data-{{ datakey }}="{{ datavalue|e('html_attr') }}"
                     {% endfor %}
                 {% endif %}
+                {% if field.attributes %}
+                    {% for key, value in field.attributes %}
+                        {{ key }}="{{ value|e('html_attr') }}"
+                    {% endfor %}
+                {% endif %}
                 >
             {% if field.placeholder %}<option value="" disabled selected>{{ field.placeholder|t|raw }}</option>{% endif %}
 
@@ -43,9 +48,9 @@
                     {% set akey = field.selectize and field.multiple ? item_value : key %}
                     {% set avalue = item_value.value|t %}
                     <option {{ item_value.disabled ? 'disabled="disabled"' : '' }}
-                        {{ item_value.selected ? 'selected="selected"' : '' }}
+                        {{ item_value.selected or key == value ? 'selected="selected"' : '' }}
                         {{ item_value.label    ? 'label=' ~ item_value.label : '' }}
-                        value="{{ item_value.akey }}"
+                        value="{{ akey }}"
                     >
                         {{ avalue|raw }}
                     </option>

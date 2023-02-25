@@ -1004,6 +1004,11 @@ form label {
     margin: 0; }
   form label [data-hint] {
     display: inline; }
+  form label .hint-icon {
+    opacity: 0.7;
+    transition: 0.5s opacity; }
+  form label:hover .hint-icon {
+    opacity: 1.0; }
   form label.inline {
     display: inline;
     vertical-align: middle;
@@ -1852,10 +1857,15 @@ table.noflex {
   line-height: inherit !important;
   font-family: inherit !important;
   border-radius: 4px !important;
-  box-shadow: inherit !important; }
+  box-shadow: inherit !important;
+  border-color: transparent !important; }
+  #admin-main .admin-block a.gumroad-button:hover {
+    transform: inherit; }
   #admin-main .admin-block a.gumroad-button .gumroad-button-logo {
     display: none !important;
     background-image: none !important; }
+  #admin-main .admin-block a.gumroad-button .logo-full {
+    display: none; }
 
 #error {
   text-align: center;
@@ -2743,7 +2753,7 @@ table.noflex {
     font-size: 1.1rem;
     margin: 0;
     linep-height: 1.2; }
-  .user-details .gravatar {
+  .user-details .avatar {
     font-size: 0.9rem;
     padding: 0; }
   @media only all and (max-width: 47.938em) {
@@ -2809,6 +2819,9 @@ table.noflex {
   bottom: 0;
   right: 0;
   left: 0; }
+
+.gumroad .cart-button {
+  display: none !important; }
 
 @media only all and (max-width: 47.938em) {
   #admin-main .config-wrapper-system .form-tabs.side-tabs > .tabs-nav {

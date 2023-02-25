@@ -1,3 +1,60 @@
+# v1.3.4
+## 02/19/2023
+
+1. [](#improved)
+   * Support saving via admin in current language if not translated
+
+# v1.3.3
+## 01/04/2023
+
+1. [](#improved)
+   * Save `post-save` action to session
+   * Set default `post-save` action to `edit` for create and edit 
+
+# v1.3.2
+## 12/02/2022
+
+1. [](#improved)
+   * Various translation enhancements
+1. [](#bugfix)
+   * Fixed frontend editing objects with urlencoded ids
+
+# v1.3.1
+## 09/08/2022
+
+1. [](#bugfix)
+   * Fixed `covnertUrls` action
+
+# v1.3.0
+## 06/14/2022
+
+1. [](#new)
+    * Added user object to `onFlexTask.*` and `onFlexAction.*` events
+    * Added tasks `MediaUploadMeta` and `MediaReorder` to support remote media fields
+    * Added support to remove media defined in a field
+2. [](#improved)
+    * Refactored admin controller tasks and actions
+    * Added image preview support for 3rd party editors
+1. [](#bugfix)
+    * Fixed broken error responses in object media tasks
+
+# v1.2.0
+## 03/28/2022
+
+1. [](#new)
+    * Require **Grav 1.7.32** and **Form 6.0.0**
+2. [](#improved)
+    * Improved flex router event to include directory
+3. [](#bugfix)
+    * Fixed caching issues in dynamic flex forms
+    * Fixed flex content in unauthorized module causing the whole page to become unauthorized
+
+# v1.1.9
+## 03/14/2022
+
+1. [](#new)
+    * Added support for flex router to return a response instead of a page
+
 # v1.1.8
 ## 01/28/2022
 
