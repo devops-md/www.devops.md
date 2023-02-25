@@ -27,6 +27,21 @@ content:
 bricklayer_layout: '1'
 display_post_summary:
     enabled: '0'
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 How do I add or delete service at boot time on an Alpine Linux? How do I enable service such as Nginx/Apache at boot time on an Alpine Linux? How do I start/stop/restart services on an Alpine Linux?
@@ -36,10 +51,10 @@ Alpine Linux comes with OpenRC init system. This tutorial shows how to use the v
 
 ## View status of all services
 Type the following command:
-```
-# rc-status
-```
-```
+
+`rc-status`
+
+```shell
 Runlevel: default
  crond                                  [  started  ]
  networking                             [  started  ]
@@ -49,27 +64,26 @@ Dynamic Runlevel: manual
 ```
 The default run level is called default, and it started crond and networking service for us.
 
-
 ## View service list
 Type the following command:
-```
-# rc-status --list
-```
+
+`rc-status --list`
 
 Sample outputs:
-```
+```shell
 boot
 nonetwork
 default
 sysinit
 shutdown
 ```
+
 You can change run level using the rc command:
-```
-# rc {runlevel}
-# rc boot
-# rc default
-# rc shutdown
+```shell
+rc {runlevel}
+rc boot
+rc default
+rc shutdown
 ```
 
 1. **boot** – Generally the only services you should add to the boot runlevel are those which deal with the mounting of filesystems, set the initial state of attached peripherals and logging. Hotplugged services are added to the boot runlevel by the system. All services in the boot and sysinit runlevels are automatically included in all other runlevels except for those listed here.
@@ -79,46 +93,42 @@ You can change run level using the rc command:
 5. **default** – Used if no runlevel is specified. (This is generally the runlevel you want to add services to.)
 
 To see manually started services, run:
-```
-# rc-status --manual
+
+`rc-status --manual`
+```shell
 apache2
 ```
 
 To see crashed services, run:
-```
-# rc-status --crashed
-```
+
+`rc-status --crashed`
 
 ## How to list all available services
 Type the following command:
-```
-# rc-service --list
-# rc-service --list | grep -i nginx
-```
+`rc-service --list`
+`rc-service --list | grep -i nginx`
 
 If apache2/nginx not installed, try the apk command to install it:
-```
-# apk add apache2
-```
+
+`apk add apache2`
 
 How to add/enable service at boot time
 The syntax is:
-```
+```shell
 rc-update add {service-name} {run-level-name}
 ```
 
 To add apache2 service at boot time, run:
-```
-# rc-update add apache2
-```
+
+`rc-update add apache2`
 
 OR
-```
-# rc-update add apache2 default
-```
+
+`rc-update add apache2 default`
+
 
 Sample outputs:
-```
+```shell
  * service apache2 added to runlevel default
 ```
 
@@ -127,43 +137,33 @@ The syntax is as as follows:
 
 ### How to start service
 The syntax is:
-```
-# rc-service {service-name} start
+```shell
+rc-service {service-name} start
 ```
 
 OR
-```
-# /etc/init.d/{service-name} start
+```shell
+/etc/init.d/{service-name} start
 ```
 
 ### How to stop service
 The syntax is:
-```
-# rc-service {service-name} stop
+```shell
+rc-service {service-name} stop
 ```
 
 OR
-```
-# /etc/init.d/{service-name} stop
+```shell
+/etc/init.d/{service-name} stop
 ```
 
 ### How to restart service
 The syntax is:
-```
-# rc-service {service-name} restart
+```shell
+rc-service {service-name} restart
 ```
 
 OR
-```
-# /etc/init.d/{service-name} restart
-```
-
-Thus to stop, start, and restart an Apache2 service:
-```
-# rc-service apache2 stop
-# rc-service apache2 start
-### [ edit config file ] ###
-# vi /etc/apache2/httpd.conf
-### [ restart apache 2 after editing the file ] ###
-# rc-service apache2 restart
+```shell
+/etc/init.d/{service-name} restart
 ```

@@ -21,18 +21,36 @@ display_post_summary:
 feed:
     limit: 10
 taxonomy:
+    category:
+        - Troubleshoot
+        - 'How To'
     tag:
         - linux
         - 'alpine linux'
         - jenkins
         - upgrade
 hide_from_post_list: false
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 I recently upgraded my Jenkins server, running Alpine Linux 13.x, in a VM
 
 It's a straightforward process:
-```
+```shell
 jenkins:~# apk update
 jenkins:~# apk upgrade
 jenkins:~# reboot
@@ -41,31 +59,31 @@ jenkins:~# reboot
 After the VM came back online, the surprise was having Jenkins refusing to start. 
 
 I checked the service and it said it's started
-```
+```shell
 jenkins:~# /etc/init.d/jenkins start
  * WARNING: jenkins has already been started
 ```
 while the status was saying something different
-```
+```shell
 jenkins:~# /etc/init.d/jenkins status
  * status: crashed
 ```
 I tried to stop/start
-```
+```shell
 jenkins:~# service jenkins stop
  * Stopping jenkins ...   
 jenkins:~# service jenkins start
  * Starting jenkins ...
 ```
 but, the result was the same
-```
+```shell
 jenkins:~# /etc/init.d/jenkins status
  * status: crashed
 ```
 I've found nothing in Jenkins log file or in system logs. 
 
 So, I've tried to start Jenkins manually, and I've found much more helpful information
-```
+```shell
 jenkins:~# java -DJENKINS_HOME=/var/lib/jenkins -jar /usr/share/webapps/jenkins/jenkins.war
 Jul 29, 2021 9:41:00 PM Main verifyJavaVersion
 SEVERE: Running with Java class version 60 which is not in the list of supported versions: [52, 55]. Run with the --enable-future-java flag to enable such behavior. See https://jenkins.io/redirect/java-support/
@@ -80,7 +98,7 @@ java.lang.UnsupportedClassVersionError: 60.0
 ```
 
 It was all about the Java version
-```
+```shell
 jenkins:~# java --version
 openjdk 16.0.1 2021-04-20
 OpenJDK Runtime Environment (build 16.0.1+9-alpine-r0)
@@ -88,7 +106,7 @@ OpenJDK 64-Bit Server VM (build 16.0.1+9-alpine-r0, mixed mode, sharing)
 ```
 
 I'm quite unsure how it was working before, or how it ended by having OpenJDK 16, buy it looks like it's the right time to install OpenJDK 11 :)
-```
+```shell
 jenkins:~# apk add openjdk11
 (1/15) Purging openjdk16-jre-headless (16.0.1_p9-r0)
 (2/15) Installing openjdk11-jre-headless (11.0.11_p9-r0)
@@ -111,7 +129,7 @@ OK: 1564 MiB in 247 packages
 ```
 
 Now, it's time to try again
-```
+```shell
 jenkins:~# service jenkins restart
  * Caching service dependencies ...                                [ ok ]
  * Stopping jenkins ...

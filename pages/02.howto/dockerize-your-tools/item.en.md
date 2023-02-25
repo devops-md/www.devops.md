@@ -20,6 +20,30 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
+hide_from_post_list: false
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
+taxonomy:
+    category:
+        - 'How To'
+    tag:
+        - docker
+        - linux
+        - aws
+        - terraform
 ---
 
 First of all, install Docker on your system. Please refer to official docs 
@@ -28,7 +52,7 @@ https://docs.docker.com/engine/install/linux-postinstall/
 
 For Linux, add to your `~/.bash_aliases` the flowing lines
 
-```
+```shell
 # Docker setup
 alias aws='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
 
@@ -39,7 +63,7 @@ alias terraform='docker run -v ~/.terraform:/root/.terraform -v ~/.terraform.d:/
 type `source ~/.bash_aliases` in order to apply the changes and check the new aliases
 
 `aws --version`
-```
+```shell
 Unable to find image 'amazon/aws-cli:latest' locally
 latest: Pulling from amazon/aws-cli
 6b2f67060278: Pull complete 
@@ -54,7 +78,7 @@ aws-cli/2.2.39 Python/3.8.8 Linux/5.11.0-34-generic docker/x86_64.amzn.2 prompt/
 
 
 `terraform --version`
-```
+```shell
 Unable to find image 'hashicorp/terraform:1.0.7' locally
 1.0.7: Pulling from hashicorp/terraform
 a0d0a0d46f8b: Pull complete 

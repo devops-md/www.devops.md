@@ -1,5 +1,5 @@
 ---
-title: 'How to create a file in Linux'
+title: 'How to Create a File in Linux'
 date: '2020-09-08 19:27'
 hide_git_sync_repo_link: false
 blog_url: /howto
@@ -20,25 +20,44 @@ content:
 bricklayer_layout: '1'
 display_post_summary:
     enabled: '0'
+taxonomy:
+    category:
+        - 'How To'
+    tag:
+        - linux
+        - bash
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
-Your page summary goes here.
+A simple way to create a file in Linux. I can be empty of have a line of text, or multiple lines - you are all covered.
 
 ===
 
 ### Create an empty file
 
-```
-touch file.txt
-```
+`touch file.txt`
+
 ### Create a file with text
 
-```
-echo "Some text" > file.txt
-```
+`echo "Some text" > file.txt`
+
 ### Create a file with multiline text
 
-```
+```shell
 cat <<EOF > file.txt
 line1
 line2

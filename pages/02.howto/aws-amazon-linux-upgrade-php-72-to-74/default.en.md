@@ -3,6 +3,21 @@ title: 'AWS Amazon Linux Upgrade PHP 72 to 74'
 date: '2022-04-26 15:34'
 hide_git_sync_repo_link: false
 creator: szavadschi
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 Here are the simple steps to follow in order to upgrade php7.2, which has reached [EOL](https://www.php.net/supported-versions.php), but there are many installations still using this version.
@@ -20,7 +35,7 @@ First, let's check the php version and modules installed
 
 `php -v`
 
-```
+```shell
 PHP 7.2.34 (cli) (built: Oct 21 2020 18:03:20) ( NTS )
 Copyright (c) 1997-2018 The PHP Group
 Zend Engine v3.2.0, Copyright (c) 1998-2018 Zend Technologies
@@ -37,7 +52,7 @@ Now, disable the topics
 `sudo amazon-linux-extras enable php7.4`
 
 Here is a line stripped output, but you can see the confirmation the new version is enabled and suggested commands to run in order to upgrade at the bottom
-```
+```shell
   0  ansible2                 available    \
         [ =2.4.2  =2.4.6  =2.8  =stable ]
 ...
@@ -54,7 +69,7 @@ Note, the yum install command above, apparently doesn't include all the packages
 
 `rpm -qa | grep php`
 
-```
+```shell
 php-mysqlnd-7.2.34-1.amzn2.x86_64
 php-mbstring-7.2.34-1.amzn2.x86_64
 php-pecl-mcrypt-1.0.1-3.amzn2.0.1.x86_64
@@ -74,6 +89,7 @@ php-soap-7.2.34-1.amzn2.x86_64
 
 
 `rpm -qa --qf "sudo yum install %{NAME}\n" | grep php`
+```shell
 sudo yum install php-mysqlnd
 sudo yum install php-mbstring
 sudo yum install php-pecl-mcrypt
@@ -87,31 +103,34 @@ sudo yum install php-cli
 sudo yum install php-json
 sudo yum install php-fpm
 sudo yum install php-soap
+```
 
 
 `sudo yum clean metadata`
 
-```
+```shell
 Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
 Cleaning repos: amzn2-core amzn2extra-docker amzn2extra-epel amzn2extra-php7.4 ius netdata_netdata netdata_netdata-source
 37 metadata files removed
 13 sqlite files removed
 0 metadata files removed
 ```
-udo yum install php-cli php-pdo php-fpm php-json php-mysqlnd
+
+`sudo yum install php-cli php-pdo php-fpm php-json php-mysqlnd`
+```shell
 Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
 amzn2-core                                                                                                                 | 3.7 kB  00:00:00     
 amzn2extra-docker                                                                                                          | 3.0 kB  00:00:00     
 amzn2extra-epel                                                                                                            | 3.0 kB  00:00:00     
 amzn2extra-php7.4                                                                                                          | 3.0 kB  00:00:00 
-
 ...
+```
 
 Remove any PECL packages
 
 `sudo yum -y remove  php-pecl-mcrypt-1.0.1-3.amzn2.0.1.x86_64 php-pecl-imagick-3.4.4-1.amzn2.0.3.x86_64`
 
-```
+```shell
 ...
 
 
@@ -129,7 +148,8 @@ Complete!
 
 Run the suggested by `amazon-linux-extras` command:
 `sudo yum install php-cli php-pdo php-fpm php-json php-mysqlnd`
-```
+
+```shell
 ...
 Dependencies Resolved
 
@@ -217,7 +237,7 @@ Make sure no old packages are left behind
 
 `rpm -qa | grep php`
 
-```
+```shell
 php-pdo-7.4.28-1.amzn2.x86_64
 php-xml-7.4.28-1.amzn2.x86_64
 php-fpm-7.4.28-1.amzn2.x86_64

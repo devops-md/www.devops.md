@@ -2,9 +2,11 @@
 title: 'WIP: IAM Assume Role and ECR Login (awscli)'
 date: '2020-07-14 04:51'
 taxonomy:
+    category:
+        - 'How To'
     tag:
-        - docker
         - aws
+        - docker
         - aws-cli
         - 'aws ecr'
 hide_git_sync_repo_link: false
@@ -15,6 +17,21 @@ show_pagination: true
 hide_from_post_list: false
 feed:
     limit: 10
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 A simple way to assume a different role and login to ECR
@@ -22,13 +39,13 @@ Inspired from [here](https://aws.amazon.com/premiumsupport/knowledge-center/iam-
 
 ===
 
-```
+```shell
 aws sts assume-role --role-arn "arn:aws:iam::123456789012:role/example-role" --role-session-name AWSCLI-Session
 ```
 
 will return a json similar to:
 
-```
+```json
 {
     "AssumedRoleUser": {
         "AssumedRoleId": "AROA3XFRBF535PLBIFPI4:s3-access-example",
@@ -45,19 +62,19 @@ will return a json similar to:
 
 manually set the env variables or use this oneliner 
 
-```
+```shell
 eval `aws sts assume-role --role-arn "arn:aws:iam::123456789012:role/example-role" --role-session-name AWSCLI-Session | jq -r '"export AWS_ACCESS_KEY_ID=" + .Credentials.AccessKeyId, "export AWS_SECRET_ACCESS_KEY="+.Credentials.SecretAccessKey, "export AWS_SESSION_TOKEN="+.Credentials.SessionToken'`
 ```
 
-once you have the new variables set, you can login to ECR as you normaly do:
+once you have the new variables set, you can login to ECR as you normally do:
 
-```
+```shell
 $(aws ecr get-login --registry-ids 012345678910)
 ```
 
 This could be easily be integrated in a shell step in Jenkins pipeline / job: 
 
-```
+```java
 ...
 withAwsCli(credentialsId: 'some-credentials') {
     sh '''

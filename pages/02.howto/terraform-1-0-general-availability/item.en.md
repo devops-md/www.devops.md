@@ -10,6 +10,27 @@ hide_from_post_list: false
 feed:
     limit: 10
 media_order: terraform10.jpeg
+taxonomy:
+    category:
+        - news
+        - releases
+    tag:
+        - terraform
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 Terraform 1.0 — now generally available — marks a major milestone for interoperability, ease of upgrades, and maintenance for your automation workflows.

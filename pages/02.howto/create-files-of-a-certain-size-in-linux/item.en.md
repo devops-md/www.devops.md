@@ -1,5 +1,5 @@
 ---
-title: 'Create Files of a Certain Size in Linux'
+title: 'How To Create Files of a Certain Size in Linux'
 date: '2023-02-25 19:35'
 creator: szavadschi
 hide_git_sync_repo_link: false
@@ -37,9 +37,20 @@ restaurant:
     priceRange: $
 facebookenable: true
 hide_from_post_list: false
+taxonomy:
+    category:
+        - 'How To'
+    tag:
+        - linux
+        - bash
 ---
 
 Occasionally, you might need test files of exact size, to test transfer speeds for instance.
+Here is how
+
+===
+
+First, you may create a temporary folder and cd into it, but it's optional 
 
 `mkdir tmp ; cd tmp`
 

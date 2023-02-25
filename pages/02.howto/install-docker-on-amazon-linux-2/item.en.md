@@ -4,9 +4,9 @@ taxonomy:
     category:
         - 'How To'
     tag:
+        - aws
         - linux
         - docker
-        - aws
 hide_git_sync_repo_link: false
 blog_url: /howto
 show_sidebar: true
@@ -23,6 +23,21 @@ content:
         dir: desc
     pagination: '1'
     url_taxonomy_filters: '1'
+twitterenable: true
+twittercardoptions: summary
+articleenabled: false
+musiceventenabled: false
+orgaenabled: false
+orga:
+    ratingValue: 2.5
+orgaratingenabled: false
+eventenabled: false
+personenabled: false
+restaurantenabled: false
+restaurant:
+    acceptsReservations: 'yes'
+    priceRange: $
+facebookenable: true
 ---
 
 Amazon changed the install in Linux 2. One no-longer using 'yum' See: https://aws.amazon.com/amazon-linux-2/release-notes/
@@ -31,7 +46,7 @@ Amazon changed the install in Linux 2. One no-longer using 'yum' See: https://aw
 
 ## Docker CE Install
 
-```sh
+```shell
 sudo amazon-linux-extras install docker
 sudo service docker start
 sudo usermod -a -G docker ec2-user
