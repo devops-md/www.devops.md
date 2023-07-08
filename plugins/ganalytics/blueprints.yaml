@@ -1,5 +1,7 @@
 name: Google Analytics
-version: 1.5.2
+type: plugin
+slug: ganalytics
+version: 2.1.0
 description: "Easily integrate and configure Google Analytics without the need to touch any code within your Grav site."
 icon: google
 author:
@@ -42,9 +44,9 @@ form:
             trackingId:
               type: text
               size: medium
-              label: PLUGIN_GANALYTICS.TACKING_ID
-              help: PLUGIN_GANALYTICS.TACKING_ID_HELP
-              placeholder: "UA-00000000-0"
+              label: PLUGIN_GANALYTICS.TRACKING_ID
+              help: PLUGIN_GANALYTICS.TRACKING_ID_HELP
+              placeholder: "G-XXXXXXXXXX"
               validate:
                 required: true
 
@@ -71,41 +73,17 @@ form:
                   label: PLUGIN_GANALYTICS.OBJECT_NAME
                   help: PLUGIN_GANALYTICS.OBJECT_NAME_HELP
                   size: small
-                  default: "ga"
+                  default: "gtag"
 
-                async:
+                dnt:
                   type: toggle
-                  label: PLUGIN_GANALYTICS.ASYNC
-                  help: PLUGIN_GANALYTICS.ASYNC_HELP
+                  label: PLUGIN_GANALYTICS.DNT
+                  help: PLUGIN_GANALYTICS.DNT_HELP
                   hightlight: 1
-                  default: 0
+                  default: 1
                   options:
-                    1: PLUGIN_GANALYTICS._YES
-                    0: PLUGIN_GANALYTICS._NO
-                  validate:
-                    type: bool
-
-                forceSsl:
-                  type: toggle
-                  label: PLUGIN_GANALYTICS.FORCE_SSL
-                  help: PLUGIN_GANALYTICS.FORCE_SSL_HELP
-                  hightlight: 1
-                  default: 0
-                  options:
-                    1: PLUGIN_GANALYTICS._YES
-                    0: PLUGIN_GANALYTICS._NO
-                  validate:
-                    type: bool
-
-                anonymizeIp:
-                  type: toggle
-                  label: PLUGIN_GANALYTICS.ANONYMIZE_IP
-                  help: PLUGIN_GANALYTICS.ANONYMIZE_IP_HELP
-                  hightlight: 1
-                  default: 0
-                  options:
-                    1: PLUGIN_GANALYTICS._YES
-                    0: PLUGIN_GANALYTICS._NO
+                    1: PLUGIN_GANALYTICS.ENABLED
+                    0: PLUGIN_GANALYTICS.DISABLED
                   validate:
                     type: bool
 
@@ -147,12 +125,12 @@ form:
               validate:
                 type: bool
 
-            cookieName:
+            cookiePrefix:
               type: text
-              label: PLUGIN_GANALYTICS.COOKIE_NAME
-              help: PLUGIN_GANALYTICS.COOKIE_NAME_HELP
+              label: PLUGIN_GANALYTICS.COOKIE_PREFIX
+              help: PLUGIN_GANALYTICS.COOKIE_PREFIX_HELP
               size: small
-              default: "_ga"
+              default: ""
 
             cookieDomain:
               type: text
@@ -173,7 +151,7 @@ form:
 
         optout:
           type: tab
-          title: Opt-Out
+          title: PLUGIN_GANALYTICS.SECTION_OPTOUT
           fields:
                 hint:
                   type: spacer
@@ -183,9 +161,9 @@ form:
                 linkhint:
                   type: display
                   size: large
-                  label: Opt-Out-Link
+                  label: PLUGIN_GANALYTICS.OPTOUT_LINK
                   markdown: true
-                  content: `<a href="javascript:gaOptout()">Disable Google Analytics ...</a>`
+                  content: "`<a href=\"javascript:gaOptout()\">Disable Google Analytics ...</a>`"
 
                 optOutEnabled:
                   type: toggle
@@ -210,22 +188,10 @@ form:
           type: tab
           title: PLUGIN_GANALYTICS.SECTION_DEBUG
           fields:
-            debugStatus:
+            debugMode:
               type: toggle
-              label: PLUGIN_GANALYTICS.DEBUG_STATUS
-              help: PLUGIN_GANALYTICS.DEBUG_STATUS_HELP
-              hightlight: 1
-              default: 0
-              options:
-                1: PLUGIN_GANALYTICS.ENABLED
-                0: PLUGIN_GANALYTICS.DISABLED
-              validate:
-                type: bool
-
-            debugTrace:
-              type: toggle
-              label: PLUGIN_GANALYTICS.DEBUG_TRACE
-              help: PLUGIN_GANALYTICS.DEBUG_TRACE_HELP
+              label: PLUGIN_GANALYTICS.DEBUG_MODE
+              help: PLUGIN_GANALYTICS.DEBUG_MODE_HELP
               hightlight: 1
               default: 0
               options:
