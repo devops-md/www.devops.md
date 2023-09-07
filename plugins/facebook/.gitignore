@@ -1,6 +1,0 @@
-*~
-.DS_Store
-.idea
-composer.lock
-/cache/*
-!/cache/.gitkeep
