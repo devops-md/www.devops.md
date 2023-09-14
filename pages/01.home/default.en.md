@@ -64,9 +64,11 @@ First of all, don't forget to check out our
 * [Facebook Group](https://www.facebook.com/groups/devops.md/)
 * [Facebook Page](https://www.facebook.com/devops.md/)
 * [LinkedIn Group](https://www.linkedin.com/groups/13527841/)
+* [LinkedIn Page](https://www.linkedin.com/company/devops-moldova/)
 * [Slack Channel](https://join.slack.com/t/devopsmd/shared_invite/zt-4ohkqths-get_wPjSSrYgTtIybwez0g)
 * [Telegram Group](https://t.me/+tqp4aRgys_NjMWEy)
 * [Instagram](https://www.instagram.com/devops.md/)
+* [Threads](https://www.threads.net/@devops.md)
 
 ### 🤝 Our Partners
 
