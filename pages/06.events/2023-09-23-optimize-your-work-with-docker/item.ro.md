@@ -1,6 +1,6 @@
 ---
-title: 'New Event'
-date: '2023-09-30 17:00'
+title: 'Optimize your work with Docker'
+date: '2023-09-23 11:00'
 creator: szavadschi
 hide_git_sync_repo_link: false
 blog_url: /blog
@@ -29,10 +29,10 @@ facebookenable: true
 
 Al doilea eveniment din anul 2023
 
-- **Data:** 30 septembrie, 2023
+- **Data:** 23 septembrie, 2023, cu începere la ora 11:00
 - **Locația:** Tekwill Center, Chișinău
-- **Registration:** [Register here](https://tekwill.typeform.com/to/RAx4ZWYP)
-- **Workshop:** Workshop Title
+- **Registration:** [Register here](https://tekwill.typeform.com/to/xxxxxxxx)
+- **Workshop:** Optimize your work with Docker
 
 ===
 
