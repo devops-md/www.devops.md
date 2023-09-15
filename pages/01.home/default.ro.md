@@ -24,38 +24,23 @@ facebookenable: true
 
 ### 🙋‍♀️ Cine suntem
 
-DevOps Moldova este o comunitate de ingineri și entuziaști din Moldova care și-au pus ca scop să promoveze cultura DevOps
+DevOps Moldova este o comunitate de ingineri și entuziaști  pasionați de cultura DevOps proveniți din Moldova, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!
 
 ### 🍿 Principiile noastre
 
 - **Free** - Toate resursele publicate de noi sunt Open Source și Gratuite.
-- **Simple** - Încercăm să fim pe înțelesul tuturora, de la începători la avansați.
-- **CompanyFree** - Aici lucrăm în folosul comunității, și nu reprezentăm companiile. Iar companiile ce ne susțin sunt menționate ca parteneri.
+- **Simple** - Ne propunem să oferim explicații care se adresează atât începătorilor, cât și experților, pornind de la elementele fundamentale și trecând la concepte avansate.
+- **CompanyFree** - Accentul nostru principal este de a servi comunitatea, mai degrabă decât de a satisface interesele corporative. Recunoaștem și multumim companiile care ne susțin si ne incurajeasa ca parteneri valoroși.
+- **Enthusiasts** - Salutăm colaborarea cu entuziaștii DevOps care sunt dornici să-și împărtășească experiențele cu comunitatea
 
 ### 📅 Evenimente
 
-Începem cu primul nostru eveniment GRATUIT
-
-- **Data:** 20 mai, 2023
-- **Locația:** Tekwill Center, Chișinău
-- **Registration:** [Register here](https://tekwill.typeform.com/to/RAx4ZWYP)
-- **Workshop:** "[From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)" Dive into the world of DevOps, exploring its philosophy, methods, and technologies with none others than leading local DevOps specialists!
-
-And if you wonder why should you attend, here are some motifs:
-
-- Be one of the first to join this thrilling new community;
-- Start your DevOps journey with guidance from the pros;
-- Learn about the impact of DevOps on modern software delivery;
-- Network with like-minded peers and professionals;
-- Unlock your potential in the ever-growing tech industry;
-
-*Limited seats are available, so register now and be part of the DevOps revolution: [From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)
-
-Together, we can build a future where collaboration, automation and innovation are the driving forces of success! Share this exciting opportunity with your friends and let's create something amazing together!
+* [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
+* [20 May 2023 - DevOps: from zero to hero](../events/2023-05-20-from-zero-to-hero-navigating-devops-for-beginners)
 
 ### 🌎 Fii pe fază
 
-Nu uita să ni te alături și pe alte platforme, cum ar fi:
+Nu uita să te alături și pe alte platforme, cum ar fi:
 * [Facebook Group](https://www.facebook.com/groups/devops.md/)
 * [Facebook Page](https://www.facebook.com/devops.md/)
 * [LinkedIn Group](https://www.linkedin.com/groups/13527841/)
@@ -70,32 +55,33 @@ Nu uita să ni te alături și pe alte platforme, cum ar fi:
 - [Tekwill](https://tekwill.md/) Gazda evenimentelor.
 - [Software Mind](https://softwaremind.com/)  Partner Media.
 - [Endava](https://www.endava.com/) Partner Media.
-- [EBS Integrator](https://ebs-integrator.com/) Partner Media.
 - [PowerIT](https://powerit.dev/) Platformă Elearning.
 
-### Implică-te
+### 🏗 Implică-te
 
-Acest site se învârte pe **Grav**
-* Vezi ce e **Grav** accesând site-ul lor oficial [Learn Grav](http://learn.getgrav.org).
-* Vezi și [Grav Development Blog](http://getgrav.org/blog) pentru a afla mai multe.
-* Treci pe [DevOps Moldova GitHub](https://github.com/devops-md/www.devops.md) și începe colaborarea
+Dragă  DevOps,
 
+Ești pasionat de DevOps și cauți o comunitate vibrantă cu care să te conectezi, să înveți și să crești? Esti unde trebuia! Vă invităm să faceți parte din comunitatea noastră DevOps, unde entuziaști ca tine modelează viitorul operațiunilor IT.
 
-### Crează o Pagină Nouă
+De ce ar trebui să ni te alături?
 
-Creating a new page is a simple affair in **Grav**.  Simply follow these simple steps:
+**Învățare colaborativă:** Comunitatea noastră este construită pe baza cunoștințelor partajate. Alăturându-vă, veți avea oportunitatea de a colabora cu persoane care au aceleași idei, de la începători la experți, toți dornici să se ajute unul pe altul să reușească.
 
-1. Navigate to your pages folder: `user/pages/` and create a new folder.  In this example, we will use [explicit default ordering](http://learn.getgrav.org/content/content-pages) and call the folder `03.mypage`.
-2. Launch your text editor and paste in the following sample code:
+**Workshopuri practice:** Găzduim în mod regulat workshopuri practice, unde puteți câștiga experiență practică în cele mai recente instrumente DevOps și cele mai bune practici. Indiferent dacă abia începi sau vrei să-ți progresezi abilitățile, există ceva pentru toată lumea.
 
-        ---
-        title: My New Page
-        ---
-        # My New Page!
+**Oportunități de comunicare:** Conectați-vă cu profesioniști și experți în domeniu. Comunitatea noastră oferă evenimente de networking, întâlniri și forumuri pentru a stimula conexiuni care pot duce la oportunități de carieră și perspective valoroase.
 
-        This is the body of **my new page** and I can easily use _Markdown_ syntax here.
+**Inițiative open-source:** Ne angajăm să respectăm principiile open-source. Explorați și contribuiți la proiectele noastre open-source, având un impact tangibil asupra ecosistemului DevOps.
 
-3. Save this file in the `user/pages/03.mypage/` folder as `default.md`. This will tell **Grav** to render the page using the **default** template.
-4. That is it! Reload your browser to see your new page in the menu.
+**Rezolvarea problemelor:** Aveți o provocare DevOps care vă ține treaz noaptea? Împărtășiți-l comunității și împreună vom cauta soluții sau idei.
 
-! NOTE: The page will automatically show up in the Menu after the "Typography" menu item. If you wish to change the name that shows up in the Menu, simple add: `menu: My Page` between the dashes in the page content. This is called the YAML front matter, and it is where you configure page-specific options.
+**Creșterea carierei:** Indiferent dacă esti un student, un entuziast de început de carieră sau un inginer DevOps cu experiență, comunitatea noastră este o platformă pentru învățare continuă și dezvoltare profesională.
+
+**Incluziune:** Incurajam diversitatea și salutăm persoane din toate mediile. Comunitatea noastră este un spațiu sigur și incluziv pentru ca toată lumea să prospere.
+
+Nu ratați ocazia de a vă extinde cunoștințele DevOps, de a colabora cu experți și de a construi o rețea care vă poate propulsa cariera.
+
+Sunteți gata să începeți? Alăturați-vă nouă astăzi vizitând [site-ul nostru](https://devops.md) sau urmărindu-ne pe [Linkedin](https://www.linkedin.com/company/devops-moldova/). Împreună, vom revoluționa principiile DevOps.
+
+Să modelăm împreună viitorul DevOps!
+

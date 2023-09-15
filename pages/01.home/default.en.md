@@ -24,39 +24,22 @@ facebookenable: true
 
 ### 🙋‍♀️ Who we are
 
-DevOps Moldova is a community of DevOps engineers and enthusiasts from Moldova who want to share his experience and help others to become a good DevOps
+DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps. Unlock the Power of Collaboration in DevOps: Join Our Community of Innovators!
 
 ### 🍿 Our principles
 
-**Free** - All our resources are Open Source and free
+**Free** - All our resources are open-source and accessible to the community without any charges.
 
-**Simple** - We try to explain things from basics to experts
+**Simple** - We aim to provide explanations that cater to both novices and experts, starting from the fundamentals and progressing to advanced concepts
 
-**CompanyFree** - We're working for community not for companies. Companies which help us are mentioned as partners
+**CompanyFree** - Our primary focus is on serving the community, rather than catering to corporate interests. We acknowledge and recognize companies that support our mission as valued partners
+
+**Enthusiasts** - We welcome collaboration with DevOps enthusiasts who are eager to share their experiences with the community
 
 ### 📅 Our Events
 
-We're kicking things off with our first FREE workshop:
-
-**Date:** 20th May 2023
-
-**Location:** Tekwill Center, Chisinau
-
-**Registration:** [Register here](https://tekwill.typeform.com/to/RAx4ZWYP)
-
-**Workshop:** "[From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)" Dive into the world of DevOps, exploring its philosophy, methods, and technologies with none others than leading local DevOps specialists!
-
-And if you wonder why should you attend, here are some motifs:
-
-- Be one of the first to join this thrilling new community;
-- Start your DevOps journey with guidance from the pros;
-- Learn about the impact of DevOps on modern software delivery;
-- Network with like-minded peers and professionals;
-- Unlock your potential in the ever-growing tech industry;
-
-*Limited seats are available, so register now and be part of the DevOps revolution: [From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)
-
-Together, we can build a future where collaboration, automation and innovation are the driving forces of success! Share this exciting opportunity with your friends and let's create something amazing together!
+* [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
+* [20 May 2023 - DevOps: from zero to hero](../events/2023-05-20-from-zero-to-hero-navigating-devops-for-beginners)
 
 ### 🌎 Stay in touch
 
@@ -75,34 +58,34 @@ First of all, don't forget to check out our
 - [Tekwill](https://tekwill.md/) Home of our events.
 - [Software Mind](https://softwaremind.com/) Media partner.
 - [Endava](https://www.endava.com/) Media partner.
-- [EBS Integrator](https://ebs-integrator.com/) Media partner.
 - [PowerIT](https://powerit.dev/) Elearning platform.
 
 ### 🏗 Get involved
 
-This website is built with **Grav**
-* Learn about **Grav** by checking out our dedicated [Learn Grav](http://learn.getgrav.org) site.
-* Check out our [Grav Development Blog](http://getgrav.org/blog) to find out the latest goings on in the Grav-verse.
-* Start collaborating in [DevOps Moldova GitHub](https://github.com/devops-md/www.devops.md)
+Dear DevOps Enthusiast,
 
+Are you passionate about DevOps and looking for a vibrant community to connect, learn, and grow with? Look no further! We invite you to become a part of our thriving DevOps community, where enthusiasts like you are shaping the future of IT operations.
 
-#### Create a New Page
+Why should you join us?
 
-Creating a new page is a simple affair in **Grav**.  Simply follow these simple steps:
+**Collaborative Learning:** Our community is built on the foundation of shared knowledge. By joining, you'll have the opportunity to collaborate with like-minded individuals, from beginners to experts, all eager to help each other succeed.
 
-1. Navigate to your pages folder: `user/pages/` and create a new folder.  In this example, we will use [explicit default ordering](http://learn.getgrav.org/content/content-pages) and call the folder `03.mypage`.
-2. Launch your text editor and paste in the following sample code:
+**Hands-On Workshops:** We regularly host hands-on workshops, where you can gain practical experience in the latest DevOps tools and best practices. Whether you're just starting or seeking to advance your skills, there's something for everyone.
 
-        ---
-        title: My New Page
-        ---
-        # My New Page!
+**Networking Opportunities:** Connect with professionals and experts in the field. Our community offers networking events, meetups, and forums to foster connections that can lead to career opportunities and valuable insights.
 
-        This is the body of **my new page** and I can easily use _Markdown_ syntax here.
+**Open-Source Initiatives:** We are committed to open-source principles. Explore and contribute to our open-source projects, making a tangible impact on the DevOps ecosystem.
 
-3. Save this file in the `user/pages/03.mypage/` folder as `default.md`. This will tell **Grav** to render the page using the **default** template.
-4. That is it! Reload your browser to see your new page in the menu.
+**Problem Solving:** Do you have a DevOps challenge that's been keeping you up at night? Share it with the community, and together, we'll work towards solutions and innovation.
 
-! NOTE: The page will automatically show up in the Menu after the "Typography" menu item. If you wish to change the name that shows up in the Menu, simple add: `menu: My Page` between the dashes in the page content. This is called the YAML front matter, and it is where you configure page-specific options.
+**Career Growth:** Whether you're a student, early-career enthusiast, or an experienced DevOps engineer, our community is a platform for continuous learning and professional development.
+
+**Inclusivity:** We embrace diversity and welcome individuals from all backgrounds. Our community is a safe and inclusive space for everyone to thrive.
+
+Don't miss out on the opportunity to expand your DevOps knowledge, collaborate with experts, and build a network that can propel your career forward.
+
+Ready to get started? Join us today by visiting our [website](https://devops.md) or following us on [Linkedin](https://www.linkedin.com/company/devops-moldova/). Together, we'll revolutionise the DevOps landscape.
+
+Let's shape the future of DevOps together!
 
 {{ facebook_feed() }}

@@ -1,7 +1,4 @@
 ---
-title: 'New Event'
-date: '2023-09-30 17:00'
-creator: szavadschi
 hide_git_sync_repo_link: false
 blog_url: /blog
 show_sidebar: true
@@ -25,15 +22,13 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
+title: Jobs
 ---
 
-Al doilea eveniment din anul 2023
+Here are a few companies which are occasionally looking for DevOps engineers in Moldova
 
-- **Data:** 30 septembrie, 2023
-- **Locația:** Tekwill Center, Chișinău
-- **Registration:** [Register here](https://tekwill.typeform.com/to/RAx4ZWYP)
-- **Workshop:** Workshop Title
-- 
-===
-
-Your page content goes here.
+*  [Endava](https://careers.endava.com/en/search-job)
+*  [Software Mind](https://careers.softwaremind.com/location/chisinau/)
+*  [ISD](https://isd-soft.com/careers/)
+*  [Pentalog](https://www.pentalog.com/jobs/)
+*  [EBS Integrator](https://ebs-integrator.com/contact/)

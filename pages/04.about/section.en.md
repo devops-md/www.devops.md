@@ -28,15 +28,17 @@ facebookenable: true
 
 ### 🙋‍♀️ Who we are
 
-DevOps Moldova is a community of DevOps engineers and enthusiasts from Moldova who want to share his experience and help others to become a good DevOps
+DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps
 
 ### 🍿 Our principles
 
-**Free** - All our resources are Open Source and free
+**Free** - All our resources are open-source and accessible to the community without any charges.
 
-**Simple** - We try to explain things from basics to experts
+**Simple** - We aim to provide explanations that cater to both novices and experts, starting from the fundamentals and progressing to advanced concepts
 
-**CompanyFree** - We're working for community not for companies. Companies which help us are mentioned as partners
+**CompanyFree** - Our primary focus is on serving the community, rather than catering to corporate interests. We acknowledge and recognize companies that support our mission as valued partners
+
+**Enthusiasts** - We welcome collaboration with DevOps enthusiasts who are eager to share their experiences with the community
 
 ### 🌎 Stay in touch
 
