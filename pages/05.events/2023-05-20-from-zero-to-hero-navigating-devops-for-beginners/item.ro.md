@@ -25,6 +25,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
+media_order: DevOps-for-Beginners.png
 ---
 
 Începem cu primul nostru eveniment GRATUIT

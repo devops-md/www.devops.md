@@ -34,5 +34,6 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
+media_order: best_devops_conferences_2023.jpg
 ---
 
