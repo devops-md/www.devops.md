@@ -38,9 +38,10 @@ Our second event in 2023
 - **Where:** Tekwill Center, Chișinău
 - **Registration:** [Register here](https://tekwill.md/course/optimize-work-with-docker/)
 
+===
+
 [toc]
 
-===
 ## Speakers 
 
 ### Optimize your work with Docker - foreword
@@ -94,3 +95,16 @@ Docker is a valuable tool in development for several compelling reasons:
 9. **Easy Cleanup**: Docker containers are disposable, meaning you can easily destroy and recreate them when needed. This makes it simple to reset your development environment to a clean state, which is particularly useful when debugging complex issues.
 
 In summary, Docker streamlines the development process by providing consistent, portable, and efficient development environments. It helps you avoid common development and deployment headaches, making it an essential tool for modern software development workflows.
+
+## Software prerequisites for the Workshop 
+
+You will need the following applications on your laptop:
+
+* Docker Desktop sau Engine
+* Docker Compose
+* Git
+* VS Code
+
+We also encourage you to create accounts on GitHub and Docker Hub if you don't have them yet.
+
+[See here a few advises](../../howto/aplicatii-necesare-pentru-workshop) how to get all the software you need on your laptop in order to be prepared for the Workshop

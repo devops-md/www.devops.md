@@ -29,10 +29,10 @@ facebookenable: true
 
 Începem cu primul nostru eveniment GRATUIT
 
+- **Workshop:** "[From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)" 
 - **Data:** 20 mai, 2023
 - **Locația:** Tekwill Center, Chișinău
-- **Registration:** [Register here](https://tekwill.typeform.com/to/RAx4ZWYP)
-- **Workshop:** "[From Zero to Hero: Navigating DevOps for Beginners](https://tekwill.md/course/navigating-devops-for-beginners/)" Dive into the world of DevOps, exploring its philosophy, methods, and technologies with none others than leading local DevOps specialists!
+- **Înregistrare:** N/A
 
 ===
 
