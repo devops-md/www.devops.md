@@ -1,5 +1,5 @@
 ---
-title: 'Optimize your work with Docker'
+title: 'Optimize your work with Docker: Utilizează Docker pentru dezvoltarea de backend și a frontend'
 date: '2023-09-23 11:00'
 creator: szavadschi
 hide_git_sync_repo_link: false
@@ -29,18 +29,24 @@ page-toc:
     active: true
     start: 1
     depth: 4
+media_order: 'optimize_docker (Large).jpg'
 ---
 
 Al doilea eveniment din anul 2023
 
-- **Workshop:** [Optimize your work with Docker](https://tekwill.md/course/navigating-devops-for-beginners/)
+- **Workshop:** [Optimize your work with Docker](https://tekwill.md/course/optimize-work-with-docker/)
 - **Data:** 23 septembrie, 2023, cu începere la ora 11:00
 - **Locația:** Tekwill Center, Chișinău
-- **Înregistrare:** [Înregistrează-te aici](https://tekwill.md/course/optimize-work-with-docker/)
+- **Înregistrare:** [Înregistrează-te aici](https://tekwill.typeform.com/to/RnaIQU2e)
 
 ===
 
 [toc]
+
+## Optimize your work with Docker
+> Use Docker for backend and frontend develop
+
+Explorați lumea magică a Docker, aflați-i filozofia, metodele și tehnologiile sale alături de specialiști locali DevOps de top!
 
 ## Prezentări
 
