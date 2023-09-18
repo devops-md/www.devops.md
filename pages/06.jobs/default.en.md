@@ -28,6 +28,7 @@ title: Jobs
 Here are a few companies which are occasionally looking for DevOps engineers in Moldova
 
 *  [Endava](https://careers.endava.com/en/search-job)
+*  [Endava](https://careers.endava.com/en/junior-programmes/chisinau/internship-programme) - Internships
 *  [Software Mind](https://careers.softwaremind.com/location/chisinau/)
 *  [ISD](https://isd-soft.com/careers/)
 *  [Pentalog](https://www.pentalog.com/jobs/)
