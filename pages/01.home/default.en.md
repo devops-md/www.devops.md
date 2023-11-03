@@ -38,6 +38,7 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 
 ### 📅 Our Events
 
+* [25 Nov 2023 - Advanced Kubernetes Workshop](../events/advanced-kubernetes)
 * [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
 * [20 May 2023 - DevOps: from zero to hero](../events/2023-05-20-from-zero-to-hero-navigating-devops-for-beginners)
 
@@ -45,13 +46,10 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 
 First of all, don't forget to check out our
 * [Facebook Group](https://www.facebook.com/groups/devops.md/)
-* [Facebook Page](https://www.facebook.com/devops.md/)
-* [LinkedIn Group](https://www.linkedin.com/groups/13527841/)
 * [LinkedIn Page](https://www.linkedin.com/company/devops-moldova/)
 * [Slack Channel](https://join.slack.com/t/devopsmd/shared_invite/zt-4ohkqths-get_wPjSSrYgTtIybwez0g)
-* [Telegram Group](https://t.me/+tqp4aRgys_NjMWEy)
-* [Instagram](https://www.instagram.com/devops.md/)
-* [Threads](https://www.threads.net/@devops.md)
+* [Telegram Group](https://t.me/devops_moldova)
+* [Youtube Channel](https://www.youtube.com/@DevopsCommunityMoldova)
 
 ### 🤝 Our Partners
 

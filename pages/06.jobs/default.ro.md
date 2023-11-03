@@ -28,6 +28,7 @@ title: Joburi
 Aici găsești câteva companii care de regulă au poziții de DevOps pe piața Moldovei
 
 *  [Endava](https://careers.endava.com/en/search-job)
+*  [Endava](https://careers.endava.com/en/junior-programmes/chisinau/internship-programme) - Internships
 *  [Software Mind](https://careers.softwaremind.com/location/chisinau/#page=1&searchTerm=_&selectedParentCategory=_&selectedChildCategories=&selectedLocations=191&selectedTypeOfEmployment=)
 *  [ISD](https://isd-soft.com/careers/)
 *  [Pentalog](https://www.pentalog.com/jobs/)
