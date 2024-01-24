@@ -25,7 +25,7 @@ show_pagination: true
 hide_from_post_list: false
 feed:
     limit: 10
-media_order: 'Event cover-Devops.png'
+media_order: Event-CI-CD-DevOps.png
 ---
 
 🚀 Primul DevOps CI/CD Workshop in Moldova! 🚀
