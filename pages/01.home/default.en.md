@@ -17,7 +17,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-media_order: 'logo_moldova2.png,favicon.png,Logo_tn.svg,logo_to.png,logo-mitp_sm.png,favicon_endava_sm.png,ISD-LOGO_sm.png,SM-sm.png'
+media_order: 'logo_moldova2.png,favicon.png,Logo_tn.svg,logo_to.png,logo-mitp_sm.png,favicon_endava_sm.png,SM-sm.png,ISD classic.png,Tekwill_logo.png'
 ---
 
 # DevOps Moldova Community
@@ -58,7 +58,7 @@ First of all, don't forget to check out our
 |  :-----          |  :-----          |  :-----          |
 | ![Logo_tn](Logo_tn.svg "Logo_tn") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [Inther Software Development](https://isd-soft.com/) | Householder |
-| ![logo_to](logo_to.png "logo_to") | [Tekwill](https://tekwill.md/) | Householder |
+| ![Tekwill_logo](Tekwill_logo.png "Tekwill_logo")| [Tekwill](https://tekwill.md/) | Householder |
 | ![SM-sm](SM-sm.png "SM-sm") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![favicon_endava_sm](favicon_endava_sm.png "favicon_endava_sm") | [Endava](https://www.endava.com/) | Householder |
 | ![favicon](favicon.png "favicon")  | [PowerIT](https://powerit.dev/) | Elearning platform |
