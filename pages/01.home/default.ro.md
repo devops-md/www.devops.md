@@ -17,6 +17,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
+media_order: 'logo_moldova2.png,favicon.png,Logo_tn.svg,logo_to.png,favicon_endava_sm.png,logo-mitp_sm.png,SM-sm.png,ISD classic.png'
 ---
 
 # Comunitatea DevOps din Moldova
@@ -35,6 +36,7 @@ DevOps Moldova este o comunitate de ingineri și entuziaști  pasionați de cult
 
 ### 📅 Evenimente
 
+* [17 Feb 2024 - CI/CD Workshop](../events/ci-cd)
 * [25 Nov 2023 - Advanced Kubernetes Workshop](../events/advanced-kubernetes)
 * [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
 * [20 May 2023 - DevOps: from zero to hero](../events/2023-05-20-from-zero-to-hero-navigating-devops-for-beginners)
@@ -50,10 +52,14 @@ Nu uita să te alături și pe alte platforme, cum ar fi:
 
 ### 🤝 Partneri
 
-- [Tekwill](https://tekwill.md/) Gazda evenimentelor.
-- [Software Mind](https://softwaremind.com/)  Partner Media.
-- [Endava](https://www.endava.com/) Partner Media.
-- [PowerIT](https://powerit.dev/) Platformă Elearning.
+|    |    |    |
+|  :-----          |  :-----          |  :-----          |
+| ![Logo_tn](Logo_tn.svg "Logo_tn") | [Techovator](https://technovator.world/) | Community partner |
+| ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [Inther Software Development](https://isd-soft.com/) | Gazda evenimentelor noastre |
+| ![logo_to](logo_to.png "logo_to") | [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre |
+| ![SM-sm](SM-sm.png "SM-sm") | [Software Mind](https://softwaremind.com/) | Media partner | 
+| ![favicon_endava_sm](favicon_endava_sm.png "favicon_endava_sm") | [Endava](https://www.endava.com/) | Gazda evenimentelor noastre |
+| ![favicon](favicon.png "favicon")  | [PowerIT](https://powerit.dev/) | Elearning platform |
 
 ### 🏗 Implică-te
 
