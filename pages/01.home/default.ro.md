@@ -56,7 +56,7 @@ Nu uita să te alături și pe alte platforme, cum ar fi:
 |  :-----          |  :-----          |  :-----          |
 | ![Logo_tn](Logo_tn.svg "Logo_tn") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [Inther Software Development](https://isd-soft.com/) | Gazda evenimentelor noastre |
-| ![logo_to](logo_to.png "logo_to") | [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre |
+| ![Tekwill_logo](Tekwill_logo.png "Tekwill_logo") | [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre |
 | ![SM-sm](SM-sm.png "SM-sm") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![favicon_endava_sm](favicon_endava_sm.png "favicon_endava_sm") | [Endava](https://www.endava.com/) | Gazda evenimentelor noastre |
 | ![favicon](favicon.png "favicon")  | [PowerIT](https://powerit.dev/) | Elearning platform |

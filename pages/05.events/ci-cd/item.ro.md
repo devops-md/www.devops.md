@@ -68,7 +68,7 @@ Andrei este un inginer software cu experiență, cu o pasiune pentru dezvoltarea
 
 !!!! Despre platforma Github CI/CD, descriere generală + detalii în ceea ce oferă, optiuni, custom actions și demo.
 
-### EndToEnd testing with Jenkins, Selenium, Github
+### Elevate Stability and Power Up with E2E Tests!
 
 > Speaker: **[Dmitrii Diacikovskii](https://www.linkedin.com/in/d-dmitrii/)**, DevOps Engineer, Endava
 
@@ -76,14 +76,14 @@ Andrei este un inginer software cu experiență, cu o pasiune pentru dezvoltarea
 
 !!!! Vom vorbi despre îmbunatațirea rezilienței proiectului cu Jenkins, Docker, Selenium Hub și Github Webhooks. Vom împărtăși tonul nostru de succes clientului, convingându-i să aleagă dezvoltarea trunk-based pe Git flow. Vom explora, de asemenea, modalități de îmbunătățire a comunicării între developeri și testeri.
 
-### CI/CD Pipeline for Python Application (Gitlab-CI, ArgoCD, Helm Charts & SOPS Secrets)
+### CI/CD Pipelines for Python Application (Gitlab-CI, ArgoCD, Helm Charts & SOPS Secrets)
 >Speaker: **[Eduard Golan](https://www.linkedin.com/in/golaneduard/)**, DevOps Engineer@SoftwareMind
 
 Eduard este în prezent inginer DevOps într-o echipă mare însărcinată cu soluții diverse și complexe. Cu aproape patru ani de experiență în Inginerie DevOps, el a contribuit activ la aproximativ 25 de proiecte, fiecare dintre acestea fiind proiectat pentru a îndeplini cerințele și complexitățile specifice. Implicarea sa extinsă cuprinde de la crearea de infrastructuri de vârf pentru furnizorii importanți de cloud, cum ar fi AWS, Azure și GCP, până la mentenanța și fortificarea infrastructurii locale..
 
 !!!! Configurarea proceselor CI/CD  adaptate aplicațiilor Python. Componentele cheie includ GitLab CI pentru Continous Integration, ArgoCD pentru Continous Delivery într-un stil GitOps, Helm Charts pentru gestionarea eficientă a soluțiilor și SOPS (Secrets OPerationS) pentru gestionarea în siguranță a credențialelor criptate în pipeline.
 
-### CI/CD AWS
+### Deploying infrastructure securely with Gitlab pipelines, Hashicorp Vault and Terraform
 
 > Speaker: **[Traian Ciobanu](https://www.facebook.com/lordzmd)**, DevOps Consultant
 
