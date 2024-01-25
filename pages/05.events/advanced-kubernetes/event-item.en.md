@@ -3,7 +3,7 @@ title: 'Advanced Kubernetes Workshop'
 date: '2023-11-25 11:00'
 creator: aprescornic
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /events
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
@@ -43,6 +43,7 @@ bricklayer_layout: true
 display_post_summary:
     enabled: false
 media_order: images.png
+routes: {  }
 ---
 
 🚀 Announcing Our DevOps Kubernetes Workshop! 🚀

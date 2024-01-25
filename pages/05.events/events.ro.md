@@ -16,7 +16,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-blog_url: /blog
+blog_url: /events
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
