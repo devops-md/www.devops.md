@@ -11,14 +11,14 @@ orgaenabled: false
 orga:
     ratingValue: 2.5
 orgaratingenabled: false
-eventenabled: false
+eventenabled: true
 personenabled: false
 restaurantenabled: false
 restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-blog_url: /blog
+blog_url: /events
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
@@ -26,6 +26,20 @@ hide_from_post_list: false
 feed:
     limit: 10
 media_order: Event-CI-CD-DevOps.png
+addevent:
+    -
+        event_name: CI/CD
+        event_description: 'Primul DevOps CI/CD Workshop in Moldova!'
+        event_startDate: '2024-02-17 11:00'
+        event_endDate: '2024-02-17 14:00'
+        event_offers_price: null
+        event_offers_currency: null
+        event_offers_url: 'https://devops.md/ro/events/ci-cd'
+        event_location_name: 'ISD office'
+        event_location_address_streetAddress: 'Strada Bulgara 33/1, Chisinau MD-2001, Moldova'
+        event_location_address_addressLocality: null
+        event_locssation_address_addressRegion: null
+googletitle: 'CI/CD Workshop | DevOps Moldova'
 ---
 
 🚀 Primul DevOps CI/CD Workshop in Moldova! 🚀

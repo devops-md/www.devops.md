@@ -3,7 +3,7 @@ title: 'From Zero to Hero: Navigating DevOps for Beginners'
 date: '2023-05-20 00:00'
 creator: szavadschi
 hide_git_sync_repo_link: false
-blog_url: /blog
+blog_url: /events
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
