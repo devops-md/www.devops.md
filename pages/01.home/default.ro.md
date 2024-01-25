@@ -54,8 +54,8 @@ Nu uita să te alături și pe alte platforme, cum ar fi:
 
 |    |    |    |
 |  :-----          |  :-----          |  :-----          |
-| ![Logo_tn](Logo_tn.svg "Logo_tn") | [Techovator](https://technovator.world/) | Community partner |
-| ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [Inther Software Development](https://isd-soft.com/) | Gazda evenimentelor noastre |
+| ![Logo_tn_2](Logo_tn_2.png "Logo_tn_2") | [Techovator](https://technovator.world/) | Community partner |
+| ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [ISD](https://isd-soft.com/) | Gazda evenimentelor noastre |
 | ![Tekwill_logo](Tekwill_logo.png "Tekwill_logo") | [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre |
 | ![SM-sm](SM-sm.png "SM-sm") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![favicon_endava_sm](favicon_endava_sm.png "favicon_endava_sm") | [Endava](https://www.endava.com/) | Gazda evenimentelor noastre |

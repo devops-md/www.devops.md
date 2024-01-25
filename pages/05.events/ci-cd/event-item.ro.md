@@ -57,7 +57,7 @@ Instalarea versiunilor noi al aplicației poate fi un proces dificil. Procesele 
 
 ## La ce sa te aștepți:
     
-- Environmenturi Sandbox: Aflați cum să creați medii sandbox dinamice pentru a optimiza dezvoltarea aplicațiilor dvs.
+- Environmenturi Sandbox: Medii de testare dinamice care se lanseaza automat pentru testarea codului .
 - Laboratoare practice: puneți teoria în practică cu exerciții practice pentru a vă consolida înțelegerea.
 - Best Practices: Descoperiți cele mai bune practici din industrie
 - Troubleshooting și Debugging: Aflați cum să depanați problemele comune și să vă îmbunătățiți abilitățile de debugging.

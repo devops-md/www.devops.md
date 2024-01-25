@@ -75,7 +75,7 @@ Installing new application versions can be a difficult process. CI/CD processes 
 ## What to Expect:
 
 
-Sandbox environments: Learn how to create dynamic sandbox environments to optimize your application development.
+Sandbox environments: Dynamic sandbox environments to test services and code.
 
 Practical labs: Put theory into practice with hands-on exercises to solidify your understanding.
 
