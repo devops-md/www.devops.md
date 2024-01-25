@@ -20,4 +20,8 @@ restaurant:
 facebookenable: true
 ---
 
-Footer content goes here.
+DevOps Moldova
+
+[Facebook](https://www.facebook.com/devops.md/) |
+[LinkedIn](https://www.linkedin.com/company/devops-moldova/) |
+[Youtube](https://www.youtube.com/@DevopsCommunityMoldova)
