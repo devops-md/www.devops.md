@@ -1,7 +1,0 @@
-enabled: true
-cache_timeout: 3600
-github:
-  user: getgrav
-  repo: grav
-twitter:
-  user: getgrav
