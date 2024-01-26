@@ -56,12 +56,12 @@ First of all, don't forget to check out our
 ### 🤝 Our Partners
 |    |    |    |
 |  :-----          |  :-----          |  :-----          |
-| ![Logo_tn_2](Logo_tn_2.png "Logo_tn_2") | [Techovator](https://technovator.world/) | Community partner |
-| ![ISD%20classic](ISD%20classic.png "ISD%20classic") | [ISD](https://isd-soft.com/) | Householder |
-| ![Tekwill_logo](Tekwill_logo.png "Tekwill_logo")| [Tekwill](https://tekwill.md/) | Householder |
-| ![SM-sm](SM-sm.png "SM-sm") | [Software Mind](https://softwaremind.com/) | Media partner | 
-| ![favicon_endava_sm](favicon_endava_sm.png "favicon_endava_sm") | [Endava](https://www.endava.com/) | Householder |
-| ![favicon](favicon.png "favicon")  | [PowerIT](https://powerit.dev/) | Elearning platform |
+| ![Techovator](logo_partners_Techovator.png "Techovator") | [Techovator](https://technovator.world/) | Community partner |
+| ![ISD](logo_partners_ISD.png "ISD") | [ISD](https://isd-soft.com/) | Householder |
+| ![Tekwill](logo_partners_Tekwill.png "Tekwill")| [Tekwill](https://tekwill.md/) | Householder |
+| ![Software Mind](logo_partners_SoftwareMind.png "Software Mind") | [Software Mind](https://softwaremind.com/) | Media partner | 
+| ![Endava](logo_partners_Endava.png "Endava") | [Endava](https://www.endava.com/) | Householder |
+| ![PowerIT](logo_partners_PowerIT.png "PowerIT")  | [PowerIT](https://powerit.dev/) | Elearning platform |
 
 ### 🏗 Get involved
 
