@@ -59,7 +59,7 @@ First of all, don't forget to check out our
 | ![MITP](logo_partners_MITP.png "MITP") | [MITP](https://mitp.md/) | Community partner |
 | ![Techovator](logo_partners_Techovator.png "Techovator") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD](logo_partners_ISD.png "ISD") | [ISD](https://isd-soft.com/) | Householder |
-| ![loJetBrainsgo_JB](logo_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
+| ![loJetBrainsgo_JB](logo_partners_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
 | ![Tekwill](logo_partners_Tekwill.png "Tekwill")| [Tekwill](https://tekwill.md/) | Householder |
 | ![Software Mind](logo_partners_SoftwareMind.png "Software Mind") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![Endava](logo_partners_Endava.png "Endava") | [Endava](https://www.endava.com/) | Householder |
