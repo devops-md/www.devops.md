@@ -57,7 +57,7 @@ Nu uita să te alături și pe alte platforme, cum ar fi:
 | ![MITP](logo_partners_MITP.png "MITP") | [MITP](https://mitp.md/) | Community partner |
 | ![Techovator](logo_partners_Techovator.png "Techovator") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD](logo_partners_ISD.png "ISD") | [ISD](https://isd-soft.com/) | Gazda evenimentelor noastre  |
-| ![JetBrains](logo_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
+| ![JetBrains](logo_partners_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
 | ![Tekwill](logo_partners_Tekwill.png "Tekwill")| [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre  |
 | ![Software Mind](logo_partners_SoftwareMind.png "Software Mind") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![Endava](logo_partners_Endava.png "Endava") | [Endava](https://www.endava.com/) | Gazda evenimentelor noastre  |
