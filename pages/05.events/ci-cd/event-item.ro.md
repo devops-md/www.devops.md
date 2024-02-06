@@ -121,3 +121,7 @@ Pentru mai multe informații și actualizări, vizitați site-ul nostru [devops.
 Alăturați-vă nouă la workshopul DevOps CI/CD captivant și împuterniciți-vă cu abilitățile necesare pentru a excela în orchestrarea containerelor. Vă așteptăm cu drag la eveniment!
 
 🌟 Deblocați potențialul CI/CD și revoluționați-vă practicile DevOps! 🌟
+
+
+❗Acest eveniment a fost realizat în cadrul Programului „Tech Clusters powered by MITP”, cu suportul Proiectului Tehnologiile Viitorului, finanțat de USAID, Suedia și Marea Britanie. ❗
+

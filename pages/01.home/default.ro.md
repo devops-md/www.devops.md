@@ -17,7 +17,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-media_order: 'logo_moldova2.png,favicon.png,Logo_tn.svg,logo_to.png,favicon_endava_sm.png,logo-mitp_sm.png,SM-sm.png,ISD classic.png'
+media_order: 'logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_JB.png,logo_partners_PowerIT.png,logo_partners_Endava.png,MITP_Secondary_Logo.png'
 ---
 
 # Comunitatea DevOps din Moldova
@@ -54,8 +54,10 @@ Nu uita să te alături și pe alte platforme, cum ar fi:
 
 |    |    |    |
 |  :-----          |  :-----          |  :-----          |
+| ![MITP](logo_partners_MITP.png "MITP") | [MITP](https://mitp.md/) | Community partner |
 | ![Techovator](logo_partners_Techovator.png "Techovator") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD](logo_partners_ISD.png "ISD") | [ISD](https://isd-soft.com/) | Gazda evenimentelor noastre  |
+| ![JetBrains](logo_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
 | ![Tekwill](logo_partners_Tekwill.png "Tekwill")| [Tekwill](https://tekwill.md/) | Gazda evenimentelor noastre  |
 | ![Software Mind](logo_partners_SoftwareMind.png "Software Mind") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![Endava](logo_partners_Endava.png "Endava") | [Endava](https://www.endava.com/) | Gazda evenimentelor noastre  |
