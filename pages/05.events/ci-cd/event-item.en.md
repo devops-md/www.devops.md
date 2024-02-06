@@ -149,3 +149,5 @@ For more information and updates, visit our website at [devops.md](https://devop
 Join us for an immersive DevOps CI/CD Workshop and empower yourself with the skills needed to excel in container orchestration. We look forward to seeing you there!
 
 🌟 Unlock the potential of CI/CD and revolutionize your DevOps practices! 🌟
+
+❗ This event was organized under the "Tech Clusters powered by MITP" Program, with the support of the Future Technologies Project, funded by USAID, Sweden, and the United Kingdom. ❗

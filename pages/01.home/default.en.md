@@ -17,7 +17,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-media_order: 'logo_moldova2.png,favicon.png,logo_to.png,logo-mitp_sm.png,favicon_endava_sm.png,SM-sm.png,ISD classic.png,Tekwill_logo.png,Logo_tn_2.png'
+media_order: 'logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_partners_PowerIT.png,logo_partners_Endava.png,logo_JB.png'
 ---
 
 # DevOps Moldova Community
@@ -56,8 +56,10 @@ First of all, don't forget to check out our
 ### 🤝 Our Partners
 |    |    |    |
 |  :-----          |  :-----          |  :-----          |
+| ![MITP](logo_partners_MITP.png "MITP") | [MITP](https://mitp.md/) | Community partner |
 | ![Techovator](logo_partners_Techovator.png "Techovator") | [Techovator](https://technovator.world/) | Community partner |
 | ![ISD](logo_partners_ISD.png "ISD") | [ISD](https://isd-soft.com/) | Householder |
+| ![loJetBrainsgo_JB](logo_JB.png "JetBrains") | [JetBrains](https://www.jetbrains.com/) | Community Partner |
 | ![Tekwill](logo_partners_Tekwill.png "Tekwill")| [Tekwill](https://tekwill.md/) | Householder |
 | ![Software Mind](logo_partners_SoftwareMind.png "Software Mind") | [Software Mind](https://softwaremind.com/) | Media partner | 
 | ![Endava](logo_partners_Endava.png "Endava") | [Endava](https://www.endava.com/) | Householder |
