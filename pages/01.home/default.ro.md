@@ -4,7 +4,7 @@ hide_git_sync_repo_link: false
 body_classes: 'title-center title-h1h2'
 twitterenable: true
 twittercardoptions: summary
-articleenabled: false
+articleenabled: true
 musiceventenabled: false
 orgaenabled: false
 orga:
@@ -17,7 +17,17 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-media_order: 'logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_JB.png,logo_partners_PowerIT.png,logo_partners_Endava.png,MITP_Secondary_Logo.png'
+media_order: 'DevOps-Moldova-1200x630.png,logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_partners_PowerIT.png,logo_partners_Endava.png,logo_partners_MITP.png,logo_partners_JB.png'
+googletitle: 'DevOps Moldova'
+googledesc: 'DevOps Moldova este o comunitate de ingineri și entuziaști pasionați de cultura DevOps, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!'
+facebooktitle: 'DevOps Moldova'
+facebookdesc: 'DevOps Moldova este o comunitate de ingineri și entuziaști pasionați de cultura DevOps, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!'
+facebookauthor: 'https://www.facebook.com/devops.md/'
+twittertitle: 'DevOps Moldova'
+twitterdescription: 'DevOps Moldova este o comunitate de ingineri și entuziaști pasionați de cultura DevOps, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!'
+article:
+    headline: 'DevOps Moldova'
+    description: 'DevOps Moldova este o comunitate de ingineri și entuziaști pasionați de cultura DevOps, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!'
 ---
 
 # Comunitatea DevOps din Moldova

@@ -17,7 +17,17 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-media_order: 'logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_partners_PowerIT.png,logo_partners_Endava.png,logo_JB.png'
+media_order: 'DevOps-Moldova-1200x630.png,logo_partners_Techovator.png,logo_partners_ISD.png,logo_partners_SoftwareMind.png,logo_partners_TekwillOnline.png,logo_partners_Tekwill.png,logo_partners_PowerIT.png,logo_partners_Endava.png,logo_partners_MITP.png,logo_partners_JB.png'
+facebooktitle: 'DevOps Moldova'
+facebookdesc: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
+article:
+    headline: 'DevOps Moldova'
+    description: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
+    image_url: /home/DevOps-Moldova-1200x630.png
+googletitle: 'DevOps Moldova'
+googledesc: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
+twittertitle: 'DevOps Moldova'
+twitterdescription: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
 ---
 
 # DevOps Moldova Community
