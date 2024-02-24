@@ -42,7 +42,7 @@ content:
 bricklayer_layout: true
 display_post_summary:
     enabled: false
-media_order: images.png
+media_order: 'Event-CI-CD-DevOps.png,Screenshot 2024-02-23 at 09.24.02.png,Screenshot 2024-02-23 at 09.24.11.png,Screenshot 2024-02-23 at 09.24.19.png'
 addevent:
     -
         event_name: CI/CD
@@ -57,6 +57,10 @@ addevent:
         event_location_address_addressLocality: null
         event_locssation_address_addressRegion: null
 googletitle: 'CI/CD Workshop | DevOps Moldova'
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
 ---
 
 🚀 Announcing Our DevOps CI/CD Workshop! 🚀
@@ -103,6 +107,7 @@ Who Should Attend:
 Experienced software engineer with a passion for developing innovative programs.Well-versed in technology and writing code to create systems that are reliable and user-friendly
 
 !!!! About Github CI/CD platform, overall description + a bit deep dive into what they offer, features, a custom action and  short demo.
+[![Screenshot%202024-02-23%20at%2009.24.02](Screenshot%202024-02-23%20at%2009.24.02.png "Screenshot%202024-02-23%20at%2009.24.02")](https://www.youtube.com/live/X1w-LrXeZcU?si=EkP5AaNjRQWeQ11G)
 
 ### Elevate Stability and Power Up with E2E Tests!
 
@@ -112,6 +117,7 @@ Experienced software engineer with a passion for developing innovative programs.
 Throughout the past three years, Dmitrii has extensively explored the Fin-Tech sector, demonstrating expertise by leading the development and implementation of DevOps features in a multi-localization project. This involved utilizing technologies such as Jenkins, Docker, Terraform and AWS.
 
 !!!! We'll talk about boosting the project's stability with Jenkins, Docker, Selenium Hub, and Github Webhooks. We will share our successful pitch to the client, persuading them to choose trunk-based development over Git flow. We'll also explore ways to enhance communication between developers and testers.
+[![Screenshot%202024-02-23%20at%2009.24.11](Screenshot%202024-02-23%20at%2009.24.11.png "Screenshot%202024-02-23%20at%2009.24.11")](https://www.youtube.com/live/9QmOg3KooJM?si=vMAqXKWm0FtwMSal)
 
 ### CI/CD Pipelines for Python Application (Gitlab-CI, ArgoCD, Helm Charts & SOPS Secrets)
 
@@ -120,6 +126,7 @@ Throughout the past three years, Dmitrii has extensively explored the Fin-Tech s
 Eduard is currently a DevOps Engineer on a large team charged with addressing diverse and complex solutions. With nearly four years of experience in DevOps Engineering, he has actively contributed to approximately 25 projects, each of that was custom-designed to meet specific requirements and complexities. His extensive involvement spans from crafting high-end infrastructures across major cloud providers such as AWS, Azure, and GCP to overseeing the maintenance and fortification of on-premises infrastructure.
 
 !!!! Establishing a seamless CI/CD pipeline tailored for Python applications. The key components include GitLab CI for Continuous Integration, ArgoCD for Continuous Deployment in a GitOps fashion, Helm Charts for efficient package management, and SOPS (Secrets OPerationS) for secure handling of encrypted secrets within the pipeline.
+[![Screenshot%202024-02-23%20at%2009.24.19](Screenshot%202024-02-23%20at%2009.24.19.png "Screenshot%202024-02-23%20at%2009.24.19")](https://www.youtube.com/live/fBlR0_hhebY?si=1pDLdUI--pMoww3o)
 
 ### Deploying infrastructure securely with Gitlab pipelines, Hashicorp Vault and Terraform
 

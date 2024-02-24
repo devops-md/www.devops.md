@@ -28,6 +28,10 @@ googletitle: 'DevOps Moldova'
 googledesc: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
 twittertitle: 'DevOps Moldova'
 twitterdescription: 'DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hailing from Moldova, dedicated to sharing their expertise and assisting others on their journey to mastering the art of DevOps'
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
 ---
 
 # DevOps Moldova Community
@@ -57,7 +61,8 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 ### 🌎 Stay in touch
 
 First of all, don't forget to check out our
-* [Facebook Group](https://www.facebook.com/groups/devops.md/)
+* [Facebook Page](https://www.facebook.com/devops.md/) and [Facebook Group](https://www.facebook.com/groups/devops.md/)
+* [Instagram](https://www.instagram.com/devops.md) and [Threads](https://www.threads.net/@devops.md)
 * [LinkedIn Page](https://www.linkedin.com/company/devops-moldova/)
 * [Slack Channel](https://join.slack.com/t/devopsmd/shared_invite/zt-4ohkqths-get_wPjSSrYgTtIybwez0g)
 * [Telegram Group](https://t.me/devops_moldova)

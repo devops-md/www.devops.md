@@ -28,6 +28,10 @@ twitterdescription: 'DevOps Moldova este o comunitate de ingineri și entuziașt
 article:
     headline: 'DevOps Moldova'
     description: 'DevOps Moldova este o comunitate de ingineri și entuziaști pasionați de cultura DevOps, dedicați să-și împărtășească expertiza și să-i ajute pe alții în călătoria lor către cucerirea artei DevOps. Deblocați puterea colaborării în DevOps: alăturați-vă comunității noastre de inovatori!'
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
 ---
 
 # Comunitatea DevOps din Moldova
@@ -54,7 +58,8 @@ DevOps Moldova este o comunitate de ingineri și entuziaști  pasionați de cult
 ### 🌎 Fii pe fază
 
 Nu uita să te alături și pe alte platforme, cum ar fi:
-* [Facebook Group](https://www.facebook.com/groups/devops.md/)
+* [Facebook Page](https://www.facebook.com/devops.md/) și [Facebook Group](https://www.facebook.com/groups/devops.md/)
+* [Instagram](https://www.instagram.com/devops.md) și [Threads](https://www.threads.net/@devops.md)
 * [LinkedIn Page](https://www.linkedin.com/company/devops-moldova/)
 * [Slack Channel](https://join.slack.com/t/devopsmd/shared_invite/zt-4ohkqths-get_wPjSSrYgTtIybwez0g)
 * [Telegram Group](https://t.me/devops_moldova)
