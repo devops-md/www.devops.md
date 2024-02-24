@@ -24,6 +24,10 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
 ---
 
 ### 🙋‍♀️ Who we are
@@ -43,11 +47,9 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 ### 🌎 Stay in touch
 
 First of all, don't forget to check out our
-* [Facebook Group](https://www.facebook.com/groups/devops.md/)
-* [Facebook Page](https://www.facebook.com/devops.md/)
-* [LinkedIn Group](https://www.linkedin.com/groups/13527841/)
+* [Facebook Page](https://www.facebook.com/devops.md/) and [Facebook Group](https://www.facebook.com/groups/devops.md/)
+* [Instagram](https://www.instagram.com/devops.md) and [Threads](https://www.threads.net/@devops.md)
 * [LinkedIn Page](https://www.linkedin.com/company/devops-moldova/)
 * [Slack Channel](https://join.slack.com/t/devopsmd/shared_invite/zt-4ohkqths-get_wPjSSrYgTtIybwez0g)
-* [Telegram Group](https://t.me/+tqp4aRgys_NjMWEy)
-* [Instagram](https://www.instagram.com/devops.md/)
-* [Threads](https://www.threads.net/@devops.md)
+* [Telegram Group](https://t.me/devops_moldova)
+* [Youtube Channel](https://www.youtube.com/@DevopsCommunityMoldova)
