@@ -58,6 +58,9 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 * [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
 * [20 May 2023 - DevOps: from zero to hero](../events/2023-05-20-from-zero-to-hero-navigating-devops-for-beginners)
 
+### ✍ Trainings:
+[15-26 April 2024 - Azure Fundamentals course](../events/azure-course)
+
 ### 🌎 Stay in touch
 
 First of all, don't forget to check out our
