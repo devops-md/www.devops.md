@@ -53,6 +53,7 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 
 ### 📅 Our Events
 
+* [25 May 2024 - Infrastructure as Code Workshop](../events/infrastructure-as-code)
 * [17 Feb 2024 - CI/CD Workshop](../events/ci-cd)
 * [25 Nov 2023 - Advanced Kubernetes Workshop](../events/advanced-kubernetes)
 * [23 Sep 2023 - Optimize your work with Docker](../events/2023-09-23-optimize-your-work-with-docker)
