@@ -23,6 +23,13 @@ restaurant:
     priceRange: $
 facebookenable: true
 media_order: 2024-09-25-Observability-min.png
+blog_url: /blog
+show_sidebar: true
+show_breadcrumbs: true
+show_pagination: true
+hide_from_post_list: false
+feed:
+    limit: 10
 ---
 
 🚀 Excited to announce our upcoming event "**Mastering Observability: A Comprehensive Guide for DevOps Engineers**"! 📊🔍
@@ -32,7 +39,7 @@ Immerse yourself in the world of observability, where you'll learn to expertly m
 📅 **Date**: 12 Oct 2024  
 🕒 **Time**: 11:00 AM  
 📍 **Location**: str. Lazo Seghei 38, Chisinau, Moldova (GRID DYNAMICS Office)  
-🎟️ **Registration**: Observability Event - Registration form
+🎟️ **Registration**: https://unde.io/event/804
 
 🗣 Speakers/Topics:
 
