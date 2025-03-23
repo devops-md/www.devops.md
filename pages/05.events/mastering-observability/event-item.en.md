@@ -30,6 +30,8 @@ show_pagination: true
 hide_from_post_list: false
 feed:
     limit: 10
+sitemap:
+    lastmod: '2025-03-23 06:06'
 ---
 
 🚀 Excited to announce our upcoming event "**Mastering Observability: A Comprehensive Guide for DevOps Engineers**"! 📊🔍

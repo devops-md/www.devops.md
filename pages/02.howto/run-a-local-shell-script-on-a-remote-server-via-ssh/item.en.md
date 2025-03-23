@@ -24,6 +24,9 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
+taxonomy:
+    tag:
+        - linux
 ---
 
 The problem with running commands over SSH is that generally you either have to type them yourself or upload a script file. However, with a bit of bash knowledge, you can pass entire scripts over SSH without having the .sh file on the remote machine.

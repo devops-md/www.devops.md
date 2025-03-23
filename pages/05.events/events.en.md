@@ -16,7 +16,7 @@ restaurant:
     acceptsReservations: 'yes'
     priceRange: $
 facebookenable: true
-blog_url: /blog
+blog_url: /events
 show_sidebar: true
 show_breadcrumbs: true
 show_pagination: true
@@ -34,5 +34,13 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
+sitemap:
+    lastmod: '2025-03-23 15:51'
+hero_classes: 'text-light title-h1h2 parallax overlay-dark-gradient hero-large'
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
+media_order: devops-events.webp
 ---
 

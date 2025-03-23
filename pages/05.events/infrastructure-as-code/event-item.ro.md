@@ -33,7 +33,7 @@ addevent:
         event_offers_currency: null
         event_offers_url: 'https://devops.md/ro/events/infrastructure-as-code'
         event_location_name: 'Software Mind Romania & Moldova office'
-        event_location_address_streetAddress: 'str. Vasile Alecsandri 143, Chisinau MD-2001, Moldova'
+        event_location_address_streetAddress: 'str. Vasile Alecsandri 143, Chisinau MD-2005, Moldova'
         event_location_address_addressLocality: null
         event_locssation_address_addressRegion: null
 blog_url: /blog
@@ -43,19 +43,22 @@ show_pagination: true
 hide_from_post_list: false
 feed:
     limit: 10
+sitemap:
+    lastmod: '2025-03-23 16:26'
+hero_classes: 'text-light title-h1h2 parallax overlay-dark-gradient hero-large'
 ---
 
-🚀 Excited to announce our upcoming "Infrastructure as Code Workshop"! 🛠️
+🚀 Bucuroși să anunțăm următorul nostru eveniment "Infrastructure as Code Workshop"! 🛠️
 
-Join us for an immersive dive into the world of Infrastructure as Code (IaC), where you'll learn how to automate and manage your infrastructure efficiently using cutting-edge tools and best practices.
+Ne vom adânci în lumea Infrastructure as Code (IaC), vei afla cum de automatizat și gestionat eficient infrastructura, folosind unelte și practici moderne.
 
-📅 Date: 25 May , 2024
-🕒 Time: 11:00AM  
-📍 Location: str. Vasile Alecsandri 143, Chisinau MD-2005, Moldova ([Software Mind Romania & Moldova Office](https://maps.app.goo.gl/LjuNeyjF5pU2teVF6))  
-🎟️ RegistrationȘ [DevOps Infrastructure as Code Workshop - Registration form](https://docs.google.com/forms/d/e/1FAIpQLSeQFoGQl9L_zsgfsRU3TTBu3O1RaBHInMMFzk5AA5fvFYewkA/viewform)
+📅 Data: 25 mai, 2024  
+🕒 Time: 11:00  
+📍 Locație: str. Vasile Alecsandri 143, Chisinau MD-2005, Moldova ([Software Mind Romania & Moldova Office](https://maps.app.goo.gl/LjuNeyjF5pU2teVF6))  
+🎟️ Înregistrare: [DevOps Infrastructure as Code Workshop - Registration form](https://docs.google.com/forms/d/e/1FAIpQLSeQFoGQl9L_zsgfsRU3TTBu3O1RaBHInMMFzk5AA5fvFYewkA/viewform)
 
-🗣 Speakers/Topics:  
-- [Petru Burdian](https://www.linkedin.com/in/petru-burdian-87b5889a/) (IaC on Premises)  
+🗣 Prezentatori/Subiecte:  
+- [Petru Burdian](https://www.linkedin.com/in/petru-burdian-87b5889a/) (IaC on Premises)
 - [Igor Belitei](https://www.linkedin.com/in/igorbelite/) (Create your own Terraform provider in GO)  
 - [Bogdan Platon](https://www.linkedin.com/in/bogdan-platon-7217911b0/) (Helm Provider in Terraform)
 
