@@ -34,6 +34,13 @@ display_post_summary:
     enabled: false
 feed:
     limit: 10
-media_order: best_devops_conferences_2023.jpg
+sitemap:
+    lastmod: '2025-03-23 15:51'
+hero_classes: 'text-light title-h1h2 parallax overlay-dark-gradient hero-large'
+musicalbumenabled: false
+productenabled: false
+product:
+    ratingValue: 2.5
+media_order: devops-events.webp
 ---
 
