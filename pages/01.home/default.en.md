@@ -55,7 +55,8 @@ DevOps Moldova is a community of passionate DevOps engineers and enthusiasts hai
 
 ### 📅 Our Events
 
-* [05 Apr 2024 - DevOps Building and Soft Skills](../events/softskills)
+* [25 Oct 2025 - Mastering Site Reliability Engineering](../events/2025-10-25-mastering-site-reliability-engineering)
+* [05 Apr 2025 - DevOps Building and Soft Skills](../events/softskills)
 * [25 May 2024 - Infrastructure as Code Workshop](../events/infrastructure-as-code)
 * [17 Feb 2024 - CI/CD Workshop](../events/ci-cd)
 * [25 Nov 2023 - Advanced Kubernetes Workshop](../events/advanced-kubernetes)
