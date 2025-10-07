@@ -62,7 +62,27 @@ In today’s fast-paced cloud-native world, Site Reliability Engineering (SRE) h
 * Cloud Architects
 * Developers interested in operational excellence and reliability
 
-# Partners
-* Noction
-* Oracle Cloud Romania
-* JetBrains
+## Topics
+
+### SRE and Chaos engineering
+> Presenter **Ion Munteanu**,  Platform Engineer / DevOps Consultant
+
+Ion Munteanu is a technical leader with over a decade of experience designing and scaling large-scale platforms. He has spent much of his career in the sports betting industry, driving infrastructure and reliability at companies like Caesars Sportsbook and William Hill, and has also worked on cutting-edge blockchain technologies.
+
+Ion is passionate about solving complex problems and turning them into scalable, reliable solutions. Whether leading initiatives, mentoring engineers, or diving hands-on into architecture, he brings a high sense of ownership and a track record of building systems that perform under pressure.
+
+### SRE in Practice: Engineering Reliability in the Cloud (Oracle Cloud Infrastructure Perspective
+> Presenter **[Andrei Marcov](https://www.linkedin.com/in/andrei-marcov-72a78222/)**, Oracle Cloud Engineer
+
+Andrei is an Oracle Cloud Engineer with a strong technical background, specializing in infrastructure services and automation, distributed systems, and cloud-native solutions. He advises customers from Eastern Europe and Central Asia during both the presales and post-sales stages of their cloud journey, guiding from conceptualization to solution architecture and implementation.
+
+### From CI/CD to GitOps: Streamlining Deployments with Flux CD
+> Presenter **[Daniel Țoncu](https://www.linkedin.com/in/daniel-toncu/)**, DevOps and Cloud Architect
+
+Daniel Țoncu is a DevOps and Cloud Architect with extensive experience across Azure, Google Cloud, and AWS. He focuses on designing secure, automated, and scalable infrastructures while helping teams adopt modern DevOps and GitOps practices to achieve operational excellence.
+
+
+## Partners
+* [Noction](https://www.noction.com/)
+* [Oracle Cloud Romania](https://www.oracle.com/ro/engineered-systems/private-cloud-appliance/)
+* [JetBrains](https://www.jetbrains.com/)
